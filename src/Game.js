@@ -37,6 +37,7 @@ class Game extends Component {
           <input onChange={this.handleDbTextChange} />
           <button onClick={this.handleSetDbTextChange}>database</button>
           {this.state ? this.state.data : <p>no data yet</p>}
+          <button onClick={this.props.onExit}>Exit</button>
       </div>
     );
   }

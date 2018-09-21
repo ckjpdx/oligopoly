@@ -21,6 +21,7 @@ exports.addMessage = functions.https.onCall((data, context) => {
   // Push the new message into the Realtime Database using the Firebase Admin SDK.
   return admin.database().ref('/messages').push({original: original}).then((snapshot) => {
     console.log(snapshot);
+    return null;
   });
 });
 
