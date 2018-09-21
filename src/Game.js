@@ -6,12 +6,9 @@ import firebase from './firebase';
 const db = firebase.database();
 
 class Game extends Component {
-  constructor(props) {
-    super(props);
+  componentWillMount() {
     db.ref('games/data').on('value', snap => this.setState({data: snap.val()}));
   }
-
-  componentWillMount() {}
 
   handleChangeText = (e) => {
     this.setState({text: e.target.value});
@@ -32,12 +29,13 @@ class Game extends Component {
   render() {
     return (
       <div className="Game">
-          <input onChange={this.handleChangeText} />
-          <button onClick={this.handleSendText}>cloud</button>
-          <input onChange={this.handleDbTextChange} />
-          <button onClick={this.handleSetDbTextChange}>database</button>
-          {this.state ? this.state.data : <p>no data yet</p>}
-          <button onClick={this.props.onExit}>Exit</button>
+        <input onChange={this.handleChangeText} />
+        <button onClick={this.handleSendText}>cloud</button>
+        <input onChange={this.handleDbTextChange} />
+        <button onClick={this.handleSetDbTextChange}>database</button>
+        {this.state ? this.state.data : <p>no data yet</p>}
+        <button onClick={this.props.onExit}>Exit</button>
+        <button onClick={() => console.log(this.state)}>Check State</button>
       </div>
     );
   }

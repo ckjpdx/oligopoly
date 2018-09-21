@@ -1,10 +1,5 @@
 import React from 'react';
-import Login from './Login';
 import './App.css';
-
-import firebase from './firebase';
-
-const db = firebase.database();
 
 function Welcome(props){
   return (
