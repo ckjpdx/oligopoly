@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import firebase from './firebase';
-import 'firebase/functions';
+
+const db = firebase.database();
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {text: 'nadda'};
+    db.ref('games/data').on('value', snap => this.setState({data: snap.val()}));
   }
+
+  componentWillMount() {}
+
   handleChangeText = (e) => {
     this.setState({text: e.target.value});
-    console.log(this.state);
+  }
+  handleDbTextChange = (e) => {
+    this.setState({toData: e.target.value});
   }
   handleSendText = () => {
     console.log('Send the text!!');
@@ -21,16 +26,20 @@ class App extends Component {
       console.log(result.data.text);
     });
   }
+  handleSetDbTextChange = () => {
+    db.ref('games/').update({data: this.state.toData})
+  }
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <input onChange={this.handleChangeText} />
-          <button onClick={this.handleSendText}>send</button>
+          <button onClick={this.handleSendText}>cloud</button>
+          <input onChange={this.handleDbTextChange} />
+          <button onClick={this.handleSetDbTextChange}>database</button>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          {this.state ? this.state.data : <span>no data yet</span>}
         </p>
       </div>
     );
