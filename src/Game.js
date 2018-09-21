@@ -6,8 +6,18 @@ import firebase from './firebase';
 const db = firebase.database();
 
 class Game extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: '',
+      toData: ''
+    }
+  }
   componentWillMount() {
     db.ref('games/data').on('value', snap => this.setState({data: snap.val()}));
+  }
+  componentWillUnmount() {
+    db.ref('games/data').off();
   }
 
   handleChangeText = (e) => {
@@ -26,6 +36,10 @@ class Game extends Component {
   handleSetDbTextChange = () => {
     db.ref('games/').update({data: this.state.toData})
   }
+  exitGame = () => {
+    this.state = null;
+    this.props.onExit();
+  }
   render() {
     return (
       <div className="Game">
@@ -34,7 +48,7 @@ class Game extends Component {
         <input onChange={this.handleDbTextChange} />
         <button onClick={this.handleSetDbTextChange}>database</button>
         {this.state ? this.state.data : <p>no data yet</p>}
-        <button onClick={this.props.onExit}>Exit</button>
+        <button onClick={() => this.exitGame()}>Exit</button>
         <button onClick={() => console.log(this.state)}>Check State</button>
       </div>
     );
