@@ -1,11 +1,17 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 
 function Welcome(props){
   return (
     <div className="Welcome">
-      <h2>Fill or Kill</h2>
-      <p>ol·i·gop·o·ly <em>n.</em></p>
-        <p>a state of limited competition, in which a market is shared by a small number of producers or sellers.</p>
+      <Typography variant="display3">oligopoly</Typography>
+      <Typography variant="body1">
+        ol·i·gop·o·ly, <em>n.</em>
+      </Typography>
+      <Typography variant="headline">
+        a state of limited competition, in which a market is shared by a small number of producers or sellers.
+      </Typography>
     </div>
   );
 }

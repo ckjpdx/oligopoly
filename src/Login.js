@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
+import Button from '@material-ui/core/Button';
 
 const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -27,8 +28,8 @@ class Login extends React.Component {
       <React.Fragment>
         <p></p>
         {this.props.user
-        ? <button onClick={this.signOut}>Sign Out</button>
-        : <button onClick={this.signIn}>Sign In</button>}
+        ? <Button onClick={this.signOut} variant="contained">Sign Out</Button>
+        : <Button onClick={this.signIn} variant="contained">Sign In</Button>}
       </React.Fragment>
     );
   }

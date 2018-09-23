@@ -8,6 +8,7 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      game: null,
       data: '',
       toData: ''
     }
@@ -36,7 +37,7 @@ class Game extends Component {
     db.ref('games/').update({data: this.state.toData})
   }
   exitGame = () => {
-    this.setState({}); //reset state?
+    this.setState({game: null});
     this.props.onExit();
   }
   render() {
