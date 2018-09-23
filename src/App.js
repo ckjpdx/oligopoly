@@ -16,7 +16,7 @@ class App extends Component {
     };
     firebase.auth().onAuthStateChanged(user =>
       user
-      ? this.setState({user: user})
+      ? this.setState({user: {name: user.displayName, email: user.email}})
       : this.setState({user: null})
     );
   }
