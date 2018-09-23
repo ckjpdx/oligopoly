@@ -1,3 +1,7 @@
+html {
+  @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500");
+}
+
 html, body, .App, .App::before {
   width: 100%;
   height: 100%;
@@ -6,7 +10,8 @@ html, body, .App, .App::before {
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
   color: white;
   text-align: center;
   background-image: url(https://ak5.picdn.net/shutterstock/videos/26827735/thumb/1.jpg);
