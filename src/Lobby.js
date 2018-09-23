@@ -1,6 +1,5 @@
 import React from 'react';
 import Login from './Login';
-import './App.css';
 
 // get games list
 // import firebase from './firebase';

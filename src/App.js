@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
 import Welcome from './Welcome';
 import Lobby from './Lobby';
 import Game from './Game';
 import Login from './Login';
-import firebase from 'firebase';
 
+import firebase from 'firebase';
 
 class App extends Component {
   constructor(props) {
