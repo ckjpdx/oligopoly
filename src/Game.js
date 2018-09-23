@@ -37,7 +37,7 @@ class Game extends Component {
     db.ref('games/').update({data: this.state.toData})
   }
   exitGame = () => {
-    this.state = null;
+    this.setState({}); //reset state?
     this.props.onExit();
   }
   render() {
