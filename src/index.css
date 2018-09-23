@@ -2,4 +2,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  text-align: center;
+  min-height: 100vh;
+  background-image: url(https://ak5.picdn.net/shutterstock/videos/26827735/thumb/1.jpg);
+  background-size: cover;
+  background-position: center;
 }
