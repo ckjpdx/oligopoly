@@ -5,7 +5,7 @@ import Game from './Game';
 import Login from './Login';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import firebase from 'firebase';
+import firebase from './firebase';
 
 import { withTheme } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -46,9 +46,9 @@ class App extends Component {
             <Login user={this.state.user} />
             {!this.state.user
               ? <Welcome />
-              : this.state.gameId
-              ? <Game onExit={this.exitGame} />
-              : <Lobby onSelectGame={this.selectGame}/>}
+              : !this.state.gameId
+              ? <Lobby onSelectGame={this.selectGame}/>
+              : <Game onExit={this.exitGame} />}
           </div>
       </MuiThemeProvider>
     );
