@@ -1,11 +1,13 @@
 import React from 'react';
-import firebase from 'firebase';
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
 import PersonIcon from '@material-ui/icons/Person';
+import SignInIcon from '@material-ui/icons/ExitToApp';
+import SignOutIcon from '@material-ui/icons/CallMissedOutgoing';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
+import firebase from './firebase';
 const provider = new firebase.auth.GoogleAuthProvider();
 
 class Login extends React.Component {
@@ -40,8 +42,17 @@ class Login extends React.Component {
   render() {
     return (
       <div className="Login">
-        <Grid container spacing={24}>
-          <Grid item xs={12} align="right">
+        <Grid container
+          direction="row"
+          justify="space-between"
+          alignItems="center"
+        >
+          <Grid item xs={6} align="left">
+            <Typography className="uppercase">
+              &gt;<em>oligopoly</em>
+            </Typography>
+          </Grid>
+          <Grid item xs={6} align="right">
             <Button onClick={this.toggleDrawer('top', true)}>
               <PersonIcon />
             </Button>
@@ -55,7 +66,11 @@ class Login extends React.Component {
             onKeyDown={this.toggleDrawer('top', false)}
             align="center"
           >
-            <Grid container spacing={12}>
+            <Grid container container
+              direction="row"
+              justify="space-between"
+              alignItems="center"
+            >
               <Grid item xs={12} align="center">
                 <Typography>
                   {this.props.user && 'CEO: ' + this.props.user.name}
@@ -64,8 +79,8 @@ class Login extends React.Component {
               <Grid item xs={12} align="center">
                 <Typography>
                   {this.props.user
-                    ? <Button onClick={this.signOut} variant="contained" color="primary">Sign Out</Button>
-                    : <Button onClick={this.signIn} variant="contained" color="secondary">Sign In</Button>}
+                    ? <Button onClick={this.signOut} variant="contained" color="secondary"><SignOutIcon /> Sign Out</Button>
+                    : <Button onClick={this.signIn} variant="contained" color="primary"><SignInIcon /> Sign In</Button>}
                 </Typography>
               </Grid>
             </Grid>

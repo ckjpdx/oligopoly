@@ -1,2 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Rajdhani');
-html { }
+.uppercase {
+  text-transform: uppercase;
+}

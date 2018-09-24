@@ -5,8 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 function Welcome(props){
   return (
     <div className="Welcome">
-      <Typography variant="display3">oligopoly</Typography>
-      <Typography variant="body1">
+      <Typography variant="display1">
         ol·i·gop·o·ly, <em>n.</em>
       </Typography>
       <Typography variant="headline">

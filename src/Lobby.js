@@ -17,21 +17,20 @@ import ListItemText from '@material-ui/core/ListItemText';
 function Lobby(props){
 
   function generate(element) {
-  return ['0', '1', '2'].map(value =>
-    React.cloneElement(element, {
-      key: value,
-      primary: value
-    }),
-  );
-}
+    return ['0', '1', '2'].map(value =>
+      React.cloneElement(element, {
+        key: value
+      }),
+    );
+  }
 
   return (
     <div className="Lobby">
       <Button variant="contained" color="primary"><AddIcon/> New Game</Button>
-      <Typography variant="display1">Game List</Typography>
+      <Typography variant="display1">Lobby</Typography>
       <List dense={false}>
         {generate(
-          <Button>
+          <Button onClick={() => props.onSelectGame('123')}>
             <ListItem>
               <ListItemIcon>
                 <ShowChartIcon />
