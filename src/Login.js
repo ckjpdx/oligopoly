@@ -41,12 +41,7 @@ class Login extends React.Component {
     return (
       <div className="Login">
         <Grid container spacing={24}>
-          <Grid item xs={6} align="left">
-            <Typography>
-              {this.props.user && this.props.user.name}
-            </Typography>
-          </Grid>
-          <Grid item xs={6} align="right">
+          <Grid item xs={12} align="right">
             <Button onClick={this.toggleDrawer('top', true)}>
               <PersonIcon />
             </Button>
@@ -60,9 +55,20 @@ class Login extends React.Component {
             onKeyDown={this.toggleDrawer('top', false)}
             align="center"
           >
-            {this.props.user
-              ? <Button onClick={this.signOut} variant="contained">Sign Out</Button>
-              : <Button onClick={this.signIn} variant="contained">Sign In</Button>}
+            <Grid container spacing={12}>
+              <Grid item xs={12} align="center">
+                <Typography>
+                  {this.props.user && 'CEO: ' + this.props.user.name}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} align="center">
+                <Typography>
+                  {this.props.user
+                    ? <Button onClick={this.signOut} variant="contained" color="primary">Sign Out</Button>
+                    : <Button onClick={this.signIn} variant="contained" color="secondary">Sign In</Button>}
+                </Typography>
+              </Grid>
+            </Grid>
           </div>
           </Drawer>
       </div>

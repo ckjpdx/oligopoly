@@ -19,6 +19,10 @@ const theme = createMuiTheme({
       main: '#4a148c',
     },
   },
+  typography: {
+    fontFamily: 'Rajdhani',
+    fontSize: 18
+  },
 });
 
 class App extends Component {
