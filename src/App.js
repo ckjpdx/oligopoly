@@ -13,16 +13,28 @@ const theme = createMuiTheme({
   palette: {
     type: 'dark', // Switching the dark mode on is a single property value change.
     primary: {
-      main: '#880e4f',
+      main: '#674388',
     },
     secondary: {
-      main: '#4a148c',
+      main: '#414a6d',
     },
   },
   typography: {
     fontFamily: 'Rajdhani',
     fontSize: 18
   },
+  overrides: {
+    MuiButton: {
+      root: {
+        borderRadius: 0,
+      },
+    },
+    MuiListItemIcon: {
+      root: {
+        marginRight: 0
+      }
+    }
+  }
 });
 
 class App extends Component {
