@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
 import PersonIcon from '@material-ui/icons/Person';
 import SignInIcon from '@material-ui/icons/ExitToApp';
-import SignOutIcon from '@material-ui/icons/CallMissedOutgoing';
+import SignOutIcon from '@material-ui/icons/Launch';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
