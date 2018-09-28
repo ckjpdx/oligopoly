@@ -28,7 +28,7 @@ SVGs to use or being used in this app:
 * [ ] account_circle (important person)
 * [x] menu
 * [ ] announcement
-* [ ] build (wrench)
+* [ ] build (wrench/engineer)
 * [ ] language (globe)
 * [ ] list
 * [ ] info
@@ -50,7 +50,7 @@ SVGs to use or being used in this app:
 * [ ] monetization_on ($ in circle)
 * [ ] ac_unit (democratic policy)
 * [ ] whatshot (republican policy)
-* [ ] how_to_vote (policy)
+* [ ] how_to_vote (bribe)
 * [ ] trending_up, trending_down, trending_flat (stock market fluctuation)
 * [ ] play_circle_outline
 * [x] help (question mark)
