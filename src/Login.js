@@ -118,11 +118,14 @@ class Login extends React.Component {
           >
             <Grid container>
               <Grid item xs={12} align="center">
-                <Typography>
-                  Instructions
+                <Typography variant="headline">
+                  Manual
+                </Typography>
+                <Typography variant="subheading">
+                  <HelpIcon /> How to play
                 </Typography>
                 <Typography>
-                  Money, Kill, Money, Kill, Money, Kill, Money, Kill
+                  Get rich or die trying
                 </Typography>
               </Grid>
             </Grid>

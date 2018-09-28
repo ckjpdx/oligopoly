@@ -33,6 +33,11 @@ const theme = createMuiTheme({
       root: {
         marginRight: 0
       }
+    },
+    MuiSvgIcon: {
+      root: {
+        verticalAlign: 'sub'
+      }
     }
   }
 });
@@ -60,7 +65,7 @@ class App extends Component {
           <div className="App" align="center">
             <CssBaseline />
             <Login user={this.state.user}
-              gameId={this.state.gameId} 
+              gameId={this.state.gameId}
               onExit={this.exitGame} />
             {!this.state.user
               ? <Welcome />
