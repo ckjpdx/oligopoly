@@ -1,12 +1,10 @@
 import React from 'react';
-import Login from './Login';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ShowChartIcon from '@material-ui/icons/ShowChart';
+import PlayIcon from '@material-ui/icons/PlayCircleOutline';
 import AddIcon from '@material-ui/icons/Add';
 import ListItemText from '@material-ui/core/ListItemText';
 
@@ -33,7 +31,7 @@ function Lobby(props){
           <Button onClick={() => props.onSelectGame('123')}>
             <ListItem>
               <ListItemIcon>
-                <ShowChartIcon />
+                <PlayIcon />
               </ListItemIcon>
               <ListItemText
                 primary="Game goes here"

@@ -1,16 +1,14 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import { withStyles } from '@material-ui/core/styles';
 
 function Welcome(props){
   return (
     <div className="Welcome">
-      <Grid
-        container
+      <Grid container
         direction="column"
         justify="center"
-        style={{height: "80vh"}}
+        style={{height: "65vh"}}
       >
         <Typography>
           Invest in cutting edge tech development

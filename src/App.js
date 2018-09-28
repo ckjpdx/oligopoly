@@ -42,7 +42,7 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
-      gameId: null,
+      gameId: 123,
     };
     firebase.auth().onAuthStateChanged(user =>
       user
@@ -59,12 +59,14 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
           <div className="App" align="center">
             <CssBaseline />
-            <Login user={this.state.user} />
+            <Login user={this.state.user}
+              gameId={this.state.gameId} 
+              onExit={this.exitGame} />
             {!this.state.user
               ? <Welcome />
               : !this.state.gameId
               ? <Lobby onSelectGame={this.selectGame}/>
-              : <Game onExit={this.exitGame} />}
+              : <Game />}
           </div>
       </MuiThemeProvider>
     );
