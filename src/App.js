@@ -36,7 +36,7 @@ const theme = createMuiTheme({
     },
     MuiSvgIcon: {
       root: {
-        verticalAlign: 'sub',
+        verticalAlign: 'text-bottom',
         color: 'white'
       }
     }
@@ -48,7 +48,7 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
-      gameId: 123
+      gameId: 'abc'
     };
     firebase.auth().onAuthStateChanged(user =>
       user
@@ -72,7 +72,7 @@ class App extends Component {
               ? <Welcome />
               : !this.state.gameId
               ? <Lobby onSelectGame={this.selectGame} />
-              : <Game gameId={this.state.gameId} />}
+              : <Game user={this.state.user} gameId={this.state.gameId} />}
           </div>
       </MuiThemeProvider>
     );

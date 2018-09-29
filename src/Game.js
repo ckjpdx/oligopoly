@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import GameBar from './GameBar';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import BribeIcon from '@material-ui/icons/HowToVote';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import BribeIcon from '@material-ui/icons/HowToVote';
+import FlagIcon from '@material-ui/icons/Flag';
 
 import firebase from './firebase';
 
@@ -13,7 +15,9 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      game: null,
+      game: {
+        players: {}
+      },
       data: '',
       toData: ''
     }
@@ -43,13 +47,20 @@ class Game extends Component {
   }
   render() {
     const game = this.state.game;
+    const jacko = 'jacko';
+    const player = game.players[jacko];
 
     return (
       <div className="Game">
         {!game ? <CircularProgress /> :
+          !player ? <CircularProgress /> :
           <Grid container>
-            <Grid item xs={12}>
-              <Typography>Policy: {game.policy}</Typography>
+            <GameBar player={player} />
+            <Grid item xs={6}>
+              <Typography></Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography><FlagIcon />{game.policy}</Typography>
             </Grid>
             <Grid item xs={12} sm={4}>
               <input onChange={this.handleChangeText} />
@@ -60,7 +71,7 @@ class Game extends Component {
               <Button onClick={this.handleSetDbTextChange}>database</Button>
             </Grid>
             <Grid item xs={12} sm={4}>
-              {this.state.text || <p>no data yet</p>}
+              {this.state.text || <Typography>no text yet</Typography>}
             </Grid>
             <Grid item xs={12}>
               <Button onClick={() => console.log(this.state)}>Check State</Button>

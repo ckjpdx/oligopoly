@@ -50,12 +50,13 @@ SVGs to use or being used in this app:
 * [ ] monetization_on ($ in circle)
 * [ ] ac_unit (democratic policy)
 * [ ] whatshot (republican policy)
+* [ ] flag
 * [ ] how_to_vote (bribe)
 * [ ] trending_up, trending_down, trending_flat (stock market fluctuation)
 * [ ] play_circle_outline
 * [x] help (question mark)
 * [ ] account_balance (bank)
-* [ ] favorite (reputation)
+* [ ] favorite (heart/reputation)
 * [ ] thumb_up (reputation)
 * [ ] thumb_down (reputation)
 * [ ] thumb_up_down (reputation)

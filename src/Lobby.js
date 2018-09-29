@@ -28,7 +28,7 @@ function Lobby(props){
       <Typography variant="display1">Lobby</Typography>
       <List dense={false}>
         {generate(
-          <Button onClick={() => props.onSelectGame('123')}>
+          <Button onClick={() => props.onSelectGame('abc')}>
             <ListItem>
               <ListItemIcon>
                 <PlayIcon />
