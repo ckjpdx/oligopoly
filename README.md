@@ -34,7 +34,10 @@ SVGs to use or being used in this app:
 * [ ] info
 * [ ] launch (exit box)
 * [ ] offline_bolt (lightning)
-* [ ] star_rate (normal star) stars (star in circle)
+* [ ] star (normal star)
+* [ ] stars (star in circle)
+* [ ] star_border
+* [ ] star_half
 * [ ] visibility (eye) visibility_off (eye strikethrough)
 * [ ] work (briefcase)
 * [ ] error

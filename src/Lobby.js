@@ -9,7 +9,7 @@ import AddIcon from '@material-ui/icons/Add';
 import ListItemText from '@material-ui/core/ListItemText';
 
 // get games list
-// import firebase from './firebase';
+// import firebase from './dry/firebase';
 // const db = firebase.database();
 
 function Lobby(props){

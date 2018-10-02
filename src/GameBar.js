@@ -7,6 +7,8 @@ import MoneyIcon from '@material-ui/icons/MonetizationOn';
 import ReputationIcon from '@material-ui/icons/ThumbsUpDown';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import { addCommas } from './dry/functions';
 
 const styles = {
   root: {
@@ -18,6 +20,7 @@ class GameBar extends React.Component {
   state = {
     topMoney: false,
     topRep: false,
+    prCampaign: 0
   };
 
 
@@ -27,7 +30,11 @@ class GameBar extends React.Component {
     });
   };
 
-  addCommas = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value,
+    });
+  };
 
   render() {
     const { classes } = this.props;
@@ -39,7 +46,7 @@ class GameBar extends React.Component {
         className={classes.root}
       >
         <BottomNavigationAction
-          label={this.addCommas(this.props.player.money)}
+          label={addCommas(this.props.player.money)}
           icon={<MoneyIcon />}
           onClick={this.toggleDrawer('topMoney', true)} />
         <BottomNavigationAction
@@ -55,7 +62,7 @@ class GameBar extends React.Component {
               align="center"
             >
               <Typography variant="headline">Money</Typography>
-              <Typography variant="display1">{'$' + this.addCommas(this.props.player.money)}</Typography>
+              <Typography variant="display1">{'$' + addCommas(this.props.player.money)}</Typography>
               <Typography>Loans</Typography>
             </div>
           </Drawer>
@@ -69,7 +76,19 @@ class GameBar extends React.Component {
             >
               <Typography variant="headline">Reputation</Typography>
               <Typography variant="display1">{this.props.player.reputation + '%'}</Typography>
-              <Typography>PR Campaign</Typography>
+              <form className={classes.container} noValidate autoComplete="off">
+                <TextField
+                  id="outlined-with-placeholder"
+                  label="industryToDereg"
+                  placeholder="% to raise"
+                  className={classes.textField}
+                  margin="normal"
+                  variant="outlined"
+                  onChange={this.handleChange('industryToDereg')}
+                  type="number"
+                />
+                <Typography>Cost: {}</Typography>
+              </form>
             </div>
           </Drawer>
       </BottomNavigation>

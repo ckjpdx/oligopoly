@@ -5,7 +5,7 @@ import Game from './Game';
 import Login from './Login';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import firebase from './firebase';
+import firebase from './dry/firebase';
 
 import { withTheme } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -63,7 +63,7 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-          <div className="App" align="center">
+          <div className="App">
             <CssBaseline />
             <Login user={this.state.user}
               gameId={this.state.gameId}

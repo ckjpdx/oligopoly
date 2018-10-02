@@ -4,10 +4,12 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import BribeIcon from '@material-ui/icons/HowToVote';
-import FlagIcon from '@material-ui/icons/Flag';
+import Tooltip from '@material-ui/core/Tooltip'; // use for this?
+import GamePolicy from './GamePolicy';
+import Dialog from './dry/Dialog';
+import StarIcon from '@material-ui/icons/Star';
 
-import firebase from './firebase';
+import firebase from './dry/firebase';
 
 const db = firebase.database();
 
@@ -56,11 +58,10 @@ class Game extends Component {
           !player ? <CircularProgress /> :
           <Grid container>
             <GameBar player={player} />
-            <Grid item xs={6}>
-              <Typography></Typography>
-            </Grid>
-            <Grid item xs={6}>
-              <Typography><FlagIcon />{game.policy}</Typography>
+            <Grid item xs={12}>
+              <Dialog icon={<StarIcon/>} text={game.policy} title={"Policy"}>
+                <GamePolicy game={game} player={player}/>
+              </Dialog>
             </Grid>
             <Grid item xs={12} sm={4}>
               <input onChange={this.handleChangeText} />
