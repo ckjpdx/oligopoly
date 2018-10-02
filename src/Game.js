@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import GameBar from './GameBar';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Tooltip from '@material-ui/core/Tooltip'; // use for this?
-import GamePolicy from './GamePolicy';
+import PolicyIcon from '@material-ui/icons/Star';
+import MarketIcon from '@material-ui/icons/Equalizer';
 import Dialog from './dry/Dialog';
-import StarIcon from '@material-ui/icons/Star';
+import GameBar from './GameBar';
+import GameMarket from './GameMarket';
+import GamePolicy from './GamePolicy';
 
 import firebase from './dry/firebase';
 
@@ -59,8 +61,13 @@ class Game extends Component {
           <Grid container>
             <GameBar player={player} />
             <Grid item xs={12}>
-              <Dialog icon={<StarIcon/>} text={game.policy} title={"Policy"}>
+              <Dialog icon={<PolicyIcon/>} text={game.policy} title={"Policy"}>
                 <GamePolicy game={game} player={player}/>
+              </Dialog>
+            </Grid>
+            <Grid item xs={12}>
+              <Dialog icon={<MarketIcon/>} text={game.market.status} title={"Market"}>
+                <GameMarket game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={4}>

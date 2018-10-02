@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import PolicyIcon from '@material-ui/icons/Star';
-import BribeIcon from '@material-ui/icons/HowToVote';
 import { addCommas } from './dry/functions';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
@@ -12,8 +9,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
+import {Line} from 'react-chartjs-2';
 
-class GamePolicy extends React.Component {
+class GameMarket extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -29,24 +27,49 @@ class GamePolicy extends React.Component {
 
   render() {
 
-    const taxRate = this.props.game.taxRate * 100;
+    const game = this.props.game;
+    const marketStatus = game.market.status;
     const contributionCost = 1000000;
-
+    const graphData = {
+      labels: ["1", "2", "3", "4"],
+      datasets: [
+        {
+          label: "Arms Tech",
+          borderColor: 'rgb(255, 99, 132)',
+          data: [100, 30, 60],
+        },
+        {
+          label: "Robo Tech",
+          borderColor: 'rgb(132, 255, 99)',
+          data: [77, 50, 100],
+        },
+        {
+          label: "Nano Tech",
+          borderColor: 'rgb(99, 132, 255)',
+          data: [55, 80, 160],
+        },
+        {
+          label: "Fuze Tech",
+          borderColor: 'rgb(255, 255, 0)',
+          data: [33, 100, 200],
+        },
+      ]
+    };
     return (
       <div>
         <Grid container>
-          <Grid item xs={6}>
-            <Typography><PolicyIcon /> {this.props.game.policy}</Typography>
-          </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <Typography>
-              tax rate: {taxRate}%
+              Status: {marketStatus}
             </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Line data={graphData}></Line>
           </Grid>
           <Grid item xs={12}>
             <Divider />
             <form autoComplete="off">
-              <Typography><BribeIcon /> Contributions</Typography>
+              <Typography>Contributions</Typography>
               <FormControl>
                 <InputLabel htmlFor="industry-select">Industry</InputLabel>
                 <Select
@@ -76,8 +99,8 @@ class GamePolicy extends React.Component {
   };
 }
 
-// GamePolicy.propTypes = {
+// GameMarket.propTypes = {
 //   classes: PropTypes.object.isRequired,
 // };
 
-export default GamePolicy;
+export default GameMarket;

@@ -7,7 +7,6 @@ import MoneyIcon from '@material-ui/icons/MonetizationOn';
 import ReputationIcon from '@material-ui/icons/ThumbsUpDown';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import { addCommas } from './dry/functions';
 
 const styles = {
@@ -38,7 +37,7 @@ class GameBar extends React.Component {
 
   render() {
     const { classes } = this.props;
-
+    const player = this.props.player;
     return (
       <BottomNavigation
         onChange={this.handleChange}
@@ -46,13 +45,9 @@ class GameBar extends React.Component {
         className={classes.root}
       >
         <BottomNavigationAction
-          label={addCommas(this.props.player.money)}
+          label={addCommas(player.money)}
           icon={<MoneyIcon />}
           onClick={this.toggleDrawer('topMoney', true)} />
-        <BottomNavigationAction
-          label={this.props.player.reputation + '%'}
-          icon={<ReputationIcon />}
-          onClick={this.toggleDrawer('topRep', true)} />
           <Drawer anchor="top" open={this.state.topMoney} onClose={this.toggleDrawer('topMoney', false)}>
             <div
               tabIndex={0}
@@ -60,12 +55,16 @@ class GameBar extends React.Component {
               onClick={this.toggleDrawer('topMoney', false)}
               onKeyDown={this.toggleDrawer('topMoney', false)}
               align="center"
-            >
-              <Typography variant="headline">Money</Typography>
-              <Typography variant="display1">{'$' + addCommas(this.props.player.money)}</Typography>
-              <Typography>Loans</Typography>
+              >
+                <Typography variant="headline">Money</Typography>
+                <Typography variant="display1">{'$' + addCommas(this.props.player.money)}</Typography>
+                <Typography>Loans</Typography>
             </div>
           </Drawer>
+        <BottomNavigationAction
+          label={this.props.player.reputation + '%'}
+          icon={<ReputationIcon />}
+          onClick={this.toggleDrawer('topRep', true)} />
           <Drawer anchor="top" open={this.state.topRep} onClose={this.toggleDrawer('topRep', false)}>
             <div
               tabIndex={0}
@@ -76,19 +75,6 @@ class GameBar extends React.Component {
             >
               <Typography variant="headline">Reputation</Typography>
               <Typography variant="display1">{this.props.player.reputation + '%'}</Typography>
-              <form className={classes.container} noValidate autoComplete="off">
-                <TextField
-                  id="outlined-with-placeholder"
-                  label="industryToDereg"
-                  placeholder="% to raise"
-                  className={classes.textField}
-                  margin="normal"
-                  variant="outlined"
-                  onChange={this.handleChange('industryToDereg')}
-                  type="number"
-                />
-                <Typography>Cost: {}</Typography>
-              </form>
             </div>
           </Drawer>
       </BottomNavigation>
