@@ -11,7 +11,7 @@ import { addCommas } from './dry/functions';
 
 const styles = {
   root: {
-    width: 2000,
+    width: 900,
   },
 };
 

@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Rajdhani');
+.App {
+  max-width: 900px;
+  margin: auto
+}
 .uppercase {
   text-transform: uppercase;
 }

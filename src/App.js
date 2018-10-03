@@ -4,44 +4,12 @@ import Lobby from './Lobby';
 import Game from './Game';
 import Login from './Login';
 import CssBaseline from '@material-ui/core/CssBaseline';
-
+import themeOverride from './dry/themeOverride';
 import firebase from './dry/firebase';
 
 import { withTheme } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-const theme = createMuiTheme({
-  palette: {
-    type: 'dark', // Switching the dark mode on is a single property value change.
-    primary: {
-      main: '#674388',
-    },
-    secondary: {
-      main: '#414a6d',
-    },
-  },
-  typography: {
-    fontFamily: 'Rajdhani',
-    fontSize: 18
-  },
-  overrides: {
-    MuiButton: {
-      root: {
-        borderRadius: 0,
-      },
-    },
-    MuiListItemIcon: {
-      root: {
-        marginRight: 0
-      }
-    },
-    MuiSvgIcon: {
-      root: {
-        verticalAlign: 'text-bottom',
-        color: 'white'
-      }
-    }
-  }
-});
+const theme = createMuiTheme(themeOverride);
 
 class App extends Component {
   constructor(props) {
