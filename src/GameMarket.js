@@ -63,7 +63,7 @@ class GameMarket extends React.Component {
     return (
       <div>
         <Typography>
-          Stocks: {marketStatus}
+          Status: {marketStatus}
         </Typography>
         <Line data={graphData}></Line>
         <Divider />

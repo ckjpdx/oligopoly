@@ -1,5 +1,9 @@
 import React from 'react';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { addCommas } from './dry/functions';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
@@ -8,100 +12,58 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import { Line } from 'react-chartjs-2';
 import TextField from '@material-ui/core/TextField';
 import MarketIcon from '@material-ui/icons/Equalizer';
 import BoomIcon from '@material-ui/icons/TrendingUp';
 import BustIcon from '@material-ui/icons/TrendingDown';
 import NormalIcon from '@material-ui/icons/TrendingFlat';
-import Drawer from '@material-ui/core/Drawer';
+import ArmsIcon from '@material-ui/icons/Security';
+import RoboIcon from '@material-ui/icons/Adb';
+import NanoIcon from '@material-ui/icons/LocalPharmacy';
+import FuzeIcon from '@material-ui/icons/EvStation';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+
+const industryTypes = ['arms', 'robo', 'nano', 'fuze'];
 
 class GameFacilities extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      shareIndustryType: '',
-      numberOfShares: 0
+      tab: 0,
+      selectedIndustry: 'none'
     };
   }
 
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    });
+  handleChange = (event, value) => {
+    this.setState({ selectedIndustry: industryTypes[value], tab: value });
   };
 
   render() {
     const game = this.props.game;
     const player = this.props.player;
-    const marketStatus = game.market.status;
-    const playerShares = () => Object.entries(player.stocks).map(pair => pair[0] + ': ' + pair[1] + ' ');
 
-    const industryTypes = ['arms', 'robo', 'nano', 'fuze'];
-    const industryGraphColors = [
-      'rgb(255, 99, 132)',
-      'rgb(132, 255, 99)',
-      'rgb(99, 132, 255)',
-      'rgb(255, 255, 0)'
-    ];
-
-    const assignStatusIcon = (industry) =>
-      game.market[industry].status === 'normal' ? <NormalIcon />
-      : game.market[industry].status === 'boom' ? <BoomIcon />
-      : <BustIcon />;
-
-    const graphData = {
-      labels: ["1", "2", "3", "4"],
-      datasets: industryTypes.map((industry, i) => {
-        return {
-        label: industry,
-        borderColor: industryGraphColors[i],
-        data: game.market[industry].demand
-        }
-      })
-    };
     return (
       <div>
-        <Typography>
-          Stocks: {marketStatus}
-        </Typography>
-        <Line data={graphData}></Line>
-        <Divider />
-        <Typography>My Shares</Typography>
-        <Typography>{playerShares()}</Typography>
-        <form autoComplete="off">
-          <FormControl>
-            <InputLabel htmlFor="share-type">Industry</InputLabel>
-            <Select
-              value={this.state.shareIndustryType}
-              onChange={this.handleChange('shareIndustryType')}
-              inputProps={{
-                name: 'type-of-share',
-                id: 'share-type',
-              }}
-            >
-              <MenuItem value={''}>none</MenuItem>
-              {industryTypes.map((industry, i) => <MenuItem key={i} value={industry}>{assignStatusIcon(industry)} {industry}</MenuItem>)}
-            </Select>
-          </FormControl>
-        </form>
-        <TextField
-          id="standard-number"
-          label="Shares"
-          value={this.state.numberOfShares}
-          onChange={this.handleChange('numberOfShares')}
-          type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          margin="normal"
-        />
+        <Tabs
+          value={this.state.tab}
+          onChange={this.handleChange}
+          fullWidth
+          indicatorColor="secondary"
+          textColor="secondary"
+        >
+          <Tab icon={<ArmsIcon />} label="Arms" />
+          <Tab icon={<RoboIcon />} label="Robo" />
+          <Tab icon={<NanoIcon />} label="Nano" />
+          <Tab icon={<FuzeIcon />} label="Fuze" />
+        </Tabs>
+
         <Grid container>
           <Grid item xs={6}>
-            <Button variant="outlined" color="primary">Buy</Button>
+
           </Grid>
           <Grid item xs={6}>
-            <Button variant="outlined" color="secondary">Sell</Button>
+
           </Grid>
         </Grid>
       </div>

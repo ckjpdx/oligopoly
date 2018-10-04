@@ -31,7 +31,10 @@ const themeOverride = {
     },
     MuiDialog: {
       paper: {
-        margin: 0
+        margin: 0,
+      },
+      paperWidthSm: {
+        maxWidth: 'unset'
       }
     },
     MuiSelect: {
