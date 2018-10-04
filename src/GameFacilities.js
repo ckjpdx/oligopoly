@@ -16,7 +16,7 @@ import BustIcon from '@material-ui/icons/TrendingDown';
 import NormalIcon from '@material-ui/icons/TrendingFlat';
 import Drawer from '@material-ui/core/Drawer';
 
-class GameMarket extends React.Component {
+class GameFacilities extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -109,4 +109,4 @@ class GameMarket extends React.Component {
   };
 }
 
-export default GameMarket;
+export default GameFacilities;

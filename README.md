@@ -44,7 +44,7 @@ SVGs to use or being used in this app:
 * [ ] warning, report_problem (triangle exclamation point)
 * [ ] call (phone)
 * [ ] forum, message (chat)
-* [ ] business (building)
+* [x] business (building)
 * [ ] landscape
 * [ ] location_city
 * [ ] rss_feed (hackers)
@@ -54,11 +54,11 @@ SVGs to use or being used in this app:
 * [ ] ac_unit (democratic policy)
 * [ ] whatshot (republican policy)
 * [ ] flag
-* [ ] how_to_vote (bribe)
-* [ ] trending_up, trending_down, trending_flat (stock market fluctuation)
-* [ ] play_circle_outline
+* [x] how_to_vote (bribe)
+* [x] trending_up, trending_down, trending_flat (stock market fluctuation)
+* [x] play_circle_outline
 * [x] help (question mark)
-* [ ] account_balance (bank)
+* [x] account_balance (bank)
 * [ ] favorite (heart/reputation)
 * [ ] thumb_up (reputation)
 * [ ] thumb_down (reputation)

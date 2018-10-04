@@ -25,7 +25,7 @@ const themeOverride = {
     },
     MuiSvgIcon: {
       root: {
-        verticalAlign: 'text-bottom',
+        verticalAlign: 'middle',
         color: 'white'
       }
     },

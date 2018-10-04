@@ -45,7 +45,7 @@ class DryDialog extends React.Component {
           aria-describedby="alert-dialog-slide-description"
         >
           <DialogTitle id="alert-dialog-slide-title">
-            {this.props.title}
+            {this.props.icon} {this.props.title}
           </DialogTitle>
           <DialogContent>
               {children}

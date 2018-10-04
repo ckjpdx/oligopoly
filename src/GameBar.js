@@ -4,10 +4,12 @@ import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import MoneyIcon from '@material-ui/icons/MonetizationOn';
+import BankIcon from '@material-ui/icons/AccountBalance';
 import ReputationIcon from '@material-ui/icons/ThumbsUpDown';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
 import { addCommas } from './dry/functions';
+import Button from '@material-ui/core/Button';
 
 const styles = {
   root: {
@@ -56,9 +58,13 @@ class GameBar extends React.Component {
               onKeyDown={this.toggleDrawer('topMoney', false)}
               align="center"
               >
-                <Typography variant="headline">Money</Typography>
-                <Typography variant="display1">{'$' + addCommas(this.props.player.money)}</Typography>
-                <Typography>Loans</Typography>
+                <Typography variant="headline"><MoneyIcon /> Money</Typography>
+                <Typography variant="display1">${addCommas(this.props.player.money)}</Typography>
+                <Typography variant="headline"><BankIcon /> Loans</Typography>
+                <Button>Borrow 10M</Button>
+                <Typography variant="subheading">Debt: ${addCommas(player.debt)}</Typography>
+
+                <Button>Pay Down</Button>
             </div>
           </Drawer>
         <BottomNavigationAction
@@ -73,7 +79,7 @@ class GameBar extends React.Component {
               onKeyDown={this.toggleDrawer('topRep', false)}
               align="center"
             >
-              <Typography variant="headline">Reputation</Typography>
+              <Typography variant="headline"><ReputationIcon /> Reputation</Typography>
               <Typography variant="display1">{this.props.player.reputation + '%'}</Typography>
             </div>
           </Drawer>

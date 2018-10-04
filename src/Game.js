@@ -6,10 +6,12 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Tooltip from '@material-ui/core/Tooltip'; // use for this?
 import PolicyIcon from '@material-ui/icons/Star';
 import MarketIcon from '@material-ui/icons/Equalizer';
+import BuildingIcon from '@material-ui/icons/Business';
 import Dialog from './dry/Dialog';
 import GameBar from './GameBar';
 import GameMarket from './GameMarket';
 import GamePolicy from './GamePolicy';
+import GameFacilities from './GameFacilities';
 
 import firebase from './dry/firebase';
 
@@ -68,6 +70,11 @@ class Game extends Component {
             <Grid item xs={12}>
               <Dialog icon={<MarketIcon/>} text={game.market.status} title={"Market"}>
                 <GameMarket game={game} player={player}/>
+              </Dialog>
+            </Grid>
+            <Grid item xs={12}>
+              <Dialog icon={<BuildingIcon/>} text="Facilities" title={"Facilities"}>
+                <GameFacilities game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={4}>
