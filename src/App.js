@@ -5,7 +5,7 @@ import Game from './Game';
 import Login from './Login';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import themeOverride from './dry/themeOverride';
-import firebase from './dry/firebase';
+import { firebase } from './dry/firebase';
 
 import { withTheme } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';

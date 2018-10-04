@@ -21,8 +21,13 @@ import ArmsIcon from '@material-ui/icons/Security';
 import RoboIcon from '@material-ui/icons/Adb';
 import NanoIcon from '@material-ui/icons/LocalPharmacy';
 import FuzeIcon from '@material-ui/icons/EvStation';
+import ListIcon from '@material-ui/icons/List';
+import SchemaIcon from '@material-ui/icons/Memory';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import MoneyIcon from '@material-ui/icons/MonetizationOn';
+
+import { db } from './dry/firebase';
 
 const industryTypes = ['arms', 'robo', 'nano', 'fuze'];
 
@@ -31,32 +36,73 @@ class GameFacilities extends React.Component {
     super(props);
     this.state = {
       tab: 0,
-      selectedIndustry: 'none'
+      industryToBuySelect: 'Arms',
+      schemaChange: 1
     };
   }
 
   handleChange = (event, value) => {
-    this.setState({ selectedIndustry: industryTypes[value], tab: value });
+    this.setState({ industryToBuySelect: industryTypes[value], tab: value });
   };
+
+  updateIndustrySchema = () => {
+    const currentSchema = this.props.player.industries.arms.schema;
+    const updateValue = currentSchema + this.state.schemaChange;
+    db.ref('games/abc/players/jacko/industries/arms').update({
+      schema: updateValue
+    });
+  }
 
   render() {
     const game = this.props.game;
     const player = this.props.player;
 
+    const assignIndustryIcon = (industry) =>
+      industry === 'arms' ? <ArmsIcon />
+      : industry === 'robo' ? <RoboIcon />
+      : industry === 'nano' ? <NanoIcon />
+      : <FuzeIcon />;
+
     return (
       <div>
-        <Tabs
-          value={this.state.tab}
-          onChange={this.handleChange}
-          fullWidth
-          indicatorColor="secondary"
-          textColor="secondary"
-        >
-          <Tab icon={<ArmsIcon />} label="Arms" />
-          <Tab icon={<RoboIcon />} label="Robo" />
-          <Tab icon={<NanoIcon />} label="Nano" />
-          <Tab icon={<FuzeIcon />} label="Fuze" />
-        </Tabs>
+        <ExpansionPanel>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography><ListIcon /> Current</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Grid container>
+            {
+              Object.entries(player.industries).map(industry =>
+                <Grid item xs={12}>
+                  <Typography>
+                    {assignIndustryIcon(industry[0])}{industry[0]}: <SchemaIcon /> {industry[1].schema}
+                  </Typography>
+                  <Button onClick={this.updateIndustrySchema}>Add Schema</Button>
+                </Grid>
+              )
+            }
+          </Grid>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+        <ExpansionPanel>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography><MoneyIcon /> Purchase</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Tabs
+              value={this.state.tab}
+              onChange={this.handleChange}
+              fullWidth
+              indicatorColor="secondary"
+              textColor="secondary"
+              >
+                <Tab icon={<ArmsIcon />} label="Arms" />
+                <Tab icon={<RoboIcon />} label="Robo" />
+                <Tab icon={<NanoIcon />} label="Nano" />
+                <Tab icon={<FuzeIcon />} label="Fuze" />
+              </Tabs>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
 
         <Grid container>
           <Grid item xs={6}>

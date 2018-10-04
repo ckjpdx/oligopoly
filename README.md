@@ -23,7 +23,7 @@ SVGs to use or being used in this app:
 * [ ] public (earth)
 * [ ] weekend (sofa, waiting room)
 * [ ] group, people (personnel)
-* [ ] person
+* [ ] person (player)
 * [ ] person_add (add player)
 * [ ] account_circle (important person)
 * [x] menu

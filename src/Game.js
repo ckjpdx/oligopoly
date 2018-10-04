@@ -13,9 +13,9 @@ import GameMarket from './GameMarket';
 import GamePolicy from './GamePolicy';
 import GameFacilities from './GameFacilities';
 
-import firebase from './dry/firebase';
+import {firebase, db} from './dry/firebase';
 
-const db = firebase.database();
+// const db = firebase.database();
 
 class Game extends Component {
   constructor(props) {
@@ -41,14 +41,14 @@ class Game extends Component {
   handleDbTextChange = (e) => {
     this.setState({toData: e.target.value});
   }
-  handleSendText = () => {
+  cloudAddMessage = () => {
     console.log('Send the text!!');
     const addMessage = firebase.functions().httpsCallable('addMessage');
     addMessage({text: this.state.text}).then((result) => {
       console.log(result.data.text);
     });
   }
-  handleSetDbTextChange = () => {
+  updateTextData = () => {
     db.ref('games/').update({data: this.state.toData})
   }
   render() {
@@ -79,11 +79,11 @@ class Game extends Component {
             </Grid>
             <Grid item xs={12} sm={4}>
               <input onChange={this.handleChangeText} />
-              <Button onClick={this.handleSendText}>cloud</Button>
+              <Button onClick={this.cloudAddMessage}>cloud</Button>
             </Grid>
             <Grid item xs={12} sm={4}>
               <input onChange={this.handleDbTextChange} />
-              <Button onClick={this.handleSetDbTextChange}>database</Button>
+              <Button onClick={this.updateTextData}>database</Button>
             </Grid>
             <Grid item xs={12} sm={4}>
               {this.state.text || <Typography>no text yet</Typography>}

@@ -8,7 +8,7 @@ import HelpIcon from '@material-ui/icons/Help';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
-import firebase from './dry/firebase';
+import { firebase } from './dry/firebase';
 const provider = new firebase.auth.GoogleAuthProvider();
 
 class Login extends React.Component {
