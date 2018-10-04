@@ -13,9 +13,7 @@ import GameMarket from './GameMarket';
 import GamePolicy from './GamePolicy';
 import GameFacilities from './GameFacilities';
 
-import {firebase, db} from './dry/firebase';
-
-// const db = firebase.database();
+import { firebase, db } from './dry/firebase';
 
 class Game extends Component {
   constructor(props) {
@@ -23,9 +21,7 @@ class Game extends Component {
     this.state = {
       game: {
         players: {}
-      },
-      data: '',
-      toData: ''
+      }
     }
   }
   componentWillMount() {
@@ -48,13 +44,13 @@ class Game extends Component {
       console.log(result.data.text);
     });
   }
-  updateTextData = () => {
-    db.ref('games/').update({data: this.state.toData})
-  }
+  // updateTextData = () => {
+  //   db.ref('games/').update({data: this.state.toData})
+  // }
   render() {
     const game = this.state.game;
-    const jacko = 'jacko';
-    const player = game.players[jacko];
+    const uid = 'jacko';
+    const player = game.players[uid];
 
     return (
       <div className="Game">

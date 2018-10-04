@@ -42,13 +42,19 @@ class GameFacilities extends React.Component {
   }
 
   handleChange = (event, value) => {
-    this.setState({ industryToBuySelect: industryTypes[value], tab: value });
+    this.setState({
+      tab: value,
+      industryToBuySelect: industryTypes[value]
+    });
   };
 
-  updateIndustrySchema = () => {
-    const currentSchema = this.props.player.industries.arms.schema;
+  updateIndustrySchema = (industry) => {
+    console.log(industry);
+    const player = this.props.player;
+    const playerUid = player.uid;
+    const currentSchema = player.industries[industry].schema;
     const updateValue = currentSchema + this.state.schemaChange;
-    db.ref('games/abc/players/jacko/industries/arms').update({
+    db.ref('games/abc/players/' + playerUid + '/industries/' + industry).update({
       schema: updateValue
     });
   }
@@ -75,13 +81,13 @@ class GameFacilities extends React.Component {
               Object.entries(player.industries).map(industry =>
                 <Grid item xs={12}>
                   <Typography>
-                    {assignIndustryIcon(industry[0])}{industry[0]}: <SchemaIcon /> {industry[1].schema}
+                    {assignIndustryIcon(industry[0])}{industry[0]}: <SchemaIcon />{industry[1].schema}
                   </Typography>
-                  <Button onClick={this.updateIndustrySchema}>Add Schema</Button>
+                  <Button onClick={() => this.updateIndustrySchema(industry[0])}>Add Schema</Button>
                 </Grid>
               )
             }
-          </Grid>
+            </Grid>
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel>

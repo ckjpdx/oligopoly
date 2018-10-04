@@ -21,7 +21,7 @@ class App extends Component {
     firebase.auth().onAuthStateChanged(user =>
       user
       ? this.setState({user: {name: user.displayName, uid: user.uid}})
-      : this.setState({user: {name: 'Player1', uid: 12345}})
+      : this.setState({user: {name: 'jacko', uid: 12345}})
     );
   }
 

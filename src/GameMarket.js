@@ -67,7 +67,7 @@ class GameMarket extends React.Component {
         </Typography>
         <Line data={graphData}></Line>
         <Divider />
-        <Typography>My Shares</Typography>
+        <Typography>My Stocks</Typography>
         <Typography>{playerShares()}</Typography>
         <form autoComplete="off">
           <FormControl>
