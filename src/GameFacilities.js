@@ -4,7 +4,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { addCommas } from './dry/functions';
+import { addCommas, getIndustryIcon } from './dry/functions';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -63,12 +63,6 @@ class GameFacilities extends React.Component {
     const game = this.props.game;
     const player = this.props.player;
 
-    const assignIndustryIcon = (industry) =>
-      industry === 'arms' ? <ArmsIcon />
-      : industry === 'robo' ? <RoboIcon />
-      : industry === 'nano' ? <NanoIcon />
-      : <FuzeIcon />;
-
     return (
       <div>
         <ExpansionPanel>
@@ -81,7 +75,7 @@ class GameFacilities extends React.Component {
               Object.entries(player.industries).map(industry =>
                 <Grid item xs={12}>
                   <Typography>
-                    {assignIndustryIcon(industry[0])}{industry[0]}: <SchemaIcon />{industry[1].schema}
+                    {getIndustryIcon(industry[0])}{industry[0]}: <SchemaIcon />{industry[1].schema}
                   </Typography>
                   <Button onClick={() => this.updateIndustrySchema(industry[0])}>Add Schema</Button>
                 </Grid>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { addCommas } from './dry/functions';
+import { addCommas, getIndustryStatusIcon } from './dry/functions';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -11,9 +11,6 @@ import Divider from '@material-ui/core/Divider';
 import { Line } from 'react-chartjs-2';
 import TextField from '@material-ui/core/TextField';
 import MarketIcon from '@material-ui/icons/Equalizer';
-import BoomIcon from '@material-ui/icons/TrendingUp';
-import BustIcon from '@material-ui/icons/TrendingDown';
-import NormalIcon from '@material-ui/icons/TrendingFlat';
 import Drawer from '@material-ui/core/Drawer';
 
 class GameMarket extends React.Component {
@@ -44,11 +41,6 @@ class GameMarket extends React.Component {
       'rgb(99, 132, 255)',
       'rgb(255, 255, 0)'
     ];
-
-    const assignStatusIcon = (industry) =>
-      game.market[industry].status === 'normal' ? <NormalIcon />
-      : game.market[industry].status === 'boom' ? <BoomIcon />
-      : <BustIcon />;
 
     const graphData = {
       labels: ["1", "2", "3", "4"],
@@ -85,7 +77,7 @@ class GameMarket extends React.Component {
                   <MenuItem value={''}>none</MenuItem>
                   {industryTypes.map((industry, i) =>
                     <MenuItem key={i} value={industry}>
-                      {assignStatusIcon(industry)} {industry}
+                      {getIndustryStatusIcon(game, industry)} {industry}
                     </MenuItem>)}
                 </Select>
               </FormControl>
