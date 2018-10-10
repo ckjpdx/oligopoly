@@ -69,39 +69,46 @@ class GameMarket extends React.Component {
         <Divider />
         <Typography>My Stocks</Typography>
         <Typography>{playerShares()}</Typography>
-        <form autoComplete="off">
-          <FormControl>
-            <InputLabel htmlFor="share-type">Industry</InputLabel>
-            <Select
-              value={this.state.shareIndustryType}
-              onChange={this.handleChange('shareIndustryType')}
-              inputProps={{
-                name: 'type-of-share',
-                id: 'share-type',
-              }}
-            >
-              <MenuItem value={''}>none</MenuItem>
-              {industryTypes.map((industry, i) => <MenuItem key={i} value={industry}>{assignStatusIcon(industry)} {industry}</MenuItem>)}
-            </Select>
-          </FormControl>
-        </form>
-        <TextField
-          id="standard-number"
-          label="Shares"
-          value={this.state.numberOfShares}
-          onChange={this.handleChange('numberOfShares')}
-          type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          margin="normal"
-        />
-        <Grid container>
+        <Grid container alignItems="center">
           <Grid item xs={6}>
-            <Button variant="outlined" color="primary">Buy</Button>
+            <form autoComplete="off">
+              <FormControl>
+                <InputLabel htmlFor="share-type">Industry</InputLabel>
+                <Select
+                  value={this.state.shareIndustryType}
+                  onChange={this.handleChange('shareIndustryType')}
+                  inputProps={{
+                    name: 'type-of-share',
+                    id: 'share-type',
+                  }}
+                >
+                  <MenuItem value={''}>none</MenuItem>
+                  {industryTypes.map((industry, i) =>
+                    <MenuItem key={i} value={industry}>
+                      {assignStatusIcon(industry)} {industry}
+                    </MenuItem>)}
+                </Select>
+              </FormControl>
+            </form>
           </Grid>
           <Grid item xs={6}>
-            <Button variant="outlined" color="secondary">Sell</Button>
+            <TextField
+              id="standard-number"
+              className="max-width-100px"
+              label="+/- Shares"
+              value={this.state.numberOfShares}
+              onChange={this.handleChange('numberOfShares')}
+              type="number"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              margin="normal"
+            />
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid item xs={12}>
+            <Button variant="outlined" color="primary">Transact</Button>
           </Grid>
         </Grid>
       </div>

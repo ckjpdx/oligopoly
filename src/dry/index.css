@@ -6,3 +6,6 @@
 .uppercase {
   text-transform: uppercase;
 }
+.max-width-100px {
+  max-width: 100px
+}
