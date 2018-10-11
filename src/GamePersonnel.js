@@ -4,7 +4,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { addCommas, getIndustryIcon } from './dry/functions';
+import { addCommas, getPersonnelIcon, personnelTypes } from './dry/functions';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -18,6 +18,7 @@ import BoomIcon from '@material-ui/icons/TrendingUp';
 import BustIcon from '@material-ui/icons/TrendingDown';
 import NormalIcon from '@material-ui/icons/TrendingFlat';
 import ArmsIcon from '@material-ui/icons/Star';
+import MercIcon from '@material-ui/icons/Security';
 import RoboIcon from '@material-ui/icons/Adb';
 import NanoIcon from '@material-ui/icons/BlurOn';
 import FuzeIcon from '@material-ui/icons/OfflineBolt';
@@ -26,27 +27,28 @@ import SchemaIcon from '@material-ui/icons/Memory';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import MoneyIcon from '@material-ui/icons/MonetizationOn';
-import PersonnelPoolIcon from '@material-ui/icons/Weekend';
-import EngineerIcon from '@material-ui/icons/Build';
+import AddPersonIcon from '@material-ui/icons/PersonAdd';
+
+// import MercIcon from '@material-ui/icons/Security';
+// import HackerIcon from '@material-ui/icons/RssFeed';
+// import WarbotIcon from '@material-ui/icons/Adb';
 
 import { db } from './dry/firebase';
-
-const industryTypes = ['arms', 'robo', 'nano', 'fuze'];
 
 class GameFacilities extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       tab: 0,
-      industryToBuySelect: 'Arms',
-      schemaChange: 1
+      personnelToHire: 'Merc',
+      personnelCount: 0
     };
   }
 
   handleChange = (event, value) => {
     this.setState({
       tab: value,
-      industryToBuySelect: industryTypes[value]
+      personnelToHire: personnelTypes[value]
     });
   };
 
@@ -69,26 +71,7 @@ class GameFacilities extends React.Component {
       <div>
         <ExpansionPanel>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography><ListIcon /> Current</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Grid container>
-            {
-              Object.entries(player.industries).map(industry =>
-                <Grid item xs={12}>
-                  <Typography>
-                    {getIndustryIcon(industry[0])}{industry[0]}: <SchemaIcon />{industry[1].schema}
-                  </Typography>
-                  <Button onClick={() => this.updateIndustrySchema(industry[0])}>Add Schema</Button>
-                </Grid>
-              )
-            }
-            </Grid>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography><MoneyIcon /> Purchase</Typography>
+            <Typography><AddPersonIcon /> Hire</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Tabs
@@ -98,10 +81,11 @@ class GameFacilities extends React.Component {
               indicatorColor="secondary"
               textColor="secondary"
               >
-                <Tab icon={<ArmsIcon />} label="Arms" />
-                <Tab icon={<RoboIcon />} label="Robo" />
-                <Tab icon={<NanoIcon />} label="Nano" />
-                <Tab icon={<FuzeIcon />} label="Fuze" />
+                {
+                  personnelTypes.map(type =>
+                    <Tab icon={getPersonnelIcon(type)} label={type} />
+                  )
+                }
               </Tabs>
           </ExpansionPanelDetails>
         </ExpansionPanel>

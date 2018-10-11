@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import themeOverride from './dry/themeOverride';
+import { firebase } from './dry/firebase';
+import { withTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Welcome from './Welcome';
 import Lobby from './Lobby';
 import Game from './Game';
 import Login from './Login';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import themeOverride from './dry/themeOverride';
-import { firebase } from './dry/firebase';
 
-import { withTheme } from '@material-ui/core/styles';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import bgImg from './img/bg-city.jpg';
+
 const theme = createMuiTheme(themeOverride);
 
 class App extends Component {
@@ -31,17 +34,18 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-          <div className="App">
+        <img src={bgImg} className="bg-img"/>
+          <Paper className="App">
             <CssBaseline />
             <Login user={this.state.user}
               gameId={this.state.gameId}
               onExit={this.exitGame} />
-            {!this.state.user
-              ? <Welcome />
-              : !this.state.gameId
-              ? <Lobby onSelectGame={this.selectGame} />
-              : <Game user={this.state.user} gameId={this.state.gameId} />}
-          </div>
+              {!this.state.user
+                ? <Welcome />
+                : !this.state.gameId
+                ? <Lobby onSelectGame={this.selectGame} />
+                : <Game user={this.state.user} gameId={this.state.gameId} />}
+          </Paper>
       </MuiThemeProvider>
     );
   }

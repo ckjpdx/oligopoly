@@ -1,6 +1,6 @@
 const themeOverride = {
   palette: {
-    type: 'dark', // Switching the dark mode on is a single property value change.
+    type: 'dark',
     primary: {
       main: '#ff7cf4',
     },
@@ -32,9 +32,10 @@ const themeOverride = {
     MuiDialog: {
       paper: {
         margin: 0,
+        background: 'rgba(40,40,40,0.9)'
       },
       paperWidthSm: {
-        maxWidth: 'unset'
+        maxWidth: 'unset',
       },
     },
     MuiDialogContent: {

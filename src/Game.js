@@ -4,14 +4,17 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Tooltip from '@material-ui/core/Tooltip'; // use for this?
-import PolicyIcon from '@material-ui/icons/Star';
+import PolicyIcon from '@material-ui/icons/Flag';
 import MarketIcon from '@material-ui/icons/Equalizer';
-import BuildingIcon from '@material-ui/icons/Business';
+import FacilitiesIcon from '@material-ui/icons/Business';
+import PersonnelIcon from '@material-ui/icons/Group';
+
 import Dialog from './dry/Dialog';
 import GameBar from './GameBar';
 import GameMarket from './GameMarket';
 import GamePolicy from './GamePolicy';
 import GameFacilities from './GameFacilities';
+import GamePersonnel from './GamePersonnel';
 
 import { firebase, db } from './dry/firebase';
 
@@ -69,8 +72,13 @@ class Game extends Component {
               </Dialog>
             </Grid>
             <Grid item xs={12}>
-              <Dialog icon={<BuildingIcon/>} text="Facilities" title={"Facilities"}>
+              <Dialog icon={<FacilitiesIcon/>} text="Facilities" title={"Facilities"}>
                 <GameFacilities game={game} player={player}/>
+              </Dialog>
+            </Grid>
+            <Grid item xs={12}>
+              <Dialog icon={<PersonnelIcon/>} text="Personnel" title={"Personnel"}>
+                <GamePersonnel game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={4}>

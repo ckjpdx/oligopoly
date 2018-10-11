@@ -9,36 +9,42 @@ a game of numbers, risk, and greed
 SVGs to use or being used in this app:
 
 * [x] Add (plus)
+* [ ] control_point (plus in circle)
 * [x] play_circle_outline (play media)
-* [ ] memory (as schema)
-* [ ] security (arms/defense/industry)
-* [ ] adb (robot/warbot/industry)
-* [ ] local_pharmacy (nano/industry)
+* [x] memory (as schema)
+* [x] security (arms/defense/industry)
+* [ ] brightness_7 (arms/explosion)
+* [x] blur_on (arms/explosion)
+* [x] adb (robot/warbot/industry)
+* [x] local_pharmacy (nano/industry)
 * [ ] ev_station (fusion/energy/power/industry)
+* [x] offline_bolt (lightning/fusion/energy/power/industry)
 * [ ] cancel
+* [x] close
 * [ ] check
 * [ ] refresh
 * [ ] priority_high
-* [ ] poll, equalizer (stats/graphs)
+* [x] poll, equalizer (stats/graphs)
 * [ ] public (earth)
-* [ ] weekend (sofa, waiting room)
-* [ ] group, people (personnel)
+* [ ] brightness_3 (secret/covert/night)
+* [x] weekend (sofa, waiting room)
+* [x] group, people (personnel)
 * [ ] person (player)
-* [ ] person_add (add player)
+* [ ] person_add (add person/player)
 * [ ] account_circle (important person)
 * [x] menu
 * [ ] announcement
-* [ ] build (wrench/engineer)
+* [ ] gavel (court/law/fine)
+* [x] build (wrench/engineer)
 * [ ] language (globe)
-* [ ] list
-* [ ] info
-* [ ] launch (exit box)
-* [ ] offline_bolt (lightning)
-* [ ] star (normal star)
+* [x] list
+* [x] launch (exit box)
+* [x] star (normal star)
 * [ ] stars (star in circle)
 * [ ] star_border
 * [ ] star_half
-* [ ] visibility (eye) visibility_off (eye strikethrough)
+* [ ] visibility (eye/public)
+* [ ] visibility_off (eye strikethrough/secret/covert)
 * [ ] work (briefcase)
 * [ ] error
 * [ ] warning, report_problem (triangle exclamation point)
@@ -47,16 +53,17 @@ SVGs to use or being used in this app:
 * [x] business (building)
 * [ ] landscape
 * [ ] location_city
-* [ ] rss_feed (hackers)
-* [ ] gps_not_fixed (crosshairs)
+* [x] rss_feed (hackers)
+* [x] gps_not_fixed (crosshairs)
 * [ ] attach_money ($)
 * [ ] monetization_on ($ in circle)
 * [ ] ac_unit (democratic policy)
 * [ ] whatshot (republican policy)
-* [ ] flag
+* [x] flag
 * [x] how_to_vote (bribe)
 * [x] trending_up, trending_down, trending_flat (stock market fluctuation)
 * [x] play_circle_outline
+* [ ] info
 * [x] help (question mark)
 * [x] account_balance (bank)
 * [ ] favorite (heart/reputation)
