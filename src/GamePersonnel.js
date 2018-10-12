@@ -33,21 +33,33 @@ class GameFacilities extends React.Component {
     this.state = {
       tab: 0,
       personnelType: null,
-      personnelCount: 0
+      personnelCount: 0,
+      personnelCost: 0
     };
   }
 
-  handleChange = type => {
+  updateCost = () =>
+    this.state.personnelCount >= 0
+    ? this.state.personnelType
+      ? this.setState({personnelCost: this.state.personnelCount * personnelCosts[this.state.personnelType]})
+      : this.setState({personnelCost: '---'})
+    : this.setState({personnelCost: 'Terminate'})
+
+  handleType = type => {
     this.setState({
-      personnelType: type
-    });
+      personnelType: type,
+    }, () => this.updateCost());
   };
 
   handleCount = e => {
     this.setState({
-      personnelCount: e.target.value
-    });
+      personnelCount: e.target.value,
+    }, () => this.updateCost());
   };
+
+  // handleUpdate = () => {
+  //   this.state.
+  // }
 
   updateIndustrySchema = (industry) => {
     console.log(industry);
@@ -63,17 +75,13 @@ class GameFacilities extends React.Component {
   render() {
     const game = this.props.game;
     const player = this.props.player;
-    const cost = this.state.personnelCount >= 0
-      ? this.state.personnelType
-        ? this.state.personnelCount * personnelCosts[this.state.personnelType]
-        : '---'
-      : 'Terminate';
+    const cost = this.state.personnelCost;
 
     return (
       <Grid container>
         {personnelTypes.map(type =>
           <Grid item xs={12}>
-            <Typography onClick={() => this.handleChange(type)}>
+            <Typography onClick={() => this.handleType(type)}>
               {getPersonnelIcon(type)} {player.personnel[type] || '0'} {type}
             </Typography>
           </Grid>
