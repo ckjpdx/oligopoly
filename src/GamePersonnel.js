@@ -1,17 +1,12 @@
 import React from 'react';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { addCommas, getPersonnelIcon, personnelTypes } from './dry/functions';
+import { addCommas, getPersonnelIcon, personnelTypes, personnelCosts } from './dry/functions';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
 import MarketIcon from '@material-ui/icons/Equalizer';
 import BoomIcon from '@material-ui/icons/TrendingUp';
@@ -24,14 +19,11 @@ import NanoIcon from '@material-ui/icons/BlurOn';
 import FuzeIcon from '@material-ui/icons/OfflineBolt';
 import ListIcon from '@material-ui/icons/List';
 import SchemaIcon from '@material-ui/icons/Memory';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import MoneyIcon from '@material-ui/icons/MonetizationOn';
 import AddPersonIcon from '@material-ui/icons/PersonAdd';
+import CheckIcon from '@material-ui/icons/Check';
 
-// import MercIcon from '@material-ui/icons/Security';
-// import HackerIcon from '@material-ui/icons/RssFeed';
-// import WarbotIcon from '@material-ui/icons/Adb';
+import Divider from '@material-ui/core/Divider';
 
 import { db } from './dry/firebase';
 
@@ -40,15 +32,20 @@ class GameFacilities extends React.Component {
     super(props);
     this.state = {
       tab: 0,
-      personnelToHire: 'Merc',
+      personnelType: null,
       personnelCount: 0
     };
   }
 
-  handleChange = (event, value) => {
+  handleChange = type => {
     this.setState({
-      tab: value,
-      personnelToHire: personnelTypes[value]
+      personnelType: type
+    });
+  };
+
+  handleCount = e => {
+    this.setState({
+      personnelCount: e.target.value
     });
   };
 
@@ -66,39 +63,43 @@ class GameFacilities extends React.Component {
   render() {
     const game = this.props.game;
     const player = this.props.player;
+    const cost = this.state.personnelCount >= 0
+      ? this.state.personnelType
+        ? this.state.personnelCount * personnelCosts[this.state.personnelType]
+        : '---'
+      : 'Terminate';
 
     return (
-      <div>
-        <ExpansionPanel>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography><AddPersonIcon /> Hire</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Tabs
-              value={this.state.tab}
-              onChange={this.handleChange}
-              fullWidth
-              indicatorColor="secondary"
-              textColor="secondary"
-              >
-                {
-                  personnelTypes.map(type =>
-                    <Tab icon={getPersonnelIcon(type)} label={type} />
-                  )
-                }
-              </Tabs>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-
-        <Grid container>
-          <Grid item xs={6}>
-
+      <Grid container>
+        {personnelTypes.map(type =>
+          <Grid item xs={12}>
+            <Typography onClick={() => this.handleChange(type)}>
+              {getPersonnelIcon(type)} {player.personnel[type] || '0'} {type}
+            </Typography>
           </Grid>
-          <Grid item xs={6}>
-
-          </Grid>
+        )}
+        <Grid item xs={12}>
+          <Divider />
+          <TextField
+            id="personnel-count-change"
+            className="max-width-100px"
+            label={this.state.personnelType || 'select type'}
+            value={this.state.personnelCount}
+            onChange={this.handleCount}
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            margin="normal"
+          />
+          <Button onClick={() => this.handleUpdate()}><CheckIcon/></Button>
         </Grid>
-      </div>
+        <Grid item xs={12}>
+          <Typography>
+            {isNaN(cost) ? cost : '$' + addCommas(cost)}
+          </Typography>
+        </Grid>
+      </Grid>
     )
   };
 }

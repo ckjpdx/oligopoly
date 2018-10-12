@@ -13,6 +13,7 @@ SVGs to use or being used in this app:
 * [x] play_circle_outline (play media)
 * [x] memory (as schema)
 * [x] security (arms/defense/industry)
+* [x] developer_board (scientists/industry)
 * [ ] brightness_7 (arms/explosion)
 * [x] blur_on (arms/explosion)
 * [x] adb (robot/warbot/industry)
@@ -21,7 +22,7 @@ SVGs to use or being used in this app:
 * [x] offline_bolt (lightning/fusion/energy/power/industry)
 * [ ] cancel
 * [x] close
-* [ ] check
+* [x] check
 * [ ] refresh
 * [ ] priority_high
 * [x] poll, equalizer (stats/graphs)

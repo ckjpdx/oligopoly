@@ -9,6 +9,8 @@ import RoboIcon from '@material-ui/icons/Adb';
 import NanoIcon from '@material-ui/icons/BlurOn';
 import FuzeIcon from '@material-ui/icons/OfflineBolt';
 
+import EngineerIcon from '@material-ui/icons/Build';
+import ScientistIcon from '@material-ui/icons/DeveloperBoard';
 import MercIcon from '@material-ui/icons/Security';
 import HackerIcon from '@material-ui/icons/RssFeed';
 import WarbotIcon from '@material-ui/icons/Adb';
@@ -22,7 +24,9 @@ export const getIndustryStatusIcon = (game, industry) =>
   : game.market[industry].status === 'boom' ? <BoomIcon />
   : <BustIcon />;
 
-// put industry types array here
+export const industryTypes = [
+  'arms', 'robo', 'nano', 'fuze'
+];
 
 export const getIndustryIcon = (industry) =>
   industry === 'arms' ? <ArmsIcon />
@@ -30,9 +34,21 @@ export const getIndustryIcon = (industry) =>
   : industry === 'nano' ? <NanoIcon />
   : <FuzeIcon />;
 
-export const personnelTypes = ['merc', 'hacker', 'warbot'];
+export const personnelTypes = [
+  'engineers', 'scientists', 'mercs', 'hackers', 'warbots'
+];
+
+export const personnelCosts = {
+  engineers: 20000,
+  scientists: 100000,
+  mercs: 50000,
+  hackers: 35000,
+  warbots: 500000
+};
 
 export const getPersonnelIcon = (personnel) =>
-  personnel === 'merc' ? <MercIcon />
-  : personnel === 'hacker' ? <HackerIcon />
+  personnel === 'engineers' ? <EngineerIcon />
+  : personnel === 'scientists' ? <ScientistIcon />
+  : personnel === 'mercs' ? <MercIcon />
+  : personnel === 'hackers' ? <HackerIcon />
   : <WarbotIcon />;

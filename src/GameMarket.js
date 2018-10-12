@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { addCommas, getIndustryStatusIcon } from './dry/functions';
+import { addCommas, getIndustryStatusIcon, industryTypes } from './dry/functions';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -34,7 +34,6 @@ class GameMarket extends React.Component {
     const marketStatus = game.market.status;
     const playerShares = () => Object.entries(player.stocks).map(pair => pair[0] + ': ' + pair[1] + ' ');
 
-    const industryTypes = ['arms', 'robo', 'nano', 'fuze'];
     const industryGraphColors = [
       'rgb(255, 99, 132)',
       'rgb(132, 255, 99)',

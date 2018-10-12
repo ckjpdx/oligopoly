@@ -48,8 +48,7 @@ class DryDialog extends React.Component {
         >
           <DialogTitle id="alert-dialog-slide-title">
             <Grid container>
-              <Grid item xs={11}
-                style={{fontSize: '1.3em'}}>
+              <Grid item xs={11}>
                 {this.props.icon} {this.props.title}
               </Grid>
               <Grid item xs={1}>

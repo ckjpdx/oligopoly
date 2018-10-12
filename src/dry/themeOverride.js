@@ -26,13 +26,14 @@ const themeOverride = {
     MuiSvgIcon: {
       root: {
         verticalAlign: 'middle',
-        color: 'white'
+        color: 'white',
+        fontSize: '1.3em'
       }
     },
     MuiDialog: {
       paper: {
         margin: 0,
-        background: 'rgba(40,40,40,0.9)'
+        background: 'rgba(40,40,40,0.95)'
       },
       paperWidthSm: {
         maxWidth: 'unset',
@@ -51,6 +52,11 @@ const themeOverride = {
     MuiGrid: {
       item: {
         textAlign: 'center'
+      }
+    },
+    MuiDivider: {
+      root: {
+        margin: '15px 0'
       }
     }
   }
