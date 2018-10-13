@@ -13,7 +13,11 @@ div.App {
   min-height: 100vh;
   background: rgba(40,40,40,0.9);
 }
-.uppercase {
+div.AppBar h1 {
+  color: white;
+  margin: 0;
+  font-family: 'Rajdhani';
+  font-size: 25px;
   text-transform: uppercase;
 }
 .max-width-100px {

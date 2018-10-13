@@ -8,6 +8,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import CloseIcon from '@material-ui/icons/Close';
 import Grid from '@material-ui/core/Grid';
+import HelpIcon from '@material-ui/icons/Help';
+import Tooltip from '@material-ui/core/Tooltip';
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -19,6 +21,7 @@ class DryDialog extends React.Component {
   }
   state = {
     open: false,
+    dialogHelp: false
   };
 
   handleClickOpen = () => {
@@ -27,6 +30,12 @@ class DryDialog extends React.Component {
 
   handleClose = () => {
     this.setState({ open: false });
+  };
+
+  toggleDrawer = (side, open) => () => {
+    this.setState({
+      [side]: open,
+    });
   };
 
   render() {
@@ -48,14 +57,16 @@ class DryDialog extends React.Component {
         >
           <DialogTitle id="alert-dialog-slide-title">
             <Grid container>
-              <Grid item xs={11}>
+              <Grid item xs={1}>
+                <Tooltip disableFocusListener title={this.props.help} placement="right-start">
+                  <HelpIcon />
+                </Tooltip>
+              </Grid>
+              <Grid item xs={10}>
                 {this.props.icon} {this.props.title}
               </Grid>
               <Grid item xs={1}>
-                <Button onClick={this.handleClose}
-                  style={{transform: 'translate(-25%, 0)'}}>
-                  <CloseIcon />
-                </Button>
+                <CloseIcon onClick={this.handleClose} />
               </Grid>
             </Grid>
           </DialogTitle>

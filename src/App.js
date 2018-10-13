@@ -7,7 +7,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Welcome from './Welcome';
 import Lobby from './Lobby';
 import Game from './Game';
-import Login from './Login';
+import AppBar from './AppBar';
 
 import Paper from '@material-ui/core/Paper';
 import bgImg from './img/bg-city.jpg';
@@ -37,7 +37,7 @@ class App extends Component {
         <img src={bgImg} className="bg-img"/>
           <Paper className="App">
             <CssBaseline />
-            <Login user={this.state.user}
+            <AppBar user={this.state.user}
               gameId={this.state.gameId}
               onExit={this.exitGame} />
               {!this.state.user

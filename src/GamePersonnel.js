@@ -22,7 +22,6 @@ import SchemaIcon from '@material-ui/icons/Memory';
 import MoneyIcon from '@material-ui/icons/MonetizationOn';
 import AddPersonIcon from '@material-ui/icons/PersonAdd';
 import CheckIcon from '@material-ui/icons/Check';
-
 import Divider from '@material-ui/core/Divider';
 
 import { db } from './dry/firebase';
@@ -32,7 +31,7 @@ class GameFacilities extends React.Component {
     super(props);
     this.state = {
       tab: 0,
-      personnelType: null,
+      personnelType: 'engineers',
       personnelCount: 0,
       personnelCost: 0
     };
@@ -40,9 +39,7 @@ class GameFacilities extends React.Component {
 
   updateCost = () =>
     this.state.personnelCount >= 0
-    ? this.state.personnelType
-      ? this.setState({personnelCost: this.state.personnelCount * personnelCosts[this.state.personnelType]})
-      : this.setState({personnelCost: '---'})
+    ? this.setState({personnelCost: this.state.personnelCount * personnelCosts[this.state.personnelType]})
     : this.setState({personnelCost: 'Terminate'})
 
   handleType = type => {
@@ -53,24 +50,20 @@ class GameFacilities extends React.Component {
 
   handleCount = e => {
     this.setState({
-      personnelCount: e.target.value,
+      personnelCount: parseInt(e.target.value),
     }, () => this.updateCost());
   };
 
-  // handleUpdate = () => {
-  //   this.state.
-  // }
-
-  updateIndustrySchema = (industry) => {
-    console.log(industry);
-    const player = this.props.player;
-    const playerUid = player.uid;
-    const currentSchema = player.industries[industry].schema;
-    const updateValue = currentSchema + this.state.schemaChange;
-    db.ref('games/abc/players/' + playerUid + '/industries/' + industry).update({
-      schema: updateValue
-    });
-  }
+  handleConfirm = () => {
+    const gameId = this.props.game.uid;
+    const playerUid = this.props.player.uid;
+    const playerRef = 'games/' + gameId + '/players/' + playerUid;
+    const type = this.state.personnelType;
+    const count = this.state.personnelCount;
+    db.ref(playerRef + '/personnel/').update({
+      [type]: count + this.props.player.personnel[type]
+    })
+  };
 
   render() {
     const game = this.props.game;
@@ -100,7 +93,7 @@ class GameFacilities extends React.Component {
             }}
             margin="normal"
           />
-          <Button onClick={() => this.handleUpdate()}><CheckIcon/></Button>
+          <Button onClick={() => this.handleConfirm()}><CheckIcon/></Button>
         </Grid>
         <Grid item xs={12}>
           <Typography>

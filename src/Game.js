@@ -10,6 +10,7 @@ import FacilitiesIcon from '@material-ui/icons/Business';
 import PersonnelIcon from '@material-ui/icons/Group';
 
 import Dialog from './dry/Dialog';
+import { help } from './dry/text';
 import GameBar from './GameBar';
 import GameMarket from './GameMarket';
 import GamePolicy from './GamePolicy';
@@ -62,22 +63,22 @@ class Game extends Component {
           <Grid container>
             <GameBar player={player} />
             <Grid item xs={12}>
-              <Dialog icon={<PolicyIcon/>} text={game.policy} title={"Policy"}>
+              <Dialog icon={<PolicyIcon/>} text={game.policy} title={"Policy"} help={help.policy}>
                 <GamePolicy game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12}>
-              <Dialog icon={<MarketIcon/>} text={game.market.status} title={"Market"}>
+              <Dialog icon={<MarketIcon/>} text={game.market.status} title={"Market"} help={help.market}>
                 <GameMarket game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12}>
-              <Dialog icon={<FacilitiesIcon/>} text="Facilities" title={"Facilities"}>
+              <Dialog icon={<FacilitiesIcon/>} text="Facilities" title={"Facilities"} help={help.facilities}>
                 <GameFacilities game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12}>
-              <Dialog icon={<PersonnelIcon/>} text="Personnel" title={"Personnel"}>
+              <Dialog icon={<PersonnelIcon/>} text="Personnel" title={"Personnel"} help={help.personnel}>
                 <GamePersonnel game={game} player={player}/>
               </Dialog>
             </Grid>

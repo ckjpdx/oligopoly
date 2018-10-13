@@ -11,7 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import { firebase } from './dry/firebase';
 const provider = new firebase.auth.GoogleAuthProvider();
 
-class Login extends React.Component {
+class AppBar extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -55,28 +55,24 @@ class Login extends React.Component {
       </Button>;
 
     return (
-      <div className="Login">
-        <Grid container
-          direction="row"
-          justify="space-between"
-          alignItems="center"
-        >
-          <Grid item xs={4} align="left">
-            <Button onClick={this.toggleDrawer('topHelp', true)}>
-              <HelpIcon />
-            </Button>
+      <div className="AppBar">
+        <h1>
+          <Grid container
+            direction="row"
+            justify="space-between"
+            alignItems="center"
+          >
+            <Grid item xs={4} style={{textAlign:"left"}}>
+              <HelpIcon onClick={this.toggleDrawer('topHelp', true)}/>
+            </Grid>
+            <Grid item xs={4}>
+                <em>oligopoly</em>
+            </Grid>
+            <Grid item xs={4} style={{textAlign:"right"}}>
+              <MenuIcon onClick={this.toggleDrawer('topMenu', true)}/>
+            </Grid>
           </Grid>
-          <Grid item xs={4} align="center">
-            <Typography className="uppercase">
-              <em>oligopoly</em>
-            </Typography>
-          </Grid>
-          <Grid item xs={4} align="right">
-            <Button onClick={this.toggleDrawer('topMenu', true)}>
-              <MenuIcon />
-            </Button>
-          </Grid>
-        </Grid>
+        </h1>
         <Drawer anchor="top" open={this.state.topMenu} onClose={this.toggleDrawer('topMenu', false)}>
           <div
             tabIndex={0}
@@ -136,4 +132,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default AppBar;
