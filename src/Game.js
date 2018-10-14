@@ -8,6 +8,7 @@ import PolicyIcon from '@material-ui/icons/Flag';
 import MarketIcon from '@material-ui/icons/Equalizer';
 import FacilitiesIcon from '@material-ui/icons/Business';
 import PersonnelIcon from '@material-ui/icons/Group';
+import NewsIcon from '@material-ui/icons/Language';
 
 import Dialog from './dry/Dialog';
 import { help } from './dry/text';
@@ -16,6 +17,7 @@ import GameMarket from './GameMarket';
 import GamePolicy from './GamePolicy';
 import GameFacilities from './GameFacilities';
 import GamePersonnel from './GamePersonnel';
+import GameNews from './GameNews';
 
 import { firebase, db } from './dry/firebase';
 
@@ -62,6 +64,11 @@ class Game extends Component {
           !player ? <CircularProgress /> :
           <Grid container>
             <GameBar player={player} />
+            <Grid item xs={12}>
+              <Dialog icon={<NewsIcon/>} text={"News"} title={"News"} help={help.news}>
+                <GameNews game={game} player={player}/>
+              </Dialog>
+            </Grid>
             <Grid item xs={12}>
               <Dialog icon={<PolicyIcon/>} text={game.policy} title={"Policy"} help={help.policy}>
                 <GamePolicy game={game} player={player}/>

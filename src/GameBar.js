@@ -62,6 +62,7 @@ class GameBar extends React.Component {
                 <Typography variant="display1">${addCommas(this.props.player.money)}</Typography>
                 <Typography variant="headline"><BankIcon /> Loans</Typography>
                 <Button>Borrow 10M</Button>
+                <Button>Bankruptcy</Button>
                 <Typography variant="subheading">Debt: ${addCommas(player.debt)}</Typography>
 
                 <Button>Pay Down</Button>
