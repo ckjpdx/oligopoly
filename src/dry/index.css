@@ -49,8 +49,16 @@ div.marquee {
   padding: 0 0 1px;
 }
 div.global-status-bar {
+  display: flex;
+  align-items: center;
   height: 33px;
   background: #7df0ff1f;
+  font-size: 1.5em;
+}
+svg.custom {
+  width: 1.1em;
+  vertical-align: middle;
+  fill: white;
 }
 @keyframes marquee {
   from  { transform: translate(0, 0); }
