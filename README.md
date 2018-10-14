@@ -25,17 +25,17 @@ SVGs to use or being used in this app:
 * [x] close
 * [x] check
 * [ ] refresh
-* [ ] priority_high
+* [x] priority_high
 * [x] poll, equalizer (stats/graphs)
-* [x] public (earth)
+* [ ] public (earth)
 * [ ] brightness_3 (secret/covert/night)
 * [x] weekend (sofa, waiting room)
 * [x] group, people (personnel)
 * [ ] person (player)
 * [ ] person_add (add person/player)
-* [ ] account_circle (important person)
+* [ ] account_circle (important person, person in circle)
 * [x] menu
-* [ ] announcement
+* [x] announcement
 * [ ] gavel (court/law/fine)
 * [x] build (wrench/engineer)
 * [x] language (globe)
@@ -46,10 +46,10 @@ SVGs to use or being used in this app:
 * [ ] star_border
 * [ ] star_half
 * [ ] visibility (eye/public)
-* [ ] visibility_off (eye strikethrough/secret/covert)
+* [x] visibility_off (eye strikethrough/secret/covert)
 * [ ] work (briefcase)
-* [ ] info
-* [x] warning, report_problem (triangle exclamation point)
+* [x] info
+* [ ] warning, report_problem (triangle exclamation point)
 * [ ] error
 * [ ] call (phone)
 * [ ] forum, message (chat)

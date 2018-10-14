@@ -2,11 +2,8 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
-import PublicIcon from '@material-ui/icons/Visibility';
-import CovertIcon from '@material-ui/icons/VisibilityOff';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+// import PublicIcon from '@material-ui/icons/Visibility';
+import Button from '@material-ui/core/Button';
 
 import { db } from './dry/firebase';
 
@@ -22,22 +19,23 @@ class GameNews extends React.Component {
     const player = this.props.player;
 
     return (
-      <div>
-        <ExpansionPanel>
-          <ExpansionPanelSummary expandIcon={<CovertIcon />}>
-            <Typography>Global News</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel>
-          <ExpansionPanelSummary expandIcon={<PublicIcon />}>
-            <Typography>Global News</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-      </div>
+      <Grid container>
+        <Grid item xs={12}>
+          <Button>Defame</Button>
+        </Grid>
+        <Grid item xs={12}>
+          <Button>Hack</Button>
+        </Grid>
+        <Grid item xs={12}>
+          <Button>Disrupt</Button>
+        </Grid>
+        <Grid item xs={12}>
+          <Button>Massacre</Button>
+        </Grid>
+        <Grid item xs={12}>
+          <Button>Destroy</Button>
+        </Grid>
+      </Grid>
     )
   };
 }

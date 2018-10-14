@@ -8,17 +8,19 @@ import PolicyIcon from '@material-ui/icons/Flag';
 import MarketIcon from '@material-ui/icons/Equalizer';
 import FacilitiesIcon from '@material-ui/icons/Business';
 import PersonnelIcon from '@material-ui/icons/Group';
-import GlobeIcon from '@material-ui/icons/Language';
+import ReportsIcon from '@material-ui/icons/Info';
+import OperationsIcon from '@material-ui/icons/VisibilityOff';
 
 import Dialog from './dry/Dialog';
 import { help } from './dry/text';
 import GameBar from './GameBar';
+import GameOverview from './GameOverview';
 import GameMarket from './GameMarket';
 import GamePolicy from './GamePolicy';
 import GameFacilities from './GameFacilities';
 import GamePersonnel from './GamePersonnel';
-import GameNews from './GameNews';
-import GameOverview from './GameOverview';
+import GameReports from './GameReports';
+import GameOperations from './GameOperations';
 
 import { firebase, db } from './dry/firebase';
 
@@ -68,9 +70,14 @@ class Game extends Component {
             <Grid item xs={12}>
               <GameOverview game={game} player={player}/>
             </Grid>
-            <Grid item xs={12}>
-              <Dialog icon={<GlobeIcon/>} text={"News"} title={"News"} help={help.news} marquee={true}>
-                <GameNews game={game} player={player}/>
+            <Grid item xs={12} sm={6}>
+              <Dialog icon={<ReportsIcon/>} text={"Reports"} title={"Reports"} help={help.news} marquee={true}>
+                <GameReports game={game} player={player}/>
+              </Dialog>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Dialog icon={<MarketIcon/>} text={game.market.status} title={"Market"} help={help.market}>
+                <GameMarket game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -89,8 +96,8 @@ class Game extends Component {
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog icon={<MarketIcon/>} text={game.market.status} title={"Market"} help={help.market}>
-                <GameMarket game={game} player={player}/>
+              <Dialog icon={<OperationsIcon/>} text={"Operations"} title={"Operations"} help={help.operations}>
+                <GameOperations game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={6}>

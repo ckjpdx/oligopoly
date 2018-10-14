@@ -1,15 +1,17 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import WorldIcon from '@material-ui/icons/Public';
-import ReportIcon from '@material-ui/icons/Warning';
+import GlobeIcon from '@material-ui/icons/Language';
+import ReportIcon from '@material-ui/icons/Announcement';
+import ImportantIcon from '@material-ui/icons/PriorityHigh';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Paper from '@material-ui/core/Paper';
 
 import { db } from './dry/firebase';
 
-class GameNews extends React.Component {
+class GameReports extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -29,19 +31,19 @@ class GameNews extends React.Component {
           <ExpansionPanelDetails style={{display: 'block'}}>
             {
               player.reports.map(report =>
-                <Typography>{report}</Typography>
+                <Paper><Typography><ImportantIcon/>{report}</Typography></Paper>
               )
             }
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography><WorldIcon /> Global News</Typography>
+            <Typography><GlobeIcon /> Global News</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails style={{display: 'block'}}>
             {
               game.news.map(news =>
-                <Typography>{news}</Typography>
+                <Paper><Typography><ImportantIcon/>{news}</Typography></Paper>
               )
             }
           </ExpansionPanelDetails>
@@ -51,4 +53,4 @@ class GameNews extends React.Component {
   };
 }
 
-export default GameNews;
+export default GameReports;
