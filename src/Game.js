@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Tooltip from '@material-ui/core/Tooltip'; // use for this?
 import PolicyIcon from '@material-ui/icons/Flag';
-import MarketIcon from '@material-ui/icons/Equalizer';
+import MarketIcon from '@material-ui/icons/ShowChart';
 import FacilitiesIcon from '@material-ui/icons/Business';
 import PersonnelIcon from '@material-ui/icons/Group';
 import ReportsIcon from '@material-ui/icons/Info';
@@ -71,32 +71,32 @@ class Game extends Component {
               <GameOverview game={game} player={player}/>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog icon={<ReportsIcon/>} text={"Reports"} title={"Reports"} help={help.news} marquee={true}>
+              <Dialog icon={<ReportsIcon/>} text="Reports" title="Reports" help={help.news} marquee={true}>
                 <GameReports game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog icon={<MarketIcon/>} text={game.market.status} title={"Market"} help={help.market}>
+              <Dialog icon={<MarketIcon/>} text="Market" title="Market" help={help.market}>
                 <GameMarket game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog icon={<PersonnelIcon/>} text="Personnel" title={"Personnel"} help={help.personnel}>
+              <Dialog icon={<PersonnelIcon/>} text="Personnel" title="Personnel" help={help.personnel}>
                 <GamePersonnel game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog icon={<FacilitiesIcon/>} text="Facilities" title={"Facilities"} help={help.facilities}>
+              <Dialog icon={<FacilitiesIcon/>} text="Facilities" title="Facilities" help={help.facilities}>
                 <GameFacilities game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog icon={<PolicyIcon/>} text={game.policy} title={"Policy"} help={help.policy}>
+              <Dialog icon={<PolicyIcon/>} text="Policy" title="Policy" help={help.policy}>
                 <GamePolicy game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog icon={<OperationsIcon/>} text={"Operations"} title={"Operations"} help={help.operations}>
+              <Dialog icon={<OperationsIcon/>} text="Operations" title="Operations" help={help.operations}>
                 <GameOperations game={game} player={player}/>
               </Dialog>
             </Grid>

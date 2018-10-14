@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import PolicyIcon from '@material-ui/icons/Star';
 import BribeIcon from '@material-ui/icons/HowToVote';
-import { addCommas } from './dry/functions';
+import { addCommas, getIndustryIcon, industryTypes } from './dry/functions';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -60,10 +60,11 @@ class GamePolicy extends React.Component {
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
-                  <MenuItem value={'arms'}>Arms</MenuItem>
-                  <MenuItem value={'robo'}>Robo</MenuItem>
-                  <MenuItem value={'nano'}>Nano</MenuItem>
-                  <MenuItem value={'fuze'}>Fuze</MenuItem>
+                  {
+                    industryTypes.map(type =>
+                      <MenuItem value={type}>{getIndustryIcon(type)} {type}</MenuItem>
+                    )
+                  }
                 </Select>
                 <Typography>Cost: ${addCommas(contributionCost)}</Typography>
               </FormControl>

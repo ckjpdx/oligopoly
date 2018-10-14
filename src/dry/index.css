@@ -46,10 +46,13 @@ div.AppBar h1 {
 }
 div.marquee {
   background: #ec7dff1f;
-  padding: 0 0 2px;
-  margin: -1px 0 0;
+  padding: 0 0 1px;
+}
+div.global-status-bar {
+  height: 33px;
+  background: #7df0ff1f;
 }
 @keyframes marquee {
-  0%   { transform: translate(0, 0); }
-  100% { transform: translate(-100%, 0); }
+  from  { transform: translate(0, 0); }
+  to    { transform: translate(-100%, 0); }
 }

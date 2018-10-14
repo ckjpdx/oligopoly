@@ -2,7 +2,7 @@ import React from 'react';
 
 import BoomIcon from '@material-ui/icons/TrendingUp';
 import BustIcon from '@material-ui/icons/TrendingDown';
-import NormalIcon from '@material-ui/icons/TrendingFlat';
+import StableIcon from '@material-ui/icons/TrendingFlat';
 
 import ArmsIcon from '@material-ui/icons/Star';
 import RoboIcon from '@material-ui/icons/Adb';
@@ -20,7 +20,7 @@ export const addCommas = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, 
 export const checkReq = (have, need) => have >= need;
 
 export const getIndustryStatusIcon = (game, industry) =>
-  game.market[industry].status === 'normal' ? <NormalIcon />
+  game.market[industry].status === 'normal' ? <StableIcon />
   : game.market[industry].status === 'boom' ? <BoomIcon />
   : <BustIcon />;
 
