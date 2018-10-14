@@ -20,20 +20,17 @@ class GameOverview extends React.Component {
       const prevDemand = demandArr[demandArr.length - 2];
       const demandDiff = currDemand - prevDemand;
       const color = demandDiff >= 0 ? {color: 'lime'} : {color: 'red'};
-      return <span style={color}>{getIndustryIcon(industry)} {industry} {demandDiff} </span>
+      const plus = demandDiff > 0 && '+';
+      return <span style={color}>
+        {getIndustryIcon(industry)} {industry} {plus}{demandDiff} </span>
     });
     const newsTape = game.news.map(news => <span><GlobeIcon /> {news} </span>);
     newsTape.push(stocksTape);
 
     return (
       <div className="GameOverview">
-        <div>
-          <p className="marquee">
-            {newsTape}
-          </p>
-          <p className="marquee">
-            {newsTape}
-          </p>
+        <div className="marquee">
+          <p>{newsTape}</p><p>{newsTape}</p>
         </div>
       </div>
     )

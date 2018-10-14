@@ -6,7 +6,7 @@ import NormalIcon from '@material-ui/icons/TrendingFlat';
 
 import ArmsIcon from '@material-ui/icons/Star';
 import RoboIcon from '@material-ui/icons/Adb';
-import NanoIcon from '@material-ui/icons/BlurOn';
+import NanoIcon from '@material-ui/icons/BlurCircular';
 import FuzeIcon from '@material-ui/icons/OfflineBolt';
 
 import EngineerIcon from '@material-ui/icons/Build';

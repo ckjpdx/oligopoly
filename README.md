@@ -15,9 +15,10 @@ SVGs to use or being used in this app:
 * [x] security (arms/defense/industry)
 * [x] developer_board (scientists/industry)
 * [ ] brightness_7 (arms/explosion)
-* [x] blur_on (arms/explosion)
+* [ ] blur_on (arms/explosion)
+* [x] blur_circular (arms/explosion)
 * [x] adb (robot/warbot/industry)
-* [x] local_pharmacy (nano/industry)
+* [ ] local_pharmacy (nano/industry)
 * [ ] ev_station (fusion/energy/power/industry)
 * [x] offline_bolt (lightning/fusion/energy/power/industry)
 * [ ] cancel

@@ -2,9 +2,9 @@ import React from 'react';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { addCommas, getIndustryIcon } from './dry/functions';
+import Typography from '@material-ui/core/Typography';
+import { addCommas, getIndustryIcon, industryTypes } from './dry/functions';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -31,14 +31,12 @@ import EngineerIcon from '@material-ui/icons/Build';
 
 import { db } from './dry/firebase';
 
-const industryTypes = ['arms', 'robo', 'nano', 'fuze'];
-
 class GameFacilities extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       tab: 0,
-      industryToBuySelect: 'Arms',
+      industryType: 'arms',
       schemaChange: 1
     };
   }
@@ -46,7 +44,7 @@ class GameFacilities extends React.Component {
   handleChange = (event, value) => {
     this.setState({
       tab: value,
-      industryToBuySelect: industryTypes[value]
+      industryType: industryTypes[value]
     });
   };
 
@@ -98,10 +96,11 @@ class GameFacilities extends React.Component {
               indicatorColor="secondary"
               textColor="secondary"
               >
-                <Tab icon={<ArmsIcon />} label="Arms" />
-                <Tab icon={<RoboIcon />} label="Robo" />
-                <Tab icon={<NanoIcon />} label="Nano" />
-                <Tab icon={<FuzeIcon />} label="Fuze" />
+                {
+                  industryTypes.map(type =>
+                    <Tab icon={getIndustryIcon(type)} label={type} />
+                  )
+                }
               </Tabs>
           </ExpansionPanelDetails>
         </ExpansionPanel>

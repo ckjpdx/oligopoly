@@ -5,6 +5,7 @@ import ReportIcon from '@material-ui/icons/Warning';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import { db } from './dry/firebase';
 
@@ -21,9 +22,9 @@ class GameNews extends React.Component {
 
     return (
       <div>
-        <ExpansionPanel>
-          <ExpansionPanelSummary expandIcon={<ReportIcon />}>
-            <Typography>Internal Reports</Typography>
+        <ExpansionPanel defaultExpanded={true}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography><ReportIcon /> Internal Reports</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails style={{display: 'block'}}>
             {
@@ -34,8 +35,8 @@ class GameNews extends React.Component {
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel>
-          <ExpansionPanelSummary expandIcon={<WorldIcon />}>
-            <Typography>Global News</Typography>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography><WorldIcon /> Global News</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails style={{display: 'block'}}>
             {
