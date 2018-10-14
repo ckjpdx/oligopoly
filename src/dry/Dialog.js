@@ -58,7 +58,7 @@ class DryDialog extends React.Component {
           <DialogTitle id="alert-dialog-slide-title">
             <Grid container>
               <Grid item xs={1}>
-                <Tooltip disableFocusListener title={this.props.help} placement="right-start">
+                <Tooltip disableFocusListener title={this.props.help} placement="bottom-start">
                   <HelpIcon />
                 </Tooltip>
               </Grid>

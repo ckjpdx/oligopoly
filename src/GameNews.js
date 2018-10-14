@@ -1,9 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Divider from '@material-ui/core/Divider';
-import EarthIcon from '@material-ui/icons/Public';
-import WarningIcon from '@material-ui/icons/Warning';
+import WorldIcon from '@material-ui/icons/Public';
+import ReportIcon from '@material-ui/icons/Warning';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -24,18 +22,27 @@ class GameNews extends React.Component {
     return (
       <div>
         <ExpansionPanel>
-          <ExpansionPanelSummary expandIcon={<WarningIcon />}>
+          <ExpansionPanelSummary expandIcon={<ReportIcon />}>
             <Typography>Internal Reports</Typography>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
+          <ExpansionPanelDetails style={{display: 'block'}}>
+            {
+              player.reports.map(report =>
+                <Typography>{report}</Typography>
+              )
+            }
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel>
-          <ExpansionPanelSummary expandIcon={<EarthIcon />}>
-          Stuff
+          <ExpansionPanelSummary expandIcon={<WorldIcon />}>
             <Typography>Global News</Typography>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
+          <ExpansionPanelDetails style={{display: 'block'}}>
+            {
+              game.news.map(news =>
+                <Typography>{news}</Typography>
+              )
+            }
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </div>
