@@ -71,7 +71,7 @@ class Game extends Component {
               <GameOverview game={game} player={player}/>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog icon={<ReportsIcon/>} text="Reports" title="Reports" help={help.news} marquee={true}>
+              <Dialog icon={<ReportsIcon/>} text="Reports" title="Reports" help={help.reports} marquee={true}>
                 <GameReports game={game} player={player}/>
               </Dialog>
             </Grid>

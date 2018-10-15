@@ -59,6 +59,7 @@ SVGs to use or being used in this app:
 * [x] rss_feed (hackers)
 * [x] gps_not_fixed (crosshairs)
 * [ ] attach_money ($)
+* [ ] get_app (tax, down arrow to line)
 * [ ] monetization_on ($ in circle)
 * [ ] ac_unit (democratic policy)
 * [ ] whatshot (republican policy)
@@ -76,6 +77,4 @@ SVGs to use or being used in this app:
 
 <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Soldiers">Soldiers</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Peace">Peace</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-<div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Sword">Sword</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Rifle">Rifle</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-<div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Bomb">Bomb</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>

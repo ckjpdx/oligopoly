@@ -58,6 +58,14 @@ const themeOverride = {
       root: {
         margin: '15px 0'
       }
+    },
+    MuiBottomNavigationAction: {
+      wrapper: {
+        fontSize: '1.5em'
+      },
+      label: {
+        fontSize: '1.25em'
+      }
     }
   }
 };

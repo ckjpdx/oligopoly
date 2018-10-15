@@ -14,6 +14,7 @@ import { addCommas, getIndustryIcon, industryTypes } from './dry/functions';
 import RepublicanIcon from '@material-ui/icons/Whatshot';
 import DemocraticIcon from '@material-ui/icons/AcUnit';
 import BribeIcon from '@material-ui/icons/HowToVote';
+import TaxIcon from '@material-ui/icons/GetApp';
 import { ReactComponent as WarIcon } from './img/rifle.svg';
 import { ReactComponent as PeaceIcon } from './img/peace.svg';
 
@@ -49,7 +50,7 @@ class GamePolicy extends React.Component {
           </Grid>
           <Grid item xs={6}>
             <Typography>
-              tax rate: {taxRate}%
+              <TaxIcon /> Tax: {taxRate}%
             </Typography>
           </Grid>
           <Grid item xs={6}>
