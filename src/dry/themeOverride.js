@@ -18,6 +18,11 @@ const themeOverride = {
         borderRadius: 0,
       },
     },
+    MuiList: {
+      root: {
+        textTransform: 'uppercase'
+      }
+    },
     MuiListItemIcon: {
       root: {
         marginRight: 0
@@ -33,7 +38,9 @@ const themeOverride = {
     MuiDialog: {
       paper: {
         margin: 0,
-        background: 'rgba(40,40,40,0.95)'
+        background: 'rgba(40,40,40,0.95)',
+        width: '50vw',
+        minWidth: 310
       },
       paperWidthSm: {
         maxWidth: 'unset',
@@ -46,7 +53,8 @@ const themeOverride = {
     },
     MuiSelect: {
       select: {
-        minWidth: 60
+        minWidth: 60,
+        textTransform: 'uppercase'
       }
     },
     MuiGrid: {

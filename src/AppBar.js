@@ -44,7 +44,7 @@ class AppBar extends React.Component {
   };
 
   render() {
-    const showExitGame = this.props.gameId
+    const showExitGame = this.props.gameUid
       && <Button color="secondary"
         variant="outlined"
         onClick={() => this.props.onExit()}

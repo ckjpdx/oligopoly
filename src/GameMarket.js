@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { addCommas, getIndustryIcon, industryTypes } from './dry/functions';
+import { addCommas, getIndustryIcon, industryTypes, getMarketStatusIcon } from './dry/functions';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -12,13 +12,17 @@ import { Line } from 'react-chartjs-2';
 import TextField from '@material-ui/core/TextField';
 import MarketIcon from '@material-ui/icons/Equalizer';
 import Drawer from '@material-ui/core/Drawer';
+import MoneyIcon from '@material-ui/icons/MonetizationOn';
+
+import { db } from './dry/firebase';
 
 class GameMarket extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       shareIndustryType: '',
-      numberOfShares: 0
+      numberOfShares: '0',
+      transaction: 0
     };
   }
 
@@ -28,11 +32,59 @@ class GameMarket extends React.Component {
     });
   };
 
+  handleTransact = (game, player) => {
+    if (this.state.shareIndustryType) {
+      if (this.state.numberOfShares > 0) { // buy
+        const demandArr = game.market[this.state.shareIndustryType].demand;
+        const cost = this.state.numberOfShares * demandArr[demandArr.length - 1] * 100;
+        if (player.money >= cost) {
+          const newShares = player.stocks[this.state.shareIndustryType] + parseInt(this.state.numberOfShares);
+          const newStocks = Object.assign(
+            player.stocks,
+            {[this.state.shareIndustryType]: newShares}
+          );
+          db.ref('games/' + game.uid + '/players/' + player.uid).update({
+            stocks: newStocks
+          });
+          db.ref('games/' + game.uid + '/players/' + player.uid).update({
+            money: player.money - cost
+          });
+        }
+      } else if (this.state.numberOfShares < 0) { // sell
+        if (player.stocks[this.state.shareIndustryType] >= -1 * this.state.numberOfShares) {
+          console.log(player.stocks[this.state.shareIndustryType]);
+          const demandArr = game.market[this.state.shareIndustryType].demand;
+          const gain = this.state.numberOfShares * demandArr[demandArr.length - 1] * -95;
+          const newShares = player.stocks[this.state.shareIndustryType] + parseInt(this.state.numberOfShares);
+          const newStocks = Object.assign(
+            player.stocks,
+            {[this.state.shareIndustryType]: newShares}
+          );
+          db.ref('games/' + game.uid + '/players/' + player.uid).update({
+            stocks: newStocks
+          });
+          db.ref('games/' + game.uid + '/players/' + player.uid).update({
+            money: player.money + gain
+          });
+        }
+      }
+    }
+  };
+
   render() {
     const game = this.props.game;
     const player = this.props.player;
-    const marketStatus = game.market.status;
-    const playerShares = () => Object.entries(player.stocks).map(pair => pair[0] + ': ' + pair[1] + ' ');
+
+    const buyOrSell = this.state.numberOfShares > 0
+      ? 'Buy Shares' : this.state.numberOfShares < 0
+        ? 'Sell Shares' : '+/- Shares';
+    const shareRate = this.state.numberOfShares > 0 ? -100 : -95;
+    const transaction = this.state.shareIndustryType
+      && game.market[this.state.shareIndustryType].demand[
+        game.market[this.state.shareIndustryType].demand.length - 1
+      ] * shareRate * this.state.numberOfShares;
+
+    const playerShares = Object.entries(player.stocks).map(pair => <span>{getIndustryIcon(pair[0])}{pair[1]} </span>);
 
     const industryGraphColors = [
       'rgb(255, 99, 132)',
@@ -42,24 +94,30 @@ class GameMarket extends React.Component {
     ];
 
     const graphData = {
-      labels: ["1", "2", "3", "4"],
       datasets: industryTypes.map((industry, i) => {
         return {
-        label: industry,
+        label: industry.toUpperCase(),
         borderColor: industryGraphColors[i],
         data: game.market[industry].demand
         }
       })
     };
+
     return (
       <div>
-        <Typography>
-          Status: {marketStatus}
-        </Typography>
+        <Grid item xs={12}>
+          <Typography className="uppercase">
+            {getMarketStatusIcon(game.market.status)} {game.market.status}
+          </Typography>
+        </Grid>
         <Line data={graphData}></Line>
         <Divider />
-        <Typography>My Stocks</Typography>
-        <Typography>{playerShares()}</Typography>
+        <Grid item xs={12}>
+          <Typography>My Stocks</Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography>{playerShares}</Typography>
+        </Grid>
         <Grid container alignItems="center">
           <Grid item xs={6}>
             <form autoComplete="off">
@@ -86,7 +144,7 @@ class GameMarket extends React.Component {
             <TextField
               id="standard-number"
               className="max-width-100px"
-              label="+/- Shares"
+              label={buyOrSell}
               value={this.state.numberOfShares}
               onChange={this.handleChange('numberOfShares')}
               type="number"
@@ -98,8 +156,15 @@ class GameMarket extends React.Component {
           </Grid>
         </Grid>
         <Grid container>
+          <Grid item xs={6}>
+            <Typography><MoneyIcon /> {addCommas(player.money)}</Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography>$ {addCommas(transaction) || '---'}</Typography>
+          </Grid>
           <Grid item xs={12}>
-            <Button variant="outlined" color="primary">Transact</Button>
+            <Button variant="outlined" color="primary"
+              onClick={() => this.handleTransact(game, player)}>Transact</Button>
           </Grid>
         </Grid>
       </div>

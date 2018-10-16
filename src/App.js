@@ -19,7 +19,7 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
-      gameId: 'abc'
+      gameUid: 'abc'
     };
     firebase.auth().onAuthStateChanged(user =>
       user
@@ -28,8 +28,8 @@ class App extends Component {
     );
   }
 
-  selectGame = (gameId) => this.setState({gameId: gameId});
-  exitGame = () => this.setState({gameId: null});
+  selectGame = (gameUid) => this.setState({gameUid: gameUid});
+  exitGame = () => this.setState({gameUid: null});
 
   render() {
     return (
@@ -38,13 +38,13 @@ class App extends Component {
           <Paper className="App">
             <CssBaseline />
             <AppBar user={this.state.user}
-              gameId={this.state.gameId}
+              gameUid={this.state.gameUid}
               onExit={this.exitGame} />
               {!this.state.user
                 ? <Welcome />
-                : !this.state.gameId
+                : !this.state.gameUid
                 ? <Lobby onSelectGame={this.selectGame} />
-                : <Game user={this.state.user} gameId={this.state.gameId} />}
+                : <Game user={this.state.user} gameUid={this.state.gameUid} />}
           </Paper>
       </MuiThemeProvider>
     );

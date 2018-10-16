@@ -11,8 +11,8 @@ import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import { addCommas, getIndustryIcon, industryTypes } from './dry/functions';
 
-import RepublicanIcon from '@material-ui/icons/Whatshot';
-import DemocraticIcon from '@material-ui/icons/AcUnit';
+import FascismIcon from '@material-ui/icons/Whatshot';
+import SocialismIcon from '@material-ui/icons/AcUnit';
 import BribeIcon from '@material-ui/icons/HowToVote';
 import TaxIcon from '@material-ui/icons/GetApp';
 import { ReactComponent as WarIcon } from './img/rifle.svg';
@@ -37,7 +37,7 @@ class GamePolicy extends React.Component {
 
     const taxRate = this.props.game.taxRate * 100;
     const contributionCost = 1000000;
-    const PolicyStatusIcon = game.policy === "republican" ? <RepublicanIcon /> : <DemocraticIcon />
+    const PolicyStatusIcon = game.policy === "fascism" ? <FascismIcon /> : <SocialismIcon />
     const WarStatusIcon = game.war // boolean
       ? <WarIcon className="custom"/>
       : <PeaceIcon className="custom"/>;

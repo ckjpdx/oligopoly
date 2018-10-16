@@ -34,10 +34,10 @@ class Game extends Component {
     }
   }
   componentWillMount() {
-    db.ref('games/' + this.props.gameId).on('value', snap => this.setState({game: snap.val()}));
+    db.ref('games/' + this.props.gameUid).on('value', snap => this.setState({game: snap.val()}));
   }
   componentWillUnmount() {
-    db.ref('games/' + this.props.gameId).off();
+    db.ref('games/' + this.props.gameUid).off();
   }
 
   handleChangeText = (e) => {

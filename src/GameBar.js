@@ -40,6 +40,7 @@ class GameBar extends React.Component {
   render() {
     const { classes } = this.props;
     const player = this.props.player;
+    
     return (
       <BottomNavigation
         onChange={this.handleChange}
