@@ -27,26 +27,26 @@ div.AppBar h1 {
   overflow: hidden;
   white-space: nowrap;
 }
-.marquee p {
-  text-transform: uppercase;
-  font-size: 1.5em;
-  margin: 3px;
-  font-family: 'VT323', monospace;
-  color: white;
-  display: inline-block;
-  animation: marquee 20s linear infinite;
-  overflow: hidden;
-  vertical-align: bottom;
-}
-.marquee p span {
-  vertical-align: inherit;
-}
-.marquee p svg {
-  font-size: 1em;
-}
 div.marquee {
   background: #ec7dff1f;
   padding: 0 0 1px;
+  p {
+    text-transform: uppercase;
+    font-size: 1.5em;
+    margin: 3px;
+    font-family: 'VT323', monospace;
+    color: white;
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+    overflow: hidden;
+    vertical-align: bottom;
+    span {
+      vertical-align: inherit;
+    }
+    svg {
+      font-size: 1em;
+    }
+  }
 }
 div.global-status-bar {
   display: flex;
