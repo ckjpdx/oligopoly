@@ -19,10 +19,11 @@ export const addCommas = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, 
 
 export const checkReq = (have, need) => have >= need;
 
-export const getIndustryStatusIcon = (game, industry) =>
-  game.market[industry].status === 'normal' ? <StableIcon />
-  : game.market[industry].status === 'boom' ? <BoomIcon />
-  : <BustIcon />;
+// this info is hidden without special "insider info" -- add later
+// export const getIndustryStatusIcon = (game, industry) =>
+//   game.market[industry].status === 'normal' ? <StableIcon />
+//   : game.market[industry].status === 'boom' ? <BoomIcon />
+//   : <BustIcon />;
 
 export const industryTypes = [
   'arms', 'robo', 'nano', 'fuze'

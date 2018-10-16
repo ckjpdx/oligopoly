@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { addCommas, getIndustryStatusIcon, industryTypes } from './dry/functions';
+import { addCommas, getIndustryIcon, industryTypes } from './dry/functions';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -76,7 +76,7 @@ class GameMarket extends React.Component {
                   <MenuItem value={''}>none</MenuItem>
                   {industryTypes.map((industry, i) =>
                     <MenuItem key={i} value={industry}>
-                      {getIndustryStatusIcon(game, industry)} {industry}
+                      {getIndustryIcon(industry)} {industry}
                     </MenuItem>)}
                 </Select>
               </FormControl>

@@ -47,6 +47,8 @@ SVGs to use or being used in this app:
 * [ ] star_half
 * [ ] visibility (eye/public)
 * [x] visibility_off (eye strikethrough/secret/covert)
+* [ ] perm_scan_wifi (hack, spy, intel, info)
+* [ ] record_voice_over (spy, intel, info)
 * [ ] work (briefcase)
 * [x] info
 * [ ] warning, report_problem (triangle exclamation point)
