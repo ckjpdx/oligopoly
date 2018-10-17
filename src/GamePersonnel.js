@@ -67,7 +67,6 @@ class GameFacilities extends React.Component {
 
     if (this.state.personnelType) {
       if (player.money >= cost && count > 0) {
-        console.log(count, player.personnel);
         db.ref(refPlayerPersonnel).update({
           [type]: currPersonnel + count
         });
@@ -78,7 +77,7 @@ class GameFacilities extends React.Component {
       }
       else if (isNaN(cost) && count < 0 && currPersonnel > 0) {
         db.ref(refPlayerPersonnel).update({
-          [type]: count + this.props.player.personnel[type] || 0
+          [type]: count + player.personnel[type] || 0
         });
         this.setState({personnelCount: 0});
       }
@@ -115,9 +114,14 @@ class GameFacilities extends React.Component {
           />
           <Button onClick={() => this.handleConfirm(player)}><CheckIcon/></Button>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={6}>
           <Typography>
-            {isNaN(cost) ? cost : '$' + addCommas(cost)}
+            <MoneyIcon /> {addCommas(player.money)}
+          </Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography>
+            {isNaN(cost) ? cost : '-$' + addCommas(cost)}
           </Typography>
         </Grid>
       </Grid>

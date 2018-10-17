@@ -19,7 +19,7 @@ class GameMarket extends React.Component {
     super(props);
     this.state = {
       shareIndustryType: '',
-      numberOfShares: '0',
+      shareCount: '0',
       transaction: 0
     };
   }
@@ -32,38 +32,30 @@ class GameMarket extends React.Component {
 
   handleTransact = (game, player) => {
     if (this.state.shareIndustryType) {
-      if (this.state.numberOfShares > 0) { // buy
-        const demandArr = game.market[this.state.shareIndustryType].demand;
-        const cost = this.state.numberOfShares * demandArr[demandArr.length - 1] * 100;
+      const shareType = this.state.shareIndustryType;
+      const shareCount = this.state.shareCount;
+      const demandArr = game.market[shareType].demand;
+      if (shareCount > 0) { // buy
+        const cost = shareCount * demandArr[demandArr.length - 1] * 100;
         if (player.money >= cost) {
-          const newShares = player.stocks[this.state.shareIndustryType] || 0 + parseInt(this.state.numberOfShares);
-          const newStocks = Object.assign(
-            player.stocks,
-            {[this.state.shareIndustryType]: newShares}
-          );
-          db.ref('games/' + game.uid + '/players/' + player.uid).update({
-            stocks: newStocks
+          db.ref('games/' + game.uid + '/players/' + player.uid + '/stocks/').update({
+            [shareType]: (player.stocks[shareType] || 0) + parseInt(shareCount)
           });
           db.ref('games/' + game.uid + '/players/' + player.uid).update({
             money: player.money - cost
           });
+          this.setState({shareCount: 0});
         }
-      } else if (this.state.numberOfShares < 0) { // sell
-        if (player.stocks[this.state.shareIndustryType] >= -1 * this.state.numberOfShares) {
-          console.log(player.stocks[this.state.shareIndustryType]);
-          const demandArr = game.market[this.state.shareIndustryType].demand;
-          const gain = this.state.numberOfShares * demandArr[demandArr.length - 1] * -95;
-          const newShares = player.stocks[this.state.shareIndustryType] + parseInt(this.state.numberOfShares);
-          const newStocks = Object.assign(
-            player.stocks,
-            {[this.state.shareIndustryType]: newShares}
-          );
-          db.ref('games/' + game.uid + '/players/' + player.uid).update({
-            stocks: newStocks
+      } else if (shareCount < 0) { // sell
+        if (player.stocks[shareType] >= -1 * shareCount) {
+          const gain = shareCount * demandArr[demandArr.length - 1] * -95;
+          db.ref('games/' + game.uid + '/players/' + player.uid + '/stocks/').update({
+            [shareType]: (player.stocks[shareType] || 0) + parseInt(shareCount) //newStocks
           });
           db.ref('games/' + game.uid + '/players/' + player.uid).update({
             money: player.money + gain
           });
+          this.setState({shareCount: 0});
         }
       }
     }
@@ -73,15 +65,15 @@ class GameMarket extends React.Component {
     const game = this.props.game;
     const player = this.props.player;
 
-    const buyOrSell = this.state.numberOfShares > 0
-      ? 'Buy Shares' : this.state.numberOfShares < 0
+    const buyOrSell = this.state.shareCount > 0
+      ? 'Buy Shares' : this.state.shareCount < 0
         ? 'Sell Shares' : '+/- Shares';
-    const shareRate = this.state.numberOfShares > 0 ? -100 : -95;
+    const shareRate = this.state.shareCount > 0 ? -100 : -95;
     const transaction = this.state.shareIndustryType
       && game.market[this.state.shareIndustryType].demand[
         game.market[this.state.shareIndustryType].demand.length - 1
-      ] * shareRate * this.state.numberOfShares;
-
+      ] * shareRate * this.state.shareCount;
+    const plus = transaction > 0 ? '+' : null;
     const playerShares = Object.entries(player.stocks).map(pair => <span>{getIndustryIcon(pair[0])}{pair[1]} </span>);
 
     const industryGraphColors = [
@@ -143,8 +135,8 @@ class GameMarket extends React.Component {
               id="standard-number"
               className="max-width-100px"
               label={buyOrSell}
-              value={this.state.numberOfShares}
-              onChange={this.handleChange('numberOfShares')}
+              value={this.state.shareCount}
+              onChange={this.handleChange('shareCount')}
               type="number"
               InputLabelProps={{
                 shrink: true,
@@ -158,7 +150,7 @@ class GameMarket extends React.Component {
             <Typography><MoneyIcon /> {addCommas(player.money)}</Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography>$ {addCommas(transaction) || '---'}</Typography>
+            <Typography>${plus}{addCommas(transaction) || '---'}</Typography>
           </Grid>
           <Grid item xs={12}>
             <Button variant="outlined" color="primary"

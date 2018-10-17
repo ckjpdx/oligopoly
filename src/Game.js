@@ -39,13 +39,6 @@ class Game extends Component {
   componentWillUnmount() {
     db.ref('games/' + this.props.gameUid).off();
   }
-
-  handleChangeText = (e) => {
-    this.setState({text: e.target.value});
-  }
-  handleDbTextChange = (e) => {
-    this.setState({toData: e.target.value});
-  }
   cloudAddMessage = () => {
     console.log('Send the text!!');
     const addMessage = firebase.functions().httpsCallable('addMessage');
@@ -53,9 +46,7 @@ class Game extends Component {
       console.log(result.data.text);
     });
   }
-  // updateTextData = () => {
-  //   db.ref('games/').update({data: this.state.toData})
-  // }
+  
   render() {
     const game = this.state.game;
     const uid = 'jacko';
@@ -105,14 +96,7 @@ class Game extends Component {
               <Button onClick={this.cloudAddMessage}>cloud</Button>
             </Grid>
             <Grid item xs={12} sm={4}>
-              <input onChange={this.handleDbTextChange} />
-              <Button onClick={this.updateTextData}>database</Button>
-            </Grid>
-            <Grid item xs={12} sm={4}>
               {this.state.text || <Typography>no text yet</Typography>}
-            </Grid>
-            <Grid item xs={12}>
-              <Button onClick={() => console.log(this.state)}>Check State</Button>
             </Grid>
           </Grid>
         }
