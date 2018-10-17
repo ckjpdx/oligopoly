@@ -31,16 +31,18 @@ class GameFacilities extends React.Component {
     super(props);
     this.state = {
       tab: 0,
-      personnelType: 'engineers',
-      personnelCount: 0,
-      personnelCost: 0
+      personnelType: '',
+      personnelCount: '0',
+      personnelCost: ''
     };
   }
 
   updateCost = () =>
-    this.state.personnelCount >= 0
-    ? this.setState({personnelCost: this.state.personnelCount * personnelCosts[this.state.personnelType]})
-    : this.setState({personnelCost: 'Terminate'})
+  this.state.personnelType
+    ? this.state.personnelCount >= 0
+      ? this.setState({personnelCost: this.state.personnelCount * personnelCosts[this.state.personnelType]})
+      : this.setState({personnelCost: 'Terminate'})
+    : this.setState({personnelCost: 'Select type from list above'})
 
   handleType = type => {
     this.setState({
@@ -54,15 +56,30 @@ class GameFacilities extends React.Component {
     }, () => this.updateCost());
   };
 
-  handleConfirm = () => {
+  handleConfirm = (player) => {
     const gameId = this.props.game.uid;
     const playerUid = this.props.player.uid;
     const playerRef = 'games/' + gameId + '/players/' + playerUid;
     const type = this.state.personnelType;
     const count = this.state.personnelCount;
-    db.ref(playerRef + '/personnel/').update({
-      [type]: count + this.props.player.personnel[type]
-    })
+    const cost = parseInt(this.state.personnelCost);
+    const currPersonnel = player.personnel[type] || 0;
+    if (this.state.personnelType) {
+      if (player.money >= cost && count > 0) {
+        console.log(count, player.personnel);
+        db.ref(playerRef + '/personnel/').update({
+          [type]: count + (player.personnel[type] || 0)
+        })
+        db.ref(playerRef).update({
+          money: player.money - cost
+        })
+      }
+      else if (isNaN(cost) && count < 0 && currPersonnel > 0) {
+        db.ref(playerRef + '/personnel/').update({
+          [type]: count + this.props.player.personnel[type] || 0
+        })
+      }
+    }
   };
 
   render() {
@@ -93,7 +110,7 @@ class GameFacilities extends React.Component {
             }}
             margin="normal"
           />
-          <Button onClick={() => this.handleConfirm()}><CheckIcon/></Button>
+          <Button onClick={() => this.handleConfirm(player)}><CheckIcon/></Button>
         </Grid>
         <Grid item xs={12}>
           <Typography>

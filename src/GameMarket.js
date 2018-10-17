@@ -10,8 +10,6 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import { Line } from 'react-chartjs-2';
 import TextField from '@material-ui/core/TextField';
-import MarketIcon from '@material-ui/icons/Equalizer';
-import Drawer from '@material-ui/core/Drawer';
 import MoneyIcon from '@material-ui/icons/MonetizationOn';
 
 import { db } from './dry/firebase';
@@ -38,7 +36,7 @@ class GameMarket extends React.Component {
         const demandArr = game.market[this.state.shareIndustryType].demand;
         const cost = this.state.numberOfShares * demandArr[demandArr.length - 1] * 100;
         if (player.money >= cost) {
-          const newShares = player.stocks[this.state.shareIndustryType] + parseInt(this.state.numberOfShares);
+          const newShares = player.stocks[this.state.shareIndustryType] || 0 + parseInt(this.state.numberOfShares);
           const newStocks = Object.assign(
             player.stocks,
             {[this.state.shareIndustryType]: newShares}
