@@ -20,7 +20,8 @@ SVGs to use or being used in this app:
 * [x] adb (robot/warbot/industry)
 * [ ] local_pharmacy (nano/industry)
 * [ ] ev_station (fusion/energy/power/industry)
-* [x] offline_bolt (lightning/fusion/energy/power/industry)
+* [x] offline_bolt (lightning in circle/fusion/energy/power/industry)
+* [ ] flash_on (lightning bolt)
 * [ ] cancel
 * [x] close
 * [x] check
@@ -50,13 +51,17 @@ SVGs to use or being used in this app:
 * [ ] perm_scan_wifi (hack, spy, intel, info)
 * [ ] record_voice_over (spy, intel, info)
 * [ ] work (briefcase)
-* [x] info
+* [ ] info (i in circle)
+* [x] report (reports)
+* [ ] new_releases (combat report)
+* [ ] email
 * [ ] warning, report_problem (triangle exclamation point)
 * [ ] error
 * [ ] call (phone)
 * [ ] forum, message (chat)
 * [x] business (building)
 * [ ] landscape
+* [ ] spa (plant)
 * [ ] location_city
 * [x] rss_feed (hackers)
 * [x] gps_not_fixed (crosshairs)

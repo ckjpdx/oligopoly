@@ -8,7 +8,7 @@ import PolicyIcon from '@material-ui/icons/Flag';
 import MarketIcon from '@material-ui/icons/ShowChart';
 import FacilitiesIcon from '@material-ui/icons/Business';
 import PersonnelIcon from '@material-ui/icons/Group';
-import ReportsIcon from '@material-ui/icons/Info';
+import ReportsIcon from '@material-ui/icons/Report';
 import OperationsIcon from '@material-ui/icons/VisibilityOff';
 
 import Dialog from './dry/Dialog';

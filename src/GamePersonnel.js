@@ -59,25 +59,28 @@ class GameFacilities extends React.Component {
   handleConfirm = (player) => {
     const gameId = this.props.game.uid;
     const playerUid = this.props.player.uid;
-    const playerRef = 'games/' + gameId + '/players/' + playerUid;
+    const refPlayerPersonnel = 'games/' + gameId + '/players/' + playerUid + '/personnel';
     const type = this.state.personnelType;
     const count = this.state.personnelCount;
     const cost = parseInt(this.state.personnelCost);
     const currPersonnel = player.personnel[type] || 0;
+
     if (this.state.personnelType) {
       if (player.money >= cost && count > 0) {
         console.log(count, player.personnel);
-        db.ref(playerRef + '/personnel/').update({
-          [type]: count + (player.personnel[type] || 0)
-        })
-        db.ref(playerRef).update({
+        db.ref(refPlayerPersonnel).update({
+          [type]: currPersonnel + count
+        });
+        db.ref(refPlayerPersonnel).update({
           money: player.money - cost
-        })
+        });
+        this.setState({personnelCount: 0});
       }
       else if (isNaN(cost) && count < 0 && currPersonnel > 0) {
-        db.ref(playerRef + '/personnel/').update({
+        db.ref(refPlayerPersonnel).update({
           [type]: count + this.props.player.personnel[type] || 0
-        })
+        });
+        this.setState({personnelCount: 0});
       }
     }
   };
