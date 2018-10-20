@@ -21,7 +21,8 @@ import ListIcon from '@material-ui/icons/List';
 import SchemaIcon from '@material-ui/icons/Memory';
 import MoneyIcon from '@material-ui/icons/MonetizationOn';
 import AddPersonIcon from '@material-ui/icons/PersonAdd';
-import CheckIcon from '@material-ui/icons/Check';
+import RemoveIcon from '@material-ui/icons/RemoveCircle';
+import HomeIcon from '@material-ui/icons/Home';
 import Divider from '@material-ui/core/Divider';
 
 import { db } from './dry/firebase';
@@ -33,7 +34,7 @@ class GameFacilities extends React.Component {
       tab: 0,
       personnelType: '',
       personnelCount: '0',
-      personnelCost: ''
+      personnelCost: 'Select type from list'
     };
   }
 
@@ -42,7 +43,7 @@ class GameFacilities extends React.Component {
     ? this.state.personnelCount >= 0
       ? this.setState({personnelCost: this.state.personnelCount * personnelCosts[this.state.personnelType]})
       : this.setState({personnelCost: 'Terminate'})
-    : this.setState({personnelCost: 'Select type from list above'})
+    : this.setState({personnelCost: 'Select type from list'})
 
   handleType = type => {
     this.setState({
@@ -56,27 +57,27 @@ class GameFacilities extends React.Component {
     }, () => this.updateCost());
   };
 
-  handleConfirm = (player) => {
+  updatePersonnel = (player) => {
     const gameId = this.props.game.uid;
     const playerUid = this.props.player.uid;
-    const refPlayerPersonnel = 'games/' + gameId + '/players/' + playerUid + '/personnel';
+    const refPlayer = 'games/' + gameId + '/players/' + playerUid;
     const type = this.state.personnelType;
     const count = this.state.personnelCount;
     const cost = parseInt(this.state.personnelCost);
-    const currPersonnel = player.personnel[type] || 0;
+    const currentTypeCount = player.personnel[type] || 0;
 
     if (this.state.personnelType) {
       if (player.money >= cost && count > 0) {
-        db.ref(refPlayerPersonnel).update({
-          [type]: currPersonnel + count
+        db.ref(refPlayer + '/personnel').update({
+          [type]: currentTypeCount + count
         });
-        db.ref(refPlayerPersonnel).update({
+        db.ref(refPlayer).update({
           money: player.money - cost
-        });
+        }, () => this.updateCost());
         this.setState({personnelCount: 0});
       }
-      else if (isNaN(cost) && count < 0 && currPersonnel > 0) {
-        db.ref(refPlayerPersonnel).update({
+      else if (isNaN(cost) && count < 0 && currentTypeCount > 0) {
+        db.ref(refPlayer + '/personnel').update({
           [type]: count + player.personnel[type] || 0
         });
         this.setState({personnelCount: 0});
@@ -85,12 +86,17 @@ class GameFacilities extends React.Component {
   };
 
   render() {
-    const game = this.props.game;
+    // const game = this.props.game;
     const player = this.props.player;
     const cost = this.state.personnelCost;
 
     return (
       <Grid container>
+        <Grid item xs={12}>
+          <Typography>
+            <HomeIcon />
+          </Typography>
+        </Grid>
         {personnelTypes.map(type =>
           <Grid item xs={12}>
             <Typography onClick={() => this.handleType(type)}>
@@ -112,7 +118,9 @@ class GameFacilities extends React.Component {
             }}
             margin="normal"
           />
-          <Button onClick={() => this.handleConfirm(player)}><CheckIcon/></Button>
+          <Button onClick={() => this.updatePersonnel(player)}>
+            {this.state.personnelCount > 0 ? <AddPersonIcon/> : <RemoveIcon/> }
+          </Button>
         </Grid>
         <Grid item xs={6}>
           <Typography>
@@ -121,7 +129,7 @@ class GameFacilities extends React.Component {
         </Grid>
         <Grid item xs={6}>
           <Typography>
-            {isNaN(cost) ? cost : '-$' + addCommas(cost)}
+            {isNaN(cost) ? cost : '$-' + addCommas(cost)}
           </Typography>
         </Grid>
       </Grid>

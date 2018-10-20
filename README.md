@@ -2,6 +2,10 @@
 a game of numbers, risk, and greed
 
 # Tech
+
+# Concepts
+Facilities can be upgraded but not downgraded - only destroyed.
+
 ## Material UI
 ### Material Design Logos
 [List of logos](https://material.io/tools/icons/?icon=input&style=baseline)
@@ -30,7 +34,8 @@ SVGs to use or being used in this app:
 * [x] poll, equalizer (stats/graphs)
 * [ ] public (earth)
 * [ ] brightness_3 (secret/covert/night)
-* [x] weekend (sofa, waiting room)
+* [ ] weekend (sofa, waiting room)
+* [x] home (home, house)
 * [x] group, people (personnel)
 * [ ] person (player)
 * [ ] person_add (add person/player)
@@ -85,3 +90,4 @@ SVGs to use or being used in this app:
 <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Soldiers">Soldiers</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Peace">Peace</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Rifle">Rifle</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>

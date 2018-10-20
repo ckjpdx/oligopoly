@@ -4,7 +4,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
-import { addCommas, getIndustryIcon, industryTypes } from './dry/functions';
+import { addCommas, getIndustryIcon, industryTypes, getPersonnelIcon } from './dry/functions';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -28,6 +28,9 @@ import Tab from '@material-ui/core/Tab';
 import MoneyIcon from '@material-ui/icons/MonetizationOn';
 import PersonnelPoolIcon from '@material-ui/icons/Weekend';
 import EngineerIcon from '@material-ui/icons/Build';
+import FacilitiesIcon from '@material-ui/icons/Business';
+import AddIcon from '@material-ui/icons/AddCircle';
+import { ReactComponent as RankIcon } from './img/chevrons.svg';
 
 import { db } from './dry/firebase';
 
@@ -41,23 +44,12 @@ class GameFacilities extends React.Component {
     };
   }
 
-  handleChange = (event, value) => {
+  tabChange = (event, value) => {
     this.setState({
       tab: value,
       industryType: industryTypes[value]
     });
   };
-
-  updateIndustrySchema = (industry) => {
-    console.log(industry);
-    const player = this.props.player;
-    const playerUid = player.uid;
-    const currentSchema = player.industries[industry].schema;
-    const updateValue = currentSchema + this.state.schemaChange;
-    db.ref('games/abc/players/' + playerUid + '/industries/' + industry).update({
-      schema: updateValue
-    });
-  }
 
   render() {
     const game = this.props.game;
@@ -65,54 +57,49 @@ class GameFacilities extends React.Component {
 
     return (
       <div>
-        <ExpansionPanel>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography><ListIcon /> Current</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
+        <Tabs
+          value={this.state.tab}
+          onChange={this.tabChange}
+          fullWidth
+          indicatorColor="primary"
+          textColor="primary"
+        >
+          {industryTypes.map(type =>
+            <Tab icon={getIndustryIcon(type)} label={type} />
+          )}
+        </Tabs>
+          {Object.entries(player.industries).map((industryPair, i) => // ["arms", {facilities: [...], schema: 5}]
+            this.state.tab === i &&
             <Grid container>
-            {
-              Object.entries(player.industries).map(industry =>
-                <Grid item xs={12}>
-                  <Typography>
-                    {getIndustryIcon(industry[0])}{industry[0]}: <SchemaIcon />{industry[1].schema}
-                  </Typography>
-                  <Button onClick={() => this.updateIndustrySchema(industry[0])}>Add Schema</Button>
-                </Grid>
-              )
-            }
+              <Grid item xs={4}>
+                <Typography><AddIcon /></Typography>
+              </Grid>
+              <Grid item xs={8}>
+                <Typography><SchemaIcon />{industryPair[1].schema}</Typography>
+              </Grid>
+                {industryPair[1].facilities.map((facility, i) =>
+                  <Grid container>
+                    <Grid item xs={4}>
+                      <Divider/>
+                      <Typography>
+                        <FacilitiesIcon/> <RankIcon className="custom" /> {facility.level}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={8}>
+                      <Divider/>
+                      <Typography>
+                        {Object.entries(facility.staff).map((stafferPair, i) => // ["merc", 5]
+                          <span>{getPersonnelIcon(stafferPair[0])}{stafferPair[1]} </span>
+                        )}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                )}
+              <Grid item xs={6}>
+
+              </Grid>
             </Grid>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography><MoneyIcon /> Purchase</Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Tabs
-              value={this.state.tab}
-              onChange={this.handleChange}
-              fullWidth
-              indicatorColor="secondary"
-              textColor="secondary"
-              >
-                {
-                  industryTypes.map(type =>
-                    <Tab icon={getIndustryIcon(type)} label={type} />
-                  )
-                }
-              </Tabs>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-
-        <Grid container>
-          <Grid item xs={6}>
-
-          </Grid>
-          <Grid item xs={6}>
-
-          </Grid>
-        </Grid>
+          )}
       </div>
     )
   };
