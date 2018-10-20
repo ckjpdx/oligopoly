@@ -7,6 +7,9 @@ const themeOverride = {
     secondary: {
       main: '#b67cff',
     },
+    neutral: {
+      main: '#2C3539'
+    }
   },
   typography: {
     fontFamily: 'Rajdhani',
@@ -76,6 +79,12 @@ const themeOverride = {
       },
       label: {
         fontSize: '1.25em'
+      }
+    },
+    MuiPaper: {
+      root: {
+        width: '100%',
+        margin: '2px 0'
       }
     }
   }

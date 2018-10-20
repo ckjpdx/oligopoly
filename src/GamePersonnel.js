@@ -57,10 +57,10 @@ class GameFacilities extends React.Component {
     }, () => this.updateCost());
   };
 
-  updatePersonnel = (player) => {
+  updatePersonnel = () => {
+    const player = this.props.player;
     const gameId = this.props.game.uid;
-    const playerUid = this.props.player.uid;
-    const refPlayer = 'games/' + gameId + '/players/' + playerUid;
+    const refPlayer = 'games/' + gameId + '/players/' + player.uid;
     const type = this.state.personnelType;
     const count = this.state.personnelCount;
     const cost = parseInt(this.state.personnelCost);

@@ -51,4 +51,4 @@ class App extends Component {
   }
 }
 
-export default withTheme()(App);
+export default App;

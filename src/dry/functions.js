@@ -15,15 +15,19 @@ import MercIcon from '@material-ui/icons/Security';
 import HackerIcon from '@material-ui/icons/RssFeed';
 import WarbotIcon from '@material-ui/icons/Adb';
 
+import { ReactComponent as Rank1Icon } from '../img/chevron1.svg';
+import { ReactComponent as Rank2Icon } from '../img/chevron2.svg';
+import { ReactComponent as Rank3Icon } from '../img/chevron3.svg';
+
 export const addCommas = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 export const checkReq = (have, need) => have >= need;
 
 // booming, stable, recession
 export const getMarketStatusIcon = (status) =>
-  status === 'stable' ? <StableIcon />
-  : status === 'booming' ? <BoomIcon />
-  : <BustIcon />;
+  status === 'stable' ? <StableIcon className="custom"/>
+  : status === 'booming' ? <BoomIcon className="custom"/>
+  : <BustIcon className="custom"/>;
 
 // this info is hidden without special "insider info" -- add later
 // export const getIndustryStatusIcon = (game, industry) =>
@@ -53,9 +57,14 @@ export const personnelCosts = {
   warbots: 500000
 };
 
-export const getPersonnelIcon = (personnel) =>
+export const getPersonnelIcon = personnel =>
   personnel === 'engineers' ? <EngineerIcon />
   : personnel === 'scientists' ? <ScientistIcon />
   : personnel === 'mercs' ? <MercIcon />
   : personnel === 'hackers' ? <HackerIcon />
   : <WarbotIcon />;
+
+export const getRankIcon = rank =>
+  rank === 1 ? <Rank1Icon className="custom"/>
+  : rank === 2 ? <Rank2Icon className="custom rotate-270"/>
+  : <Rank3Icon className="custom flip-v"/>;
