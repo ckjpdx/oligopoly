@@ -59,7 +59,10 @@ const themeOverride = {
     },
     MuiGrid: {
       item: {
-        textAlign: 'center'
+        textAlign: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
       }
     },
     MuiDivider: {

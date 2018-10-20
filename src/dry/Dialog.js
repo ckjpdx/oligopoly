@@ -20,7 +20,7 @@ class DryDialog extends React.Component {
     super(props);
   }
   state = {
-    open: false,
+    open: this.props.open || false,
     dialogHelp: false
   };
 

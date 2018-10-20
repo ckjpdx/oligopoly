@@ -13,6 +13,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
+
 import MarketIcon from '@material-ui/icons/Equalizer';
 import BoomIcon from '@material-ui/icons/TrendingUp';
 import BustIcon from '@material-ui/icons/TrendingDown';
@@ -68,32 +70,32 @@ class GameFacilities extends React.Component {
             <Tab icon={getIndustryIcon(type)} label={type} />
           )}
         </Tabs>
-          {Object.entries(player.industries).map((industryPair, i) => // ["arms", {facilities: [...], schema: 5}]
+        <Grid item xs={12}>
+          <Button style={{padding:'0', width:'100%'}}><Typography><AddIcon /> NEW</Typography></Button>
+        </Grid>
+          {Object.entries(player.industries).map((industryPair, i) =>
             this.state.tab === i &&
             <Grid container>
-              <Grid item xs={4}>
-                <Typography><AddIcon /></Typography>
-              </Grid>
-              <Grid item xs={8}>
-                <Typography><SchemaIcon />{industryPair[1].schema}</Typography>
+              <Grid item xs={12}>
+                <Typography><SchemaIcon />LVL {industryPair[1].schema}</Typography>
               </Grid>
                 {industryPair[1].facilities.map((facility, i) =>
-                  <Grid container>
-                    <Grid item xs={4}>
-                      <Divider/>
-                      <Typography>
-                        <FacilitiesIcon/> <RankIcon className="custom" /> {facility.level}
-                      </Typography>
+                  <Paper style={{width: '100%'}}>
+                    <Grid container>
+                      <Grid item xs={4}>
+                        <Typography>
+                          <FacilitiesIcon/> <RankIcon className="custom" /> {facility.level}
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={8}>
+                        <Typography>
+                          {Object.entries(facility.staff).map((stafferPair, i) =>
+                            <span>{getPersonnelIcon(stafferPair[0])}{stafferPair[1]} </span>
+                          )}
+                        </Typography>
+                      </Grid>
                     </Grid>
-                    <Grid item xs={8}>
-                      <Divider/>
-                      <Typography>
-                        {Object.entries(facility.staff).map((stafferPair, i) => // ["merc", 5]
-                          <span>{getPersonnelIcon(stafferPair[0])}{stafferPair[1]} </span>
-                        )}
-                      </Typography>
-                    </Grid>
-                  </Grid>
+                  </Paper>
                 )}
               <Grid item xs={6}>
 
