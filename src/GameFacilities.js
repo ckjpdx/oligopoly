@@ -57,17 +57,22 @@ class GameFacilities extends React.Component {
 
   handleNewFacility = () => {
     const player = this.props.player;
-    const gameUid = this.props.game.uid;
-    const industryType = this.state.industryType;
-    const refPlayer = 'games/' + gameUid + '/players/' + player.uid;
-    let staffObj = {};
-    personnelTypes.forEach(type => staffObj[type] = 0)
-    db.ref(refPlayer + '/industries/' + industryType + '/facilities').push(
-      {
-        rank: 1,
-        staff: staffObj
-      }
-    );
+    if (player.money >= 1000000) {
+      const gameUid = this.props.game.uid;
+      const industryType = this.state.industryType;
+      const refPlayer = 'games/' + gameUid + '/players/' + player.uid;
+      let staffObj = {};
+      personnelTypes.forEach(type => staffObj[type] = 0)
+      db.ref(refPlayer + '/industries/' + industryType + '/facilities').push(
+        {
+          rank: 1,
+          staff: staffObj
+        }
+      );
+      db.ref(refPlayer).update({
+        money: player.money - 1000000
+      });
+    }
   }
 
   render() {
@@ -112,19 +117,24 @@ class GameFacilities extends React.Component {
                   </Grid>
                 </Paper>
               )}
+          </Grid>
+        )}
+        <Grid item xs={12} style={{background: this.props.theme.palette.neutral.main}}>
+          {/* <Button style={{padding:'0', width:'100%'}}><Typography><AddIcon /> NEW</Typography></Button> */}
+          <Dialog icon={<AddIcon/>} text={"NEW"} title="New Facility" help="">
+            <Grid item xs={12}>
+              <Typography>
+                <MoneyIcon /> {addCommas(player.money)}
+              </Typography>
             </Grid>
-          )}
-          <Grid item xs={12} style={{background: this.props.theme.palette.neutral.main}}>
-            {/* <Button style={{padding:'0', width:'100%'}}><Typography><AddIcon /> NEW</Typography></Button> */}
-            <Dialog icon={<AddIcon/>} text={"NEW"} title="New Facility" help="">
             <Grid item xs={12}>
               <Typography>
                 Build a new facility for $1M?
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Button onClick={this.handleNewFacility}>
-                CONFIRM
+              <Button onClick={this.handleNewFacility} color="primary" variant="outlined">
+                <FacilitiesIcon/> PURCHASE
               </Button>
             </Grid>
           </Dialog>
