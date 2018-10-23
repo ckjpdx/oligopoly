@@ -27,9 +27,8 @@ class GameFacilityDetails extends React.Component {
     super(props);
     this.state = {
       personnelType: '',
-      personnelCount: '0',
-      turnArrow: {transform: 'rotate(180deg)'}
-    };
+      personnelCount: '0'
+      };
   }
 
   handleType = type => {
@@ -77,13 +76,14 @@ class GameFacilityDetails extends React.Component {
     const facility = this.props.facility;
     const staffTotal = Object.values(facility.staff).reduce((total, staff) => total + staff);
     const capacity = facility.rank * 250;
+    const turnArrow = this.state.personnelCount < 0 ? {transform: 'rotate(180deg)'} : {};
 
     return (
       <Grid container>
         <Grid item xs={6}>
           <Typography>{getRankIcon(facility.rank)}
-            {facility.rank === 1 ? "Base" 
-            : facility.rank === 2 ? "Complex"
+            {facility.rank === 1 ? "Labs"
+            : facility.rank === 2 ? "Base"
             : "Citadel"}
           </Typography>
         </Grid>
@@ -110,6 +110,12 @@ class GameFacilityDetails extends React.Component {
           </Grid>
         )}
         <Grid item xs={12}>
+          <Typography style={{marginTop: 22}}>
+            {player.personnel[this.state.personnelType]}
+            <PersonnelIcon />
+            <ArrowRightIcon style={turnArrow}/>
+            <StaffIcon />
+          </Typography>
           <TextField
             id="personnel-count-change"
             className="max-width-100px"
@@ -121,18 +127,16 @@ class GameFacilityDetails extends React.Component {
               shrink: true,
             }}
             margin="normal"
+            max="3"
           />
+        </Grid>
+        <Grid item xs={12}>
           <Button onClick={() => this.updatePersonnel(player)}>
             <CheckIcon />
           </Button>
         </Grid>
         <Grid item xs={12}>
-          <PersonnelIcon />
-          <Typography><ArrowRightIcon style={this.state.turnArrow}/></Typography>
-          <StaffIcon />
-        </Grid>
-        <Grid item xs={12}>
-          <Typography>{this.state.personnelType > 0 ? "Assign" : "Dismiss"}</Typography>
+          <Typography>{this.state.personnelCount >= 0 ? "Assign to facility" : "Dismiss to personnel"}</Typography>
         </Grid>
       </Grid>
     )
