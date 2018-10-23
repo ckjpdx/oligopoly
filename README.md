@@ -72,6 +72,7 @@ SVGs to use or being used in this app:
 * [x] gps_not_fixed (crosshairs)
 * [ ] attach_money ($)
 * [ ] get_app (tax, down arrow to line)
+* [x] arrow_right_alt (arrow pointing right)
 * [ ] monetization_on ($ in circle)
 * [ ] ac_unit (democratic policy)
 * [ ] whatshot (republican policy)

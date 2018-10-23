@@ -39,13 +39,14 @@ class DryDialog extends React.Component {
   };
 
   render() {
+    const style = this.props.noPad && {padding: 0, width: '100%'};
     const { children } = this.props;
 
     return (
-      <div>
-        <Button onClick={this.handleClickOpen}>
+      <React.Fragment>
+        <Button onClick={this.handleClickOpen} style={style}>
           {this.props.icon}
-          {this.props.text}
+          {this.props.preview}
         </Button>
         <Dialog
           open={this.state.open}
@@ -74,7 +75,7 @@ class DryDialog extends React.Component {
               {children}
           </DialogContent>
         </Dialog>
-      </div>
+      </React.Fragment>
     );
   }
 }

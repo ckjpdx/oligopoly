@@ -15,6 +15,7 @@ import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Dialog from './dry/Dialog';
+import GameFacilityDetails from './GameFacilityDetails';
 
 import MarketIcon from '@material-ui/icons/Equalizer';
 import BoomIcon from '@material-ui/icons/TrendingUp';
@@ -80,6 +81,25 @@ class GameFacilities extends React.Component {
     const player = this.props.player;
     console.log(this.props.theme);
 
+    const facilityPreview = (facility) =>
+      <Paper>
+        <Grid container>
+          <Grid item xs={1}>
+            <Typography>
+              {getRankIcon(facility.rank)}
+            </Typography>
+          </Grid>
+          <Grid item xs={11}>
+            <Typography>
+              {/* LIST PERSONNEL STAFFING THIS FACILITY */}
+              {Object.entries(facility.staff).map((stafferPair, i) =>
+                <span>{getPersonnelIcon(stafferPair[0])}{stafferPair[1]} </span>
+              )}
+            </Typography>
+          </Grid>
+        </Grid>
+      </Paper>;
+
     return (
       <div>
         <Tabs
@@ -93,52 +113,48 @@ class GameFacilities extends React.Component {
             <Tab icon={getIndustryIcon(type)} label={type} />
           )}
         </Tabs>
+        {/* LIST INDUSTRY */}
         {Object.entries(player.industries).map((industryPair, i) =>
           this.state.industryType === industryPair[0] &&
           <Grid container>
             <Grid item xs={12}>
               <Typography><SchemaIcon />LVL {industryPair[1].schema}</Typography>
             </Grid>
-              {Object.values(industryPair[1].facilities).map((facility, i) =>
-                <Paper>
-                  <Grid container>
-                    <Grid item xs={2}>
-                      <Typography>
-                        <FacilitiesIcon/> {getRankIcon(facility.rank)}
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={10}>
-                      <Typography>
-                        {Object.entries(facility.staff).map((stafferPair, i) =>
-                          <span>{getPersonnelIcon(stafferPair[0])}{stafferPair[1]} </span>
-                        )}
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </Paper>
-              )}
+            {/* LIST PLAYER FACILITIES */}
+            {Object.values(industryPair[1].facilities).map((facility, i) =>
+              <Grid item xs={12}>
+                <Dialog
+                  preview={facilityPreview(facility)}
+                  title="Facility Details"
+                  help=""
+                  noPad={true}
+                  icon={<FacilitiesIcon />}>
+                    <GameFacilityDetails game={game} player={player} facility={facility}/>
+                </Dialog>
+              </Grid>
+            )}
+            {/* NEW FACILITY BUTTON & DIALOG */}
+            <Grid item xs={12} style={{background: this.props.theme.palette.neutral.main}}>
+              <Dialog icon={<AddIcon/>} preview="NEW" title="New Facility" help="">
+                <Grid item xs={12}>
+                  <Typography>
+                    <MoneyIcon /> {addCommas(player.money)}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography>
+                    Build a new facility for $1M?
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Button onClick={this.handleNewFacility} color="primary" variant="outlined">
+                    <FacilitiesIcon/> PURCHASE
+                  </Button>
+                </Grid>
+              </Dialog>
+            </Grid>
           </Grid>
         )}
-        <Grid item xs={12} style={{background: this.props.theme.palette.neutral.main}}>
-          {/* <Button style={{padding:'0', width:'100%'}}><Typography><AddIcon /> NEW</Typography></Button> */}
-          <Dialog icon={<AddIcon/>} text={"NEW"} title="New Facility" help="">
-            <Grid item xs={12}>
-              <Typography>
-                <MoneyIcon /> {addCommas(player.money)}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography>
-                Build a new facility for $1M?
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Button onClick={this.handleNewFacility} color="primary" variant="outlined">
-                <FacilitiesIcon/> PURCHASE
-              </Button>
-            </Grid>
-          </Dialog>
-        </Grid>
       </div>
     )
   };

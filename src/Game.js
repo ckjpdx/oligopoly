@@ -62,32 +62,32 @@ class Game extends Component {
               <GameOverview game={game} player={player}/>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog icon={<ReportsIcon/>} text="Reports" title="Reports" help={help.reports} marquee={true}>
+              <Dialog icon={<ReportsIcon/>} preview="Reports" title="Reports" help={help.reports} marquee={true}>
                 <GameReports game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog icon={<MarketIcon/>} text="Market" title="Market" help={help.market}>
+              <Dialog icon={<MarketIcon/>} preview="Market" title="Market" help={help.market}>
                 <GameMarket game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog icon={<PersonnelIcon/>} text="Personnel" title="Personnel" help={help.personnel}>
+              <Dialog icon={<PersonnelIcon/>} preview="Personnel" title="Personnel" help={help.personnel}>
                 <GamePersonnel game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog open={true} icon={<FacilitiesIcon/>} text="Facilities" title="Facilities" help={help.facilities}>
+              <Dialog open={true} icon={<FacilitiesIcon/>} preview="Facilities" title="Facilities" help={help.facilities}>
                 <GameFacilities game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog icon={<PolicyIcon/>} text="Policy" title="Policy" help={help.policy}>
+              <Dialog icon={<PolicyIcon/>} preview="Policy" title="Policy" help={help.policy}>
                 <GamePolicy game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog icon={<OperationsIcon/>} text="Operations" title="Operations" help={help.operations}>
+              <Dialog icon={<OperationsIcon/>} preview="Operations" title="Operations" help={help.operations}>
                 <GameOperations game={game} player={player}/>
               </Dialog>
             </Grid>

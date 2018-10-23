@@ -84,7 +84,7 @@ const themeOverride = {
     MuiPaper: {
       root: {
         width: '100%',
-        margin: '2px 0'
+        // margin: '2px 0'
       }
     }
   }
