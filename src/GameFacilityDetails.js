@@ -43,27 +43,47 @@ class GameFacilityDetails extends React.Component {
     })
   };
 
-  updatePersonnel = () => {
+  updateStaff = () => {
     const player = this.props.player;
     const gameId = this.props.game.uid;
     const refPlayer = 'games/' + gameId + '/players/' + player.uid;
-    const type = this.state.personnelType;
-    const count = this.state.personnelCount;
-    const currentTypeCount = player.personnel[type] || 0;
+    const pType = this.state.personnelType;
+    const pCount = this.state.personnelCount;
+    const personnel = player.personnel[pType] || 0;
+    const staff = this.props.facility.staff[pType] || 0;
+
+    console.log('FAC IND:', this.props.facilityKey);
 
     if (this.state.personnelType) {
-      if (true) {
-        // db.ref(refPlayer + '/personnel').update({
-        //   [type]: currentTypeCount + count
-        // });
+      if (this.state.personnelCount > 0) {
+        // ADD STAFF FROM PERSONNEL
+        // personnel: {
+        //   [pType]: currentTypeCount - pCount
+        // },
+        // industries: {
+        //   [this.props.industryType]: {
+        //     facilities: {
+        //       [this.props.facilityKey]: {
+        //         staff: {
+        //           [pType]: staff[pType] + pCount
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
+        const updatePlayerData = {}; // fb db multi location deep update
+        updatePlayerData["personnel/" + pType] = personnel - pCount;
+        updatePlayerData["industries/" + this.props.industryType + "/facilities/" + this.props.facilityKey + "/staff/" + pType] = staff + pCount;
+        db.ref(refPlayer).update(updatePlayerData);
         // db.ref(refPlayer).update({
         //   money: player.money - cost
         // }, () => this.updateCost());
         this.setState({personnelCount: 0});
       }
-      else if (true) {
+      else if (this.state.personnelCount < 0) {
+        // REMOVE STAFF, RETURN TO PERSONNEL
         // db.ref(refPlayer + '/personnel').update({
-        //   [type]: count + player.personnel[type] || 0
+        //   [pType]: pCount + player.personnel[type] || 0
         // });
         this.setState({personnelCount: 0});
       }
@@ -76,7 +96,7 @@ class GameFacilityDetails extends React.Component {
     const facility = this.props.facility;
     const staffTotal = Object.values(facility.staff).reduce((total, staff) => total + staff);
     const capacity = facility.rank * 250;
-    const turnArrow = this.state.personnelCount < 0 ? {transform: 'rotate(180deg)'} : {};
+    const turnArrow = this.state.personnelCount < 0 ? {transform: 'scaleX(-1)', transition: 'transform 0.5s'} : {transition: 'transform 0.5s'};
 
     return (
       <Grid container>
@@ -102,10 +122,10 @@ class GameFacilityDetails extends React.Component {
             <ExitIcon /> Evacuate
           </Button>
         </Grid>
-        {personnelTypes.map(type =>
-          <Grid item xs={12}>
-            <Typography onClick={() => this.handleType(type)}>
-              {getPersonnelIcon(type)} {player.personnel[type] || '0'} {type}
+        {Object.entries(facility.staff).map((staffPair, i) =>
+          <Grid item xs={12} key={i}>
+            <Typography onClick={() => this.handleType(staffPair[0])}>
+              {getPersonnelIcon(staffPair[0])} {staffPair[1] || '0'}
             </Typography>
           </Grid>
         )}
@@ -127,11 +147,10 @@ class GameFacilityDetails extends React.Component {
               shrink: true,
             }}
             margin="normal"
-            max="3"
           />
         </Grid>
         <Grid item xs={12}>
-          <Button onClick={() => this.updatePersonnel(player)}>
+          <Button onClick={() => this.updateStaff()}>
             <CheckIcon />
           </Button>
         </Grid>
