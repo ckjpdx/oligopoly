@@ -45,8 +45,8 @@ class GameFacilities extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      tab: 0,
-      industryType: 'arms',
+      tab: null,
+      industryType: '',
     };
   }
 
@@ -64,16 +64,13 @@ class GameFacilities extends React.Component {
       const gameUid = this.props.game.uid;
       const industryType = this.state.industryType;
       const refPlayer = 'games/' + gameUid + '/players/' + player.uid;
-      // get facilities array and push new facility with emptyStaffObj
-      const facilities = player.industries[industryType].facilities;
-      facilities.push({rank: 1, staff: emptyStaffObj()});
-      // deep update
-      const addFacility = {};
-      addFacility['industries/' + industryType + '/facilities'] = facilities;
-      db.ref(refPlayer).update(addFacility);
-      db.ref(refPlayer).update({
-        money: player.money - 1000000
-      });
+
+      db.ref(refPlayer + '/industries/' + industryType + '/facilities').push(
+        {rank: 1, staff: emptyStaffObj()}
+      );
+      db.ref(refPlayer).update(
+        {money: player.money - 1000000}
+      );
     }
   }
 
@@ -121,18 +118,20 @@ class GameFacilities extends React.Component {
               <Typography><SchemaIcon />LVL {industryPair[1].schema}</Typography>
             </Grid>
             {/* LIST PLAYER FACILITIES */}
-            {Object.values(industryPair[1].facilities).map((facility, i) =>
-              <Grid item xs={12} key={i}>
-                <Dialog
-                  preview={facilityPreview(facility)}
-                  title="Facility Details"
-                  help=""
-                  noPad={true}
-                  icon={<FacilitiesIcon />}>
-                    <GameFacilityDetails game={game} player={player} facility={facility} facilityKey={i} industryType={industryPair[0]} />
-                </Dialog>
-              </Grid>
-            )}
+            {industryPair[1].facilities &&
+              Object.keys(industryPair[1].facilities).map(key =>
+                <Grid item xs={12} key={key}>
+                  <Dialog
+                    preview={facilityPreview(industryPair[1].facilities[key])}
+                    title="Facility Details"
+                    help=""
+                    noPad={true}
+                    icon={<FacilitiesIcon />}>
+                      <GameFacilityDetails game={game} player={player} facility={industryPair[1].facilities[key]} facilityKey={key} industryType={industryPair[0]} />
+                  </Dialog>
+                </Grid>
+              )
+            }
             <GameFacilityNew player={player} onNewFacility={this.handleNewFacility}/>
           </Grid>
         )}
