@@ -18,7 +18,7 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRightAlt';
 import CheckIcon from '@material-ui/icons/Check';
 import AddIcon from '@material-ui/icons/AddCircle';
 import StaffIcon from '@material-ui/icons/AssignmentInd';
-import ExitIcon from '@material-ui/icons/Launch';
+import ExitIcon from '@material-ui/icons/Eject';
 
 import { db } from './dry/firebase';
 
@@ -51,29 +51,24 @@ class GameFacilityDetails extends React.Component {
     const pCount = this.state.personnelCount;
     const personnel = player.personnel[pType] || 0;
     const staff = this.props.facility.staff[pType] || 0;
+    const staffMath = () => {
+      const updatePlayerData = {}; // fb db multi location deep update
+      updatePlayerData["personnel/" + pType] = personnel - pCount;
+      updatePlayerData["industries/" + this.props.industryType + "/facilities/" + this.props.facilityKey + "/staff/" + pType] = staff + pCount;
+      db.ref(refPlayer).update(updatePlayerData);
+      this.setState({personnelCount: 0});
+    }
 
-    console.log('FAC IND:', this.props.facilityKey);
-
-    if (this.state.personnelType) {
-      if (this.state.personnelCount > 0) {
-        // ADD STAFF FROM PERSONNEL
-        const updatePlayerData = {}; // fb db multi location deep update
-        updatePlayerData["personnel/" + pType] = personnel - pCount;
-        updatePlayerData["industries/" + this.props.industryType + "/facilities/" + this.props.facilityKey + "/staff/" + pType] = staff + pCount;
-        db.ref(refPlayer).update(updatePlayerData);
-        // db.ref(refPlayer).update({
-        //   money: player.money - cost
-        // }, () => this.updateCost());
-        }
-        else if (this.state.personnelCount < 0) {
-          // REMOVE STAFF, RETURN TO PERSONNEL
-          // db.ref(refPlayer + '/personnel').update({
-          //   [pType]: pCount + player.personnel[type] || 0
-          // });
-        }
-        this.setState({personnelCount: 0});
+    if (this.state.personnelType && pCount !== 0) {
+      if (pCount > 0 && personnel >= pCount) {
+        // add personnel to staff
+        staffMath();
+      } else if (pCount < 0 && staff >= (-1 * pCount)) {
+        // return staff to personnel
+        staffMath();
       }
     }
+  }
 
   render() {
     const game = this.props.game;
@@ -104,7 +99,7 @@ class GameFacilityDetails extends React.Component {
         </Grid>
         <Grid item xs={6}>
           <Button>
-            <ExitIcon /> Evacuate
+            <ExitIcon style={{transform: 'scaleY(-1)'}}/> Evacuate
           </Button>
         </Grid>
         {Object.entries(facility.staff).map((staffPair, i) =>
