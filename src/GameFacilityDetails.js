@@ -18,7 +18,9 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRightAlt';
 import CheckIcon from '@material-ui/icons/Check';
 import AddIcon from '@material-ui/icons/AddCircle';
 import StaffIcon from '@material-ui/icons/AssignmentInd';
-import ExitIcon from '@material-ui/icons/Eject';
+import EjectIcon from '@material-ui/icons/Eject';
+import DemolishIcon from '@material-ui/icons/GetApp';
+import Dialog from './dry/Dialog';
 
 import { db } from './dry/firebase';
 
@@ -43,6 +45,7 @@ class GameFacilityDetails extends React.Component {
     if (staffTotal !== state.staffTotal) {
       return {staffTotal: staffTotal};
     }
+    return null;
   }
 
   handleType = type => {
@@ -56,8 +59,6 @@ class GameFacilityDetails extends React.Component {
       personnelCount: parseInt(e.target.value),
     })
   };
-
-  stuffhere = 123;
 
   staffUpdate = () => {
     const player = this.props.player;
@@ -104,6 +105,15 @@ class GameFacilityDetails extends React.Component {
     db.ref(refPlayer).update(updatePlayerData);
   }
 
+  handleDemolish = () => {
+    const player = this.props.player;
+    const facilityKey = this.props.facilityKey;
+    const gameId = this.props.game.uid;
+    const refFacility = 'games/' + gameId + '/players/' + player.uid + "/industries/" + this.props.industryType + "/facilities/" + this.props.facilityKey;
+
+    db.ref(refFacility).remove();
+  }
+
   render() {
     const game = this.props.game;
     const player = this.props.player;
@@ -112,14 +122,29 @@ class GameFacilityDetails extends React.Component {
 
     return (
       <Grid container>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <Typography>{getRankIcon(facility.rank)}
             {facility.rank === 1 ? "Labs"
             : facility.rank === 2 ? "Base"
             : "Citadel"}
           </Typography>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
+          <Dialog icon={<DemolishIcon />} preview="Demo" title="Demolish">
+            <Grid container>
+              <Grid item xs={12}>
+                <Typography>Demolish this facility?</Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography>Staff will be terminated.</Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Button onClick={this.handleDemolish} variant="outlined" color="primary">Demolish</Button>
+              </Grid>
+            </Grid>
+          </Dialog>
+        </Grid>
+        <Grid item xs={4}>
           <Typography><StaffIcon /> {this.state.staffTotal} / {this.state.capacity}</Typography>
         </Grid>
         <Grid item xs={6}>
@@ -131,7 +156,7 @@ class GameFacilityDetails extends React.Component {
         </Grid>
         <Grid item xs={6}>
           <Button onClick={() => this.staffEvacuate()}>
-            <ExitIcon style={{transform: 'scaleY(-1)'}}/> Evacuate
+            <EjectIcon /> Evacuate
           </Button>
         </Grid>
         {Object.entries(facility.staff).map((staffPair, i) =>
@@ -167,7 +192,7 @@ class GameFacilityDetails extends React.Component {
           </Button>
         </Grid>
         <Grid item xs={12}>
-          <Typography>{this.state.personnelCount >= 0 ? "Assign to facility" : "Dismiss to personnel"}</Typography>
+          <Typography>{this.state.personnelCount >= 0 ? "Assign" : "Standby"}</Typography>
         </Grid>
       </Grid>
     )
