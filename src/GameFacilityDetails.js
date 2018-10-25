@@ -57,20 +57,6 @@ class GameFacilityDetails extends React.Component {
     if (this.state.personnelType) {
       if (this.state.personnelCount > 0) {
         // ADD STAFF FROM PERSONNEL
-        // personnel: {
-        //   [pType]: currentTypeCount - pCount
-        // },
-        // industries: {
-        //   [this.props.industryType]: {
-        //     facilities: {
-        //       [this.props.facilityKey]: {
-        //         staff: {
-        //           [pType]: staff[pType] + pCount
-        //         }
-        //       }
-        //     }
-        //   }
-        // }
         const updatePlayerData = {}; // fb db multi location deep update
         updatePlayerData["personnel/" + pType] = personnel - pCount;
         updatePlayerData["industries/" + this.props.industryType + "/facilities/" + this.props.facilityKey + "/staff/" + pType] = staff + pCount;
@@ -78,17 +64,16 @@ class GameFacilityDetails extends React.Component {
         // db.ref(refPlayer).update({
         //   money: player.money - cost
         // }, () => this.updateCost());
-        this.setState({personnelCount: 0});
-      }
-      else if (this.state.personnelCount < 0) {
-        // REMOVE STAFF, RETURN TO PERSONNEL
-        // db.ref(refPlayer + '/personnel').update({
-        //   [pType]: pCount + player.personnel[type] || 0
-        // });
+        }
+        else if (this.state.personnelCount < 0) {
+          // REMOVE STAFF, RETURN TO PERSONNEL
+          // db.ref(refPlayer + '/personnel').update({
+          //   [pType]: pCount + player.personnel[type] || 0
+          // });
+        }
         this.setState({personnelCount: 0});
       }
     }
-  };
 
   render() {
     const game = this.props.game;

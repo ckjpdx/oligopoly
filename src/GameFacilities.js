@@ -132,7 +132,7 @@ class GameFacilities extends React.Component {
                   help=""
                   noPad={true}
                   icon={<FacilitiesIcon />}>
-                    <GameFacilityDetails game={game} player={player} facility={facility} industryType={industryPair[0]} />
+                    <GameFacilityDetails game={game} player={player} facility={facility} facilityKey={i} industryType={industryPair[0]} />
                 </Dialog>
               </Grid>
             )}
