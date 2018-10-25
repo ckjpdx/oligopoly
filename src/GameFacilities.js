@@ -4,7 +4,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
-import { addCommas, getIndustryIcon, industryTypes, getPersonnelIcon, getRankIcon, personnelTypes } from './dry/functions';
+import { addCommas, getIndustryIcon, industryTypes, getPersonnelIcon, getRankIcon, personnelTypes, emptyStaffObj } from './dry/functions';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -64,12 +64,9 @@ class GameFacilities extends React.Component {
       const gameUid = this.props.game.uid;
       const industryType = this.state.industryType;
       const refPlayer = 'games/' + gameUid + '/players/' + player.uid;
-      // make staff object
-      let staffObj = {};
-      personnelTypes.forEach(type => staffObj[type] = 0);
-      // get facilities array and push new facility with staffObj
+      // get facilities array and push new facility with emptyStaffObj
       const facilities = player.industries[industryType].facilities;
-      facilities.push({rank: 1, staff: staffObj});
+      facilities.push({rank: 1, staff: emptyStaffObj()});
       // deep update
       const addFacility = {};
       addFacility['industries/' + industryType + '/facilities'] = facilities;

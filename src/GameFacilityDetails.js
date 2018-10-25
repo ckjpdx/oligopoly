@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { addCommas, getPersonnelIcon, personnelTypes, personnelCosts, getRankIcon } from './dry/functions';
+import { addCommas, getPersonnelIcon, personnelTypes, personnelCosts, getRankIcon, emptyStaffObj } from './dry/functions';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -28,7 +28,21 @@ class GameFacilityDetails extends React.Component {
     this.state = {
       personnelType: '',
       personnelCount: '0'
-      };
+    };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    const facility = props.facility;
+
+    const capacity = facility.rank * 250
+    if (capacity !== state.capacity) {
+      return {capacity: capacity};
+    }
+
+    const staffTotal = Object.values(facility.staff).reduce((total, staff) => total + staff);
+    if (staffTotal !== state.staffTotal) {
+      return {staffTotal: staffTotal};
+    }
   }
 
   handleType = type => {
@@ -43,7 +57,9 @@ class GameFacilityDetails extends React.Component {
     })
   };
 
-  updateStaff = () => {
+  stuffhere = 123;
+
+  staffUpdate = () => {
     const player = this.props.player;
     const gameId = this.props.game.uid;
     const refPlayer = 'games/' + gameId + '/players/' + player.uid;
@@ -59,7 +75,7 @@ class GameFacilityDetails extends React.Component {
       this.setState({personnelCount: 0});
     }
 
-    if (this.state.personnelType && pCount !== 0) {
+    if (pType && pCount !== 0) {
       if (pCount > 0 && personnel >= pCount) {
         // add personnel to staff
         staffMath();
@@ -70,12 +86,28 @@ class GameFacilityDetails extends React.Component {
     }
   }
 
+  staffEvacuate = () => {
+    const player = this.props.player;
+    const gameId = this.props.game.uid;
+    const refPlayer = 'games/' + gameId + '/players/' + player.uid;
+    const staff = this.props.facility.staff;
+    const newPersonnel = Object.assign({}, this.props.player.personnel);
+
+    Object.entries(staff).forEach(staffPair => {
+      newPersonnel[staffPair[0]] += staffPair[1];
+    });
+
+    const updatePlayerData = {}; // fb db multi location deep update
+    updatePlayerData["personnel"] = newPersonnel;
+    updatePlayerData["industries/" + this.props.industryType + "/facilities/" + this.props.facilityKey + "/staff"] = emptyStaffObj();
+
+    db.ref(refPlayer).update(updatePlayerData);
+  }
+
   render() {
     const game = this.props.game;
     const player = this.props.player;
     const facility = this.props.facility;
-    const staffTotal = Object.values(facility.staff).reduce((total, staff) => total + staff);
-    const capacity = facility.rank * 250;
     const turnArrow = this.state.personnelCount < 0 ? {transform: 'scaleX(-1)', transition: 'transform 0.5s'} : {transition: 'transform 0.5s'};
 
     return (
@@ -88,7 +120,7 @@ class GameFacilityDetails extends React.Component {
           </Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography><StaffIcon /> {staffTotal} / {capacity}</Typography>
+          <Typography><StaffIcon /> {this.state.staffTotal} / {this.state.capacity}</Typography>
         </Grid>
         <Grid item xs={6}>
           {facility.rank < 3
@@ -98,7 +130,7 @@ class GameFacilityDetails extends React.Component {
           : <Typography>MAXXED</Typography>}
         </Grid>
         <Grid item xs={6}>
-          <Button>
+          <Button onClick={() => this.staffEvacuate()}>
             <ExitIcon style={{transform: 'scaleY(-1)'}}/> Evacuate
           </Button>
         </Grid>
@@ -130,7 +162,7 @@ class GameFacilityDetails extends React.Component {
           />
         </Grid>
         <Grid item xs={12}>
-          <Button onClick={() => this.updateStaff()}>
+          <Button onClick={() => this.staffUpdate()}>
             <CheckIcon />
           </Button>
         </Grid>

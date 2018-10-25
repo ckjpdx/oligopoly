@@ -66,3 +66,9 @@ export const getRankIcon = rank =>
   rank === 1 ? <Rank1Icon className="custom"/>
   : rank === 2 ? <Rank2Icon className="custom rotate-270"/>
   : <Rank3Icon className="custom flip-v"/>;
+
+export const emptyStaffObj = () => {
+  const emptyStaffObj = {};
+  personnelTypes.forEach(type => emptyStaffObj[type] = 0);
+  return emptyStaffObj;
+}
