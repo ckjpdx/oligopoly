@@ -68,6 +68,8 @@ class GameFacilityDetails extends React.Component {
     const pCount = this.state.personnelCount;
     const personnel = player.personnel[pType] || 0;
     const staff = this.props.facility.staff[pType] || 0;
+    const capacity = this.state.capacity;
+
     const staffMath = () => {
       const updatePlayerData = {}; // fb db multi location deep update
       updatePlayerData["personnel/" + pType] = personnel - pCount;
@@ -77,7 +79,9 @@ class GameFacilityDetails extends React.Component {
     }
 
     if (pType && pCount !== 0) {
-      if (pCount > 0 && personnel >= pCount) {
+      if (pCount > 0 &&
+          personnel >= pCount &&
+          staff + pCount <= capacity) {
         // add personnel to staff
         staffMath();
       } else if (pCount < 0 && staff >= (-1 * pCount)) {

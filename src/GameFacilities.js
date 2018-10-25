@@ -46,7 +46,7 @@ class GameFacilities extends React.Component {
     super(props);
     this.state = {
       tab: null,
-      industryType: '',
+      industryType: null,
     };
   }
 
