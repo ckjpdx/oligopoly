@@ -20,7 +20,7 @@ import AddIcon from '@material-ui/icons/AddCircle';
 import StaffIcon from '@material-ui/icons/AssignmentInd';
 import EjectIcon from '@material-ui/icons/Eject';
 import DemolishIcon from '@material-ui/icons/GetApp';
-import Dialog from './dry/Dialog';
+import Alert from './dry/Alert';
 
 import { db } from './dry/firebase';
 
@@ -118,6 +118,23 @@ class GameFacilityDetails extends React.Component {
     db.ref(refFacility).remove();
   }
 
+  handleExpand = () => {
+    const player = this.props.player;
+    if (player.money >= 3000000) {
+      const facilityKey = this.props.facilityKey;
+      const gameId = this.props.game.uid;
+      const facility = this.props.facility;
+
+      const refPlayer = 'games/' + gameId + '/players/' + player.uid;
+
+      const updatePlayerData = {}; // fb db multi location deep update
+      updatePlayerData["money"] = player.money - 3000000;
+      updatePlayerData["industries/" + this.props.industryType + "/facilities/" + this.props.facilityKey + "/rank"] = ++facility.rank;
+
+      db.ref(refPlayer).update(updatePlayerData);
+    }
+  }
+
   render() {
     const game = this.props.game;
     const player = this.props.player;
@@ -134,7 +151,7 @@ class GameFacilityDetails extends React.Component {
           </Typography>
         </Grid>
         <Grid item xs={4}>
-          <Dialog icon={<DemolishIcon />} preview="Demo" title="Demolish">
+          <Alert icon={<DemolishIcon />} preview="Demo">
             <Grid container>
               <Grid item xs={12}>
                 <Typography>Demolish this facility?</Typography>
@@ -146,16 +163,26 @@ class GameFacilityDetails extends React.Component {
                 <Button onClick={this.handleDemolish} variant="outlined" color="primary">Demolish</Button>
               </Grid>
             </Grid>
-          </Dialog>
+          </Alert>
         </Grid>
         <Grid item xs={4}>
           <Typography><StaffIcon /> {this.state.staffTotal} / {this.state.capacity}</Typography>
         </Grid>
         <Grid item xs={6}>
           {facility.rank < 3
-          ? <Button>
-             <AddIcon /> Expand
-            </Button>
+          ? <Alert icon={<AddIcon />} preview="Expand">
+            <Typography>
+              <Grid item xs={12}>
+                Expand this facility for $3M?
+              </Grid>
+              <Grid item xs={12}>
+                This increases capacity, improves defenses, and is more cost effective housing per employee.
+              </Grid>
+              <Grid item xs={12}>
+                <Button onClick={this.handleExpand}>Expand</Button>
+              </Grid>
+            </Typography>
+          </Alert>
           : <Typography>MAXXED</Typography>}
         </Grid>
         <Grid item xs={6}>

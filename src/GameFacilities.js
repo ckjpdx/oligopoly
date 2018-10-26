@@ -133,7 +133,7 @@ class GameFacilities extends React.Component {
               )
             }
             <Grid item xs={12} style={{background: this.props.theme.palette.neutral.main}}>
-              <Alert preview="NEW" icon={<AddIcon />}>
+              <Alert preview="New" icon={<AddIcon />}>
                 <Grid item xs={12}>
                   <Typography>
                     <MoneyIcon /> {addCommas(player.money)}

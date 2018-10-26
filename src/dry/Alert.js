@@ -46,6 +46,11 @@ class Alert extends React.Component {
           aria-labelledby="alert-dialog-slide-title"
           aria-describedby="alert-dialog-slide-description"
         >
+          <DialogTitle id="alert-dialog-slide-title">
+            <Grid item xs={12}>
+              {this.props.icon} {this.props.preview}
+            </Grid>
+          </DialogTitle>
           <DialogContent>
             {children}
           </DialogContent>
