@@ -15,8 +15,8 @@ import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Dialog from './dry/Dialog';
+import Alert from './dry/Alert';
 import GameFacilityDetails from './GameFacilityDetails';
-import GameFacilityNew from './GameFacilityNew';
 
 import MarketIcon from '@material-ui/icons/Equalizer';
 import BoomIcon from '@material-ui/icons/TrendingUp';
@@ -132,7 +132,25 @@ class GameFacilities extends React.Component {
                 </Grid>
               )
             }
-            <GameFacilityNew player={player} onNewFacility={this.handleNewFacility}/>
+            <Grid item xs={12} style={{background: this.props.theme.palette.neutral.main}}>
+              <Alert preview="NEW" icon={<AddIcon />}>
+                <Grid item xs={12}>
+                  <Typography>
+                    <MoneyIcon /> {addCommas(player.money)}
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography>
+                    Build a new facility for $1M?
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Button onClick={this.handleNewFacility} color="primary" variant="outlined">
+                    <FacilitiesIcon/> PURCHASE
+                  </Button>
+                </Grid>
+              </Alert>
+            </Grid>
           </Grid>
         )}
       </div>

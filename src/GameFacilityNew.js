@@ -56,37 +56,11 @@ class GameFacilityNew extends React.Component {
     this.setState({ open: false });
   };
 
-  handlePurchase = () => {
-    this.props.onNewFacility();
-    this.setState({ open: false });
-  };
 
   render() {
     const player = this.props.player;
 
     return (
-      <Grid item xs={12} style={{background: this.props.theme.palette.neutral.main}}>
-        <Button onClick={this.handleClickOpen}>
-          <Typography><AddIcon /> NEW</Typography>
-        </Button>
-        <Dialog open={this.state.open} onClose={this.handleClose}>
-          <Grid item xs={12}>
-            <Typography>
-              <MoneyIcon /> {addCommas(player.money)}
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography>
-              Build a new facility for $1M?
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Button onClick={this.handlePurchase} color="primary" variant="outlined">
-              <FacilitiesIcon/> PURCHASE
-            </Button>
-          </Grid>
-        </Dialog>
-      </Grid>
     )
   };
 }

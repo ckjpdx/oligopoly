@@ -117,7 +117,7 @@ class GameFacilities extends React.Component {
             }}
             margin="normal"
           />
-          <Button onClick={() => this.updatePersonnel(player)}>
+          <Button onClick={() => this.updatePersonnel(player)} style={{marginTop: 25}}>
             {this.state.personnelCount > 0 ? <AddPersonIcon/> : <RemoveIcon/> }
           </Button>
         </Grid>

@@ -6,21 +6,18 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
-import CloseIcon from '@material-ui/icons/Close';
 import Grid from '@material-ui/core/Grid';
-import HelpIcon from '@material-ui/icons/Help';
-import Tooltip from '@material-ui/core/Tooltip';
 
 function Transition(props) {
-  return <Slide direction="up" {...props} />;
+  return <Slide direction="down" {...props} />;
 }
 
-class DryDialog extends React.Component {
+class Alert extends React.Component {
   constructor(props){
     super(props);
   }
   state = {
-    open: this.props.open || false,
+    open: false,
   };
 
   handleClickOpen = () => {
@@ -32,12 +29,11 @@ class DryDialog extends React.Component {
   };
 
   render() {
-    const styleNoPad = this.props.noPad && {padding: 0, width: '100%'};
     const { children } = this.props;
 
     return (
       <React.Fragment>
-        <Button onClick={this.handleClickOpen} style={styleNoPad}>
+        <Button onClick={this.handleClickOpen}>
           {this.props.icon}
           {this.props.preview}
         </Button>
@@ -46,26 +42,12 @@ class DryDialog extends React.Component {
           TransitionComponent={Transition}
           keepMounted
           onClose={this.handleClose}
+          onClick={this.handleClose}
           aria-labelledby="alert-dialog-slide-title"
           aria-describedby="alert-dialog-slide-description"
         >
-          <DialogTitle id="alert-dialog-slide-title">
-            <Grid container>
-              <Grid item xs={1}>
-                <Tooltip disableFocusListener title={this.props.help} placement="bottom-start">
-                  <HelpIcon />
-                </Tooltip>
-              </Grid>
-              <Grid item xs={10}>
-                {this.props.icon} {this.props.title}
-              </Grid>
-              <Grid item xs={1}>
-                <CloseIcon onClick={this.handleClose} />
-              </Grid>
-            </Grid>
-          </DialogTitle>
           <DialogContent>
-              {children}
+            {children}
           </DialogContent>
         </Dialog>
       </React.Fragment>
@@ -73,4 +55,4 @@ class DryDialog extends React.Component {
   }
 }
 
-export default DryDialog;
+export default Alert;
