@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import themeOverride from './dry/themeOverride';
 import { firebase } from './dry/firebase';
-import { withTheme } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Welcome from './Welcome';
 import Lobby from './Lobby';
@@ -34,7 +33,7 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-        <img src={bgImg} className="bg-img"/>
+        <img src={bgImg} alt="background" className="bg-img"/>
           <Paper className="App">
             <CssBaseline />
             <AppBar user={this.state.user}
