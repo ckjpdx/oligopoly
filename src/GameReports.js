@@ -9,8 +9,6 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Paper from '@material-ui/core/Paper';
 
-import { db } from './dry/firebase';
-
 class GameReports extends React.Component {
   constructor(props){
     super(props);
