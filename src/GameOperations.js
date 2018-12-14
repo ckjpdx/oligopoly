@@ -1,11 +1,8 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import Divider from '@material-ui/core/Divider';
 // import PublicIcon from '@material-ui/icons/Visibility';
 import Button from '@material-ui/core/Button';
 
-import { db } from './dry/firebase';
 
 class GameNews extends React.Component {
   constructor(props){
@@ -15,8 +12,6 @@ class GameNews extends React.Component {
   }
 
   render() {
-    const game = this.props.game;
-    const player = this.props.player;
 
     return (
       <Grid container>
