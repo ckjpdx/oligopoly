@@ -1,18 +1,14 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import GlobeIcon from '@material-ui/icons/Language';
-import StableIcon from '@material-ui/icons/TrendingFlat';
-import BustIcon from '@material-ui/icons/TrendingDown';
-import BoomIcon from '@material-ui/icons/TrendingUp';
 import FascismIcon from '@material-ui/icons/Whatshot';
 import SocialismIcon from '@material-ui/icons/AcUnit';
 import { ReactComponent as WarIcon } from './img/rifle.svg';
 import { ReactComponent as PeaceIcon } from './img/peace.svg';
 
-import { getIndustryStatusIcon, getMarketStatusIcon, industryTypes, getIndustryIcon } from './dry/functions';
+import { getMarketStatusIcon, industryTypes, getIndustryIcon } from './dry/functions';
 
 class GameOverview extends React.Component {
   constructor(props){
@@ -23,7 +19,6 @@ class GameOverview extends React.Component {
 
   render() {
     const game = this.props.game;
-    const player = this.props.player;
 
     const stocksTape = industryTypes.map(industry => {
       const demandArr = game.market[industry].demand;
