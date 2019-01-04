@@ -20,7 +20,7 @@ class GamePolicy extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      industryToDereg: ''
+      industrySelected: ''
     };
   }
 
@@ -30,11 +30,17 @@ class GamePolicy extends React.Component {
     });
   };
 
+  handleDeregulate = () => {
+
+  }
+
   render() {
     const game = this.props.game;
 
     const taxRate = this.props.game.taxRate * 100;
-    const contributionCost = 1000000;
+    const industrySelected = this.state.industrySelected;
+    const industryDemand = industrySelected ? game.market[industrySelected].demand.pop() : 0;
+    const contributionCost = 1000 * industryDemand;
     const PolicyStatusIcon = game.policy === "fascism" ? <FascismIcon /> : <SocialismIcon />
     const WarStatusIcon = game.war // boolean
       ? <WarIcon className="custom"/>
@@ -56,15 +62,17 @@ class GamePolicy extends React.Component {
               {WarStatusIcon} {game.war ? "War" : "Peace"}
             </Typography>
           </Grid>
+          <Divider />
           <Grid item xs={12}>
-            <Divider />
+            <Typography><BribeIcon /> Contributions</Typography>
+          </Grid>
+          <Grid item xs={12}>
             <form autoComplete="off">
-              <Typography><BribeIcon /> Contributions</Typography>
               <FormControl>
                 <InputLabel htmlFor="industry-select">Industry</InputLabel>
                 <Select
-                  value={this.state.industryToDereg}
-                  onChange={this.handleChange('industryToDereg')}
+                  value={this.state.industrySelected}
+                  onChange={this.handleChange('industrySelected')}
                   inputProps={{
                     name: 'industry',
                     id: 'industry-select',
@@ -82,7 +90,7 @@ class GamePolicy extends React.Component {
                 <Typography>Cost: ${addCommas(contributionCost)}</Typography>
               </FormControl>
             </form>
-            <Button>Deregulate</Button>
+            <Button onClick={this.handleDeregulate}>Deregulate</Button>
           </Grid>
         </Grid>
       </div>

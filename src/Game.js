@@ -38,6 +38,7 @@ class Game extends Component {
   componentWillUnmount() {
     db.ref('games/' + this.props.gameUid).off();
   }
+
   cloudAddMessage = () => {
     console.log('Send the text!!');
     const addMessage = firebase.functions().httpsCallable('addMessage');
@@ -76,12 +77,12 @@ class Game extends Component {
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog open={true} icon={<FacilitiesIcon/>} preview="Facilities" title="Facilities" help={help.facilities}>
+              <Dialog icon={<FacilitiesIcon/>} preview="Facilities" title="Facilities" help={help.facilities}>
                 <GameFacilities game={game} player={player}/>
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog icon={<PolicyIcon/>} preview="Policy" title="Policy" help={help.policy}>
+              <Dialog open={true} icon={<PolicyIcon/>} preview="Policy" title="Policy" help={help.policy}>
                 <GamePolicy game={game} player={player}/>
               </Dialog>
             </Grid>
@@ -93,9 +94,6 @@ class Game extends Component {
             <Grid item xs={12} sm={6}>
               <input onChange={this.handleChangeText} />
               <Button onClick={this.cloudAddMessage}>cloud</Button>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              {this.state.text || <Typography>no text yet</Typography>}
             </Grid>
           </Grid>
         }
