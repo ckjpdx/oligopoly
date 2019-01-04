@@ -1,13 +1,25 @@
 # oligopoly
 a game of numbers, risk, and greed
 
-# Tech
+## Tech
+React, Material UI, ChartJS, Firebase: cloud functions, database, authentication
 
-# Concepts
-Facilities can be upgraded but not downgraded - only destroyed.
+## Concepts
+Oligopoly's game-flow reflects the cycles of capitalism on a society from a sociopathic business person's perspective: unstable but business-lucrative libertarian policy versus stable but boring citizen benefiting socialistic policy. When libertarian ideals are behind policy, "contributions" to deregulate certain industries are possible, making the game economy experiences a surge of prosperity followed by a sudden crash. It's this building up frantically and the inevitable crash that the game revolves around:
+
+* There are 3 stages the market can be in: booming, stable, recession. Once an industry type is deregulated it starts "booming" which is always followed eventually by a "recession".
+* When a conservative policy is in place there is a higher chance of the "nation" being at war. The war status of the nation affects certain industries: arms and robotics receive a boost in demand, while medicine and energy receive a boost in peacetime.
+* Like a binging addict, a society experiencing a recession will attempt to correct itself by electing moderate or socialistic policy makers in order to stabilize. However, people will forget the last recession in time and soon tilt towards more business-ambitious policy, frustrated with government regulations standing between them and their ability to own vastly more than their neighbors.
+* Facilities can be upgraded but not downgraded - only destroyed.
+* Personnel will need to be hired on as the economy expands, and fired when an economy contracts.
+
+The trick of this game will be to make the most of the boom-bust cycle, expanding and contracting your corporation as needed to scale to current need until you become a "super-corp" and are considered "too big to fail", making you immune to bankruptcy and giving to license to recklessly undersell competition until all rivals are eradicated.
+
+*Remember: as the CEO, the lives of the families affected by this process are not your concern. You have bigger fish to fry and illegally imported cigars to chomp.*
 
 ## Material UI
 ### Material Design Logos
+thanks to MUI for having awesome SVGs icons
 [List of logos](https://material.io/tools/icons/?icon=input&style=baseline)
 
 SVGs to use or being used in this app:

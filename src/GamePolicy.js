@@ -36,12 +36,14 @@ class GamePolicy extends React.Component {
 
   render() {
     const game = this.props.game;
-
     const taxRate = this.props.game.taxRate * 100;
+
     const industrySelected = this.state.industrySelected;
     const industryDemand = industrySelected ? game.market[industrySelected].demand.pop() : 0;
-    const contributionCost = 1000 * industryDemand;
-    const PolicyStatusIcon = game.policy === "fascism" ? <FascismIcon /> : <SocialismIcon />
+    const contributionCost = Math.pow(industryDemand, 2);
+
+    const policy = game.policy;
+    const PolicyStatusIcon = policy === "fascism" ? <FascismIcon /> : <SocialismIcon />
     const WarStatusIcon = game.war // boolean
       ? <WarIcon className="custom"/>
       : <PeaceIcon className="custom"/>;
@@ -50,7 +52,7 @@ class GamePolicy extends React.Component {
       <div>
         <Grid container>
           <Grid item xs={12}>
-            <Typography>{PolicyStatusIcon} {game.policy}</Typography>
+            <Typography className="uppercase">{PolicyStatusIcon} {game.policy}</Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography>
@@ -66,32 +68,39 @@ class GamePolicy extends React.Component {
           <Grid item xs={12}>
             <Typography><BribeIcon /> Contributions</Typography>
           </Grid>
-          <Grid item xs={12}>
-            <form autoComplete="off">
-              <FormControl>
-                <InputLabel htmlFor="industry-select">Industry</InputLabel>
-                <Select
-                  value={this.state.industrySelected}
-                  onChange={this.handleChange('industrySelected')}
-                  inputProps={{
-                    name: 'industry',
-                    id: 'industry-select',
-                  }}
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  {
-                    industryTypes.map(type =>
-                      <MenuItem value={type}>{getIndustryIcon(type)} {type}</MenuItem>
-                    )
-                  }
-                </Select>
-                <Typography>Cost: ${addCommas(contributionCost)}</Typography>
-              </FormControl>
-            </form>
-            <Button onClick={this.handleDeregulate}>Deregulate</Button>
-          </Grid>
+          {policy === 'fascism' &&
+            <Grid item xs={12}>
+              <form autoComplete="off">
+                <FormControl>
+                  <InputLabel htmlFor="industry-select">Industry</InputLabel>
+                  <Select
+                    value={this.state.industrySelected}
+                    onChange={this.handleChange('industrySelected')}
+                    inputProps={{
+                      name: 'industry',
+                      id: 'industry-select',
+                    }}
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    {
+                      industryTypes.map(type =>
+                        <MenuItem value={type}>{getIndustryIcon(type)} {type}</MenuItem>
+                      )
+                    }
+                  </Select>
+                  <Typography>Cost: ${addCommas(contributionCost)}</Typography>
+                </FormControl>
+              </form>
+              <Button onClick={this.handleDeregulate}>Deregulate</Button>
+            </Grid>
+          }
+          {policy === 'socialism' &&
+            <Grid item xs={12}>
+              <Typography>You cannot contribute to welfare society!</Typography>
+            </Grid>
+          }
         </Grid>
       </div>
     )
