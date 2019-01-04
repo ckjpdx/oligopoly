@@ -70,7 +70,8 @@ const themeOverride = {
     },
     MuiDivider: {
       root: {
-        margin: '15px 0'
+        margin: '15px auto',
+        width: '90%'
       }
     },
     MuiBottomNavigationAction: {
