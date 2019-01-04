@@ -9,7 +9,7 @@ Oligopoly's game-flow reflects the cycles of capitalism on a society from a soci
 
 * There are 3 stages the market can be in: booming, stable, recession. Once an industry type is deregulated it starts "booming" which is always followed eventually by a "recession".
 * When a conservative policy is in place there is a higher chance of the "nation" being at war. The war status of the nation affects certain industries: arms and robotics receive a boost in demand, while medicine and energy receive a boost in peacetime.
-* Like a binging addict, a society experiencing a recession will attempt to correct itself by electing moderate or socialistic policy makers in order to stabilize. However, people will forget the last recession in time and soon tilt towards more business-ambitious policy, frustrated with government regulations standing between them and their ability to own vastly more than their neighbors.
+* Like a binging addict, a society experiencing a recession will attempt to correct itself by electing moderate or socialistic policy makers in order to stabilize. However, ambitious people will forget the last recession in time and soon favor more libertarian policy, frustrated with government regulations standing between them and their dream to own vastly more than their fellow citizens.
 * Facilities can be upgraded but not downgraded - only destroyed.
 * Personnel will need to be hired on as the economy expands, and fired when an economy contracts.
 
