@@ -2,10 +2,10 @@
 a game of numbers, risk, and greed
 
 ## Tech
-React, Material UI, ChartJS, Firebase: cloud functions, database, authentication
+Create React App, Material UI, ChartJS, Firebase: cloud functions, database, authentication
 
-## Concepts
-Oligopoly's game-flow reflects the cycles of capitalism on a society from a sociopathic business person's perspective: unstable but business-lucrative libertarian policy versus stable but boring citizen benefiting socialistic policy. When libertarian ideals are behind policy, "contributions" to deregulate certain industries are possible, making the game economy experiences a surge of prosperity followed by a sudden crash. It's this building up frantically and the inevitable crash that the game revolves around:
+## Concept
+Oligopoly's game-flow reflects the cycles of capitalism on a society depending on government policy. In this game you play a sociopathic business person who's perspective on the economy is that of a person playing a game: more money, higher score, at any cost. Unstable but lucrative libertarian policy versus stable but costly socialistic policy. When libertarian ideas dictate policy, "contributions" to deregulate certain industries are possible, making the game economy experiences a surge of prosperity followed by a sudden crash. It's this building up frantically and the inevitable crash that the game revolves around:
 
 * There are 3 stages the market can be in: booming, stable, recession. Once an industry type is deregulated it starts "booming" which is always followed eventually by a "recession".
 * When a conservative policy is in place there is a higher chance of the "nation" being at war. The war status of the nation affects certain industries: arms and robotics receive a boost in demand, while medicine and energy receive a boost in peacetime.
