@@ -23,8 +23,8 @@ export const addCommas = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, 
 
 // booming, stable, recession
 export const getMarketStatusIcon = (status) =>
-  status === 'stable' ? <StableIcon className="custom"/>
-  : status === 'booming' ? <BoomIcon className="custom"/>
+  status === 'normal' ? <StableIcon className="custom"/>
+  : status === 'boom' ? <BoomIcon className="custom"/>
   : <BustIcon className="custom"/>;
 
 // this info is hidden without special "insider info" -- add later

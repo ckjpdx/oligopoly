@@ -20,7 +20,7 @@ class GamePolicy extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      industrySelected: ''
+      industrySelected: 'arms'
     };
   }
 
@@ -39,8 +39,9 @@ class GamePolicy extends React.Component {
     const taxRate = this.props.game.taxRate * 100;
 
     const industrySelected = this.state.industrySelected;
-    const industryDemand = industrySelected ? game.market[industrySelected].demand.pop() : 0;
-    const contributionCost = Math.pow(industryDemand, 2);
+    const industryData = game.market[industrySelected];
+    const industryDemand = industrySelected ? industryData.demand.slice(-1).pop() : 0;
+    const contributionCost = Math.round(Math.pow(industryDemand, 2.1));
 
     const policy = game.policy;
     const PolicyStatusIcon = policy === "fascism" ? <FascismIcon /> : <SocialismIcon />
@@ -69,7 +70,8 @@ class GamePolicy extends React.Component {
             <Typography><BribeIcon /> Contributions</Typography>
           </Grid>
           {policy === 'fascism' &&
-            <Grid item xs={12}>
+          <Grid container>
+            <Grid item xs={6}>
               <form autoComplete="off">
                 <FormControl>
                   <InputLabel htmlFor="industry-select">Industry</InputLabel>
@@ -93,8 +95,16 @@ class GamePolicy extends React.Component {
                   <Typography>Cost: ${addCommas(contributionCost)}</Typography>
                 </FormControl>
               </form>
-              <Button onClick={this.handleDeregulate}>Deregulate</Button>
             </Grid>
+            <Grid item xs={6}>
+              {
+                industryData
+                && industryData.status !== 'boom'
+                  ? <Button onClick={this.handleDeregulate} variant="contained">Deregulate</Button>
+                  : industryData && <Typography>(Deregulated)</Typography>
+              }
+            </Grid>
+          </Grid>
           }
           {policy === 'socialism' &&
             <Grid item xs={12}>
