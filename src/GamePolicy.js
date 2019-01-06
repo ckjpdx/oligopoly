@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -16,29 +16,18 @@ import TaxIcon from '@material-ui/icons/GetApp';
 import { ReactComponent as WarIcon } from './img/rifle.svg';
 import { ReactComponent as PeaceIcon } from './img/peace.svg';
 
-export interface Props {
-  game: { taxRate: number; market: {} };
-  player: object;
-}
-interface State {
-  industrySelected: string;
-}
-
-class GamePolicy extends React.Component<Props, State> {
-  setState(_arg0: { [x: string]: any; }): any {
-    throw new Error("Method not implemented.");
-  }
-  props: any;
-  state: { industrySelected: string; };
-  constructor(props: Props){
+class GamePolicy extends React.Component {
+  constructor(props){
     super(props);
     this.state = {
       industrySelected: ''
     };
   }
 
-  handleChange = (name: string) => (event: { target: { value: any; }; }) => {
-    this.setState({[name]: event.target.value});
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value,
+    });
   };
 
   handleDeregulate = () => {
