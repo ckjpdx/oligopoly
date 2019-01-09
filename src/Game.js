@@ -20,6 +20,7 @@ import GameFacilities from './GameFacilities';
 import GamePersonnel from './GamePersonnel';
 import GameReports from './GameReports';
 import GameOperations from './GameOperations';
+import GamePlayers from './GamePlayers';
 
 import { firebase, db } from './dry/firebase';
 
@@ -60,6 +61,9 @@ class Game extends Component {
             <GameBar player={player} />
             <Grid item xs={12}>
               <GameOverview game={game} player={player}/>
+            </Grid>
+            <Grid item xs={12}>
+              <GamePlayers game={game} player={player}/>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Dialog icon={<ReportsIcon/>} preview="Reports" title="Reports" help={help.reports} marquee={true}>
