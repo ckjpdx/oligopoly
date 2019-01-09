@@ -20,7 +20,7 @@ class GamePolicy extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      industrySelected: 'arms'
+      industrySelected: ''
     };
   }
 
@@ -40,7 +40,7 @@ class GamePolicy extends React.Component {
 
     const industrySelected = this.state.industrySelected;
     const industryData = game.market[industrySelected];
-    const industryDemand = industrySelected ? industryData.demand.slice(-1).pop() : 0;
+    const industryDemand = industrySelected ? industryData.demand.slice(-1)[0] : 0;
     const contributionCost = Math.round(Math.pow(industryDemand, 2.1));
 
     const policy = game.policy;

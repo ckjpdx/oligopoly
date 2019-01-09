@@ -18,19 +18,19 @@ class GameNews extends React.Component {
         <Grid item xs={12}>
           <Button>Defame</Button>
         </Grid>
-        <Grid item xs={12}>
-          <Button>Hack</Button>
-        </Grid>
-        <Grid item xs={12}>
-          <Button>Disrupt</Button>
-        </Grid>
-        <Grid item xs={12}>
-          <Button>Massacre</Button>
-        </Grid>
-        <Grid item xs={12}>
-          <Button>Destroy</Button>
-        </Grid>
-      </Grid>
+{        // <Grid item xs={12}>
+        //   <Button>Hack</Button>
+        // </Grid>
+        // <Grid item xs={12}>
+        //   <Button>Disrupt</Button>
+        // </Grid>
+        // <Grid item xs={12}>
+        //   <Button>Massacre</Button>
+        // </Grid>
+        // <Grid item xs={12}>
+        //   <Button>Destroy</Button>
+        // </Grid>
+}      </Grid>
     )
   };
 }
