@@ -88,7 +88,7 @@ class GamePolicy extends React.Component {
                     </MenuItem>
                     {
                       industryTypes.map(type =>
-                        <MenuItem value={type}>{getIndustryIcon(type)} {type}</MenuItem>
+                        <MenuItem value={type} key={type}>{getIndustryIcon(type)} {type}</MenuItem>
                       )
                     }
                   </Select>

@@ -74,7 +74,7 @@ class GameMarket extends React.Component {
         game.market[this.state.shareIndustryType].demand.length - 1
       ] * shareRate * this.state.shareCount;
     const plus = transaction > 0 ? '+' : null;
-    const playerShares = Object.entries(player.stocks).map(pair => <span>{getIndustryIcon(pair[0])}{pair[1]} </span>);
+    const playerShares = Object.entries(player.stocks).map((pair, i) => <span key={i}>{getIndustryIcon(pair[0])}{pair[1]} </span>);
 
     const industryGraphColors = [
       'rgb(255, 99, 132)',

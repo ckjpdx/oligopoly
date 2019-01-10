@@ -82,7 +82,7 @@ class GameFacilities extends React.Component {
           </Typography>
         </Grid>
         {personnelTypes.map(type =>
-          <Grid item xs={12}>
+          <Grid item xs={12} key={type}>
             <Typography onClick={() => this.handleType(type)}>
               {getPersonnelIcon(type)} {player.personnel[type] || '0'} {type}
             </Typography>

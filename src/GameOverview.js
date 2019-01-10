@@ -20,17 +20,17 @@ class GameOverview extends React.Component {
   render() {
     const game = this.props.game;
 
-    const stocksTape = industryTypes.map(industry => {
+    const stocksTape = industryTypes.map((industry, i) => {
       const demandArr = game.market[industry].demand;
       const currDemand = demandArr[demandArr.length - 1];
       const prevDemand = demandArr[demandArr.length - 2];
       const demandDiff = currDemand - prevDemand;
       const color = demandDiff >= 0 ? {color: 'lime'} : {color: 'red'};
       const plus = demandDiff > 0 && '+';
-      return <span style={color}>
+      return <span style={color} key={i}>
         {getIndustryIcon(industry)} {industry} {plus}{demandDiff} </span>
     });
-    const newsTape = game.news.map(news => <span><GlobeIcon /> {news} </span>);
+    const newsTape = game.news.map((news, i) => <span key={i}><GlobeIcon /> {news} </span>);
     newsTape.push(stocksTape);
 
     let PolicyStatusIcon;

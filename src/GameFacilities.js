@@ -84,14 +84,14 @@ class GameFacilities extends React.Component {
           indicatorColor="primary"
           textColor="primary"
         >
-          {industryTypes.map(type =>
-            <Tab icon={getIndustryIcon(type)} label={type} />
+          {industryTypes.map((type, i) =>
+            <Tab icon={getIndustryIcon(type)} label={type} key={i}/>
           )}
         </Tabs>
         {/* LIST INDUSTRY */}
         {Object.entries(player.industries).map((industryPair, i) =>
           this.state.industryType === industryPair[0] &&
-          <Grid container>
+          <Grid container key={i}>
             <Grid item xs={12}>
               <Typography><SchemaIcon />LVL {industryPair[1].schema}</Typography>
             </Grid>

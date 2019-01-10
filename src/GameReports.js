@@ -28,8 +28,8 @@ class GameReports extends React.Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails style={{display: 'block'}}>
             {
-              player.reports.map(report =>
-                <Paper><Typography><ImportantIcon/>{report}</Typography></Paper>
+              player.reports.map((report, i) =>
+                <Paper key={i}><Typography><ImportantIcon/>{report}</Typography></Paper>
               )
             }
           </ExpansionPanelDetails>
@@ -40,8 +40,8 @@ class GameReports extends React.Component {
           </ExpansionPanelSummary>
           <ExpansionPanelDetails style={{display: 'block'}}>
             {
-              game.news.map(news =>
-                <Paper><Typography><ImportantIcon/>{news}</Typography></Paper>
+              game.news.map((news, i) =>
+                <Paper key={i}><Typography><ImportantIcon/>{news}</Typography></Paper>
               )
             }
           </ExpansionPanelDetails>
