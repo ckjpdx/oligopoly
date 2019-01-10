@@ -21,6 +21,8 @@ import { ReactComponent as Rank3Icon } from '../img/chevron3.svg';
 
 export const addCommas = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
+export const roundMillions = num => Math.round(num/100000)/10;
+
 // booming, stable, recession
 export const getMarketStatusIcon = (status) =>
   status === 'normal' ? <StableIcon className="custom"/>
