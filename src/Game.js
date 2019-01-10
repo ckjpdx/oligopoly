@@ -20,7 +20,7 @@ import GameFacilities from './GameFacilities';
 import GamePersonnel from './GamePersonnel';
 import GameReports from './GameReports';
 import GameOperations from './GameOperations';
-import GamePlayers from './GamePlayers';
+import GameRivals from './GameRivals';
 
 import { firebase, db } from './dry/firebase';
 
@@ -63,7 +63,7 @@ class Game extends Component {
               <GameOverview game={game} player={player}/>
             </Grid>
             <Grid item xs={12}>
-              <GamePlayers game={game} player={player}/>
+              <GameRivals game={game} player={player}/>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Dialog icon={<ReportsIcon/>} preview="Reports" title="Reports" help={help.reports} marquee={true}>
@@ -86,7 +86,7 @@ class Game extends Component {
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog open={true} icon={<PolicyIcon/>} preview="Policy" title="Policy" help={help.policy}>
+              <Dialog icon={<PolicyIcon/>} preview="Policy" title="Policy" help={help.policy}>
                 <GamePolicy game={game} player={player}/>
               </Dialog>
             </Grid>
