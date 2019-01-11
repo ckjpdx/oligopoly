@@ -104,7 +104,7 @@ class GameFacilityDetails extends React.Component {
     const player = this.props.player;
     const facilityKey = this.props.facilityKey;
     const gameId = this.props.game.uid;
-    const refFacility = 'games/' + gameId + '/players/' + player.uid + "/industries/" + this.props.industryType + "/facilities/" + this.props.facilityKey;
+    const refFacility = 'games/' + gameId + '/players/' + player.uid + "/industries/" + this.props.industryType + "/facilities/" + facilityKey;
 
     db.ref(refFacility).remove();
   }
@@ -120,14 +120,13 @@ class GameFacilityDetails extends React.Component {
 
       const updatePlayerData = {}; // fb db multi location deep update
       updatePlayerData["money"] = player.money - 3000000;
-      updatePlayerData["industries/" + this.props.industryType + "/facilities/" + this.props.facilityKey + "/rank"] = ++facility.rank;
+      updatePlayerData["industries/" + this.props.industryType + "/facilities/" + facilityKey + "/rank"] = ++facility.rank;
 
       db.ref(refPlayer).update(updatePlayerData);
     }
   }
 
   render() {
-    const game = this.props.game;
     const player = this.props.player;
     const facility = this.props.facility;
     const turnArrow = this.state.personnelCount < 0 ? {transform: 'scaleX(-1)', transition: 'transform 0.5s'} : {transition: 'transform 0.5s'};

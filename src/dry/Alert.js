@@ -11,9 +11,7 @@ function Transition(props) {
 }
 
 class Alert extends React.Component {
-  constructor(props){
-    super(props);
-  }
+
   state = {
     open: false,
   };

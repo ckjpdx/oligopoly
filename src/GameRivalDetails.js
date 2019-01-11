@@ -1,12 +1,10 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Tooltip from '@material-ui/core/Tooltip';
 import T from '@material-ui/core/Typography';
-import PlayerIcon from '@material-ui/icons/AccountCircle';
 import MoneyIcon from '@material-ui/icons/MonetizationOn';
 import FacilitiesIcon from '@material-ui/icons/Business';
 
-import { industryTypes, getRankIcon, addCommas } from './dry/functions';
+import { getRankIcon, addCommas } from './dry/functions';
 
 class GameRivalDetails extends React.Component {
   constructor(props){

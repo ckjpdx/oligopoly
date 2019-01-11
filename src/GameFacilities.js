@@ -23,7 +23,7 @@ class GameFacilities extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      tab: null,
+      tab: 0,
       industryType: null,
     };
   }
@@ -80,7 +80,7 @@ class GameFacilities extends React.Component {
         <Tabs
           value={this.state.tab}
           onChange={this.tabChange}
-          fullWidth
+          variant="fullWidth"
           indicatorColor="primary"
           textColor="primary"
         >

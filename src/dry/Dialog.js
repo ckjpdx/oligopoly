@@ -14,9 +14,7 @@ function Transition(props) {
 }
 
 class DryDialog extends React.Component {
-  constructor(props){
-    super(props);
-  }
+
   state = {
     open: this.props.open || false,
   };

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import PolicyIcon from '@material-ui/icons/Flag';
 import MarketIcon from '@material-ui/icons/ShowChart';
@@ -81,7 +80,7 @@ class Game extends Component {
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog icon={<FacilitiesIcon/>} preview="Facilities" title="Facilities" help={help.facilities}>
+              <Dialog icon={<FacilitiesIcon/>} preview="Facilities" title="Facilities" help={help.facilities} open={true}>
                 <GameFacilities game={game} player={player}/>
               </Dialog>
             </Grid>
