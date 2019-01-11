@@ -46,12 +46,19 @@ const themeOverride = {
         minWidth: 310
       },
       paperWidthSm: {
-        maxWidth: 'unset',
+        // maxWidth: 'unset',
       },
     },
     MuiDialogContent: {
       root: {
         padding: 0
+      }
+    },
+    MuiTab: {
+      root: {
+        '@media (min-width: 0px)': {
+          minWidth: 0
+        }
       }
     },
     MuiSelect: {
@@ -85,7 +92,7 @@ const themeOverride = {
     MuiPaper: {
       root: {
         width: '100%',
-        // margin: '2px 0'
+        margin: '2px 0'
       }
     }
   }
