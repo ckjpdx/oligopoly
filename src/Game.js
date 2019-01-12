@@ -10,6 +10,7 @@ import ReportsIcon from '@material-ui/icons/ListAlt';
 import OperationsIcon from '@material-ui/icons/VisibilityOff';
 
 import Dialog from './dry/Dialog';
+import Expand from './dry/Expand';
 import { help } from './dry/text';
 import GameBar from './GameBar';
 import GameOverview from './GameOverview';
@@ -62,7 +63,9 @@ class Game extends Component {
               <GameOverview game={game} player={player}/>
             </Grid>
             <Grid item xs={12}>
-              <GameRivals game={game} player={player}/>
+              <Expand title="Rivals">
+                <GameRivals game={game} player={player}/>
+              </Expand>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Dialog icon={<ReportsIcon/>} preview="Reports" title="Reports" help={help.reports} marquee={true}>
