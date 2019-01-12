@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import GlobeIcon from '@material-ui/icons/Language';
-import FascismIcon from '@material-ui/icons/Whatshot';
+import CapitalismIcon from '@material-ui/icons/Whatshot';
 import SocialismIcon from '@material-ui/icons/AcUnit';
 import { ReactComponent as WarIcon } from './img/rifle.svg';
 import { ReactComponent as PeaceIcon } from './img/peace.svg';
@@ -35,7 +35,7 @@ class GameOverview extends React.Component {
 
     let PolicyStatusIcon;
     switch (game.policy) {
-      case "fascism": PolicyStatusIcon = <FascismIcon/>; break;
+      case "capitalism": PolicyStatusIcon = <CapitalismIcon/>; break;
       case "socialism": PolicyStatusIcon = <SocialismIcon/>; break;
       default: PolicyStatusIcon = 'ERROR';
     }
@@ -52,12 +52,12 @@ class GameOverview extends React.Component {
         <div className="global-status-bar">
           <Grid container>
             <Grid item xs={4}>
-              <Tooltip disableFocusListener title="Policy Status (Fascism/Socialism)" placement="bottom">
+              <Tooltip disableFocusListener title="Policy Status (Capitalism/Socialism)" placement="bottom">
                 {PolicyStatusIcon}
               </Tooltip>
             </Grid>
             <Grid item xs={4}>
-              <Tooltip disableFocusListener title="Market Status (Booming/Stable/Recession)" placement="bottom">
+              <Tooltip disableFocusListener title="Market Status (Boom/Normal/Bust)" placement="bottom">
                 {getMarketStatusIcon(game.market.status)}
               </Tooltip>
             </Grid>

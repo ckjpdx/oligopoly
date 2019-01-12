@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import { addCommas, getIndustryIcon, industryTypes } from './dry/functions';
 
-import FascismIcon from '@material-ui/icons/Whatshot';
+import CapitalismIcon from '@material-ui/icons/Whatshot';
 import SocialismIcon from '@material-ui/icons/AcUnit';
 import BribeIcon from '@material-ui/icons/HowToVote';
 import TaxIcon from '@material-ui/icons/GetApp';
@@ -54,7 +54,7 @@ class GamePolicy extends React.Component<Props, State> {
     const contributionCost = Math.pow(industryDemand, 2);
 
     const policy = game.policy;
-    const PolicyStatusIcon = policy === "fascism" ? <FascismIcon /> : <SocialismIcon />
+    const PolicyStatusIcon = policy === "capitalism" ? <CapitalismIcon /> : <SocialismIcon />
     const WarStatusIcon = game.war // boolean
       ? <WarIcon className="custom"/>
       : <PeaceIcon className="custom"/>;
@@ -79,7 +79,7 @@ class GamePolicy extends React.Component<Props, State> {
           <Grid item xs={12}>
             <Typography><BribeIcon /> Contributions</Typography>
           </Grid>
-          {policy === 'fascism' &&
+          {policy === 'capitalism' &&
             <Grid item xs={12}>
               <form autoComplete="off">
                 <FormControl>
