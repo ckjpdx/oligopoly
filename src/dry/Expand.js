@@ -24,7 +24,7 @@ class Expand extends React.Component {
             {this.props.title}
           </Button>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} style={{display: 'unset'}}>
           <Collapse in={this.state.open} timeout="auto" unmountOnExit>
             {children}
           </Collapse>

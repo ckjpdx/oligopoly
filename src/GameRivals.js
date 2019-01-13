@@ -14,7 +14,7 @@ function GameRivals(props) {
   // const me = props.player;
 
   return (
-    <Grid container justify="center" className="GameRivals">
+    <Grid container justify="center" className="GameRivals borderSides">
     {
       Object.values(rivals).map((rival, i) =>
         <Grid item xs={12} md={4} key={i}>

@@ -25,6 +25,9 @@ div.AppBar h1 {
   font-size: 25px;
   text-transform: uppercase;
 }
+// div.GameRivals {
+//   width: 100%;
+// }
 .uppercase {
   text-transform: uppercase;
 }
@@ -34,6 +37,10 @@ div.AppBar h1 {
 .GameOverview {
   overflow: hidden;
   white-space: nowrap;
+}
+.borderSides {
+  border-left: 1px solid white;
+  border-right: 1px solid white;
 }
 div.marquee {
   background: #ec7dff1f;

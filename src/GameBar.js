@@ -8,7 +8,7 @@ import BankIcon from '@material-ui/icons/AccountBalance';
 import ReputationIcon from '@material-ui/icons/ThumbsUpDown';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
-import { addCommas } from './dry/functions';
+import { addCommas, roundMillions } from './dry/functions';
 import Button from '@material-ui/core/Button';
 
 const styles = {
@@ -40,7 +40,7 @@ class GameBar extends React.Component {
   render() {
     const { classes } = this.props;
     const player = this.props.player;
-    
+
     return (
       <BottomNavigation
         onChange={this.handleChange}
@@ -48,7 +48,7 @@ class GameBar extends React.Component {
         className={classes.root}
       >
         <BottomNavigationAction
-          label={addCommas(player.money)}
+          label={`${roundMillions(player.money)}M`}
           icon={<MoneyIcon />}
           onClick={this.toggleDrawer('topMoney', true)} />
           <Drawer anchor="top" open={this.state.topMoney} onClose={this.toggleDrawer('topMoney', false)}>

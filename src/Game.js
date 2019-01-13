@@ -84,7 +84,7 @@ class Game extends Component {
               </Dialog>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Dialog icon={<FacilitiesIcon/>} preview="Facilities" title="Facilities" help={help.facilities} open={true}>
+              <Dialog icon={<FacilitiesIcon/>} preview="Facilities" title="Facilities" help={help.facilities}>
                 <GameFacilities game={game} player={player}/>
               </Dialog>
             </Grid>
