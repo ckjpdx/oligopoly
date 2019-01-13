@@ -18,7 +18,7 @@ const styles = {
 
 class GameBar extends React.Component {
   state = {
-    topMoney: false,
+    topBank: false,
     topRep: false,
     prCampaign: 0
   };
@@ -49,13 +49,13 @@ class GameBar extends React.Component {
         <BottomNavigationAction
           label={`${roundMillions(player.money)}M`}
           icon={<BankIcon />}
-          onClick={this.toggleDrawer('topMoney', true)} />
-          <Drawer anchor="top" open={this.state.topMoney} onClose={this.toggleDrawer('topMoney', false)}>
+          onClick={this.toggleDrawer('topBank', true)} />
+          <Drawer anchor="top" open={this.state.topBank} onClose={this.toggleDrawer('topBank', false)}>
             <div
               tabIndex={0}
               role="button"
-              onClick={this.toggleDrawer('topMoney', false)}
-              onKeyDown={this.toggleDrawer('topMoney', false)}
+              onClick={this.toggleDrawer('topBank', false)}
+              onKeyDown={this.toggleDrawer('topBank', false)}
               align="center"
               >
               <GameBarFinances player={player}/>
