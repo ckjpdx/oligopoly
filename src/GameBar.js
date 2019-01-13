@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import GameBarReputation from './GameBarReputation';
+import GameBarFinances from './GameBarFinances';
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -7,7 +9,7 @@ import MoneyIcon from '@material-ui/icons/MonetizationOn';
 import BankIcon from '@material-ui/icons/AccountBalance';
 import ReputationIcon from '@material-ui/icons/ThumbsUpDown';
 import Drawer from '@material-ui/core/Drawer';
-import Typography from '@material-ui/core/Typography';
+import T from '@material-ui/core/Typography';
 import { addCommas, roundMillions } from './dry/functions';
 import Button from '@material-ui/core/Button';
 
@@ -59,14 +61,7 @@ class GameBar extends React.Component {
               onKeyDown={this.toggleDrawer('topMoney', false)}
               align="center"
               >
-                <Typography variant="headline"><MoneyIcon /> Money</Typography>
-                <Typography variant="display1">${addCommas(this.props.player.money)}</Typography>
-                <Typography variant="headline"><BankIcon /> Loans</Typography>
-                <Button>Borrow 10M</Button>
-                <Button>Bankruptcy</Button>
-                <Typography variant="subheading">Debt: ${addCommas(player.debt)}</Typography>
-
-                <Button>Pay Down</Button>
+              <GameBarFinances player={player}/>
             </div>
           </Drawer>
         <BottomNavigationAction
@@ -81,8 +76,7 @@ class GameBar extends React.Component {
               onKeyDown={this.toggleDrawer('topRep', false)}
               align="center"
             >
-              <Typography variant="headline"><ReputationIcon /> Reputation</Typography>
-              <Typography variant="display1">{this.props.player.reputation + '%'}</Typography>
+              <GameBarReputation player={player}/>
             </div>
           </Drawer>
       </BottomNavigation>
