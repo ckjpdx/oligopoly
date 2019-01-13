@@ -89,23 +89,23 @@ class GameFacilities extends React.Component {
           )}
         </Tabs>
         {/* LIST INDUSTRY */}
-        {Object.entries(player.industries).map((industryPair, i) =>
-          this.state.industryType === industryPair[0] &&
+        {Object.entries(player.industries).map((indyPair, i) =>
+          this.state.industryType === indyPair[0] &&
           <Grid container key={i}>
             <Grid item xs={12}>
-              <Typography><SchemaIcon />LVL {industryPair[1].schema}</Typography>
+              <Typography><SchemaIcon />LVL {indyPair[1].schema}</Typography>
             </Grid>
             {/* LIST PLAYER FACILITIES */}
-            {industryPair[1].facilities &&
-              Object.keys(industryPair[1].facilities).map(key =>
+            {indyPair[1].facilities &&
+              Object.keys(indyPair[1].facilities).map(key =>
                 <Grid item xs={12} key={key}>
                   <Dialog
-                    preview={facilityPreview(industryPair[1].facilities[key])}
+                    preview={facilityPreview(indyPair[1].facilities[key])}
                     title="Facility Details"
                     help=""
                     noPad={true}
                     icon={<FacilitiesIcon />}>
-                      <GameFacilityDetails game={game} player={player} facility={industryPair[1].facilities[key]} facilityKey={key} industryType={industryPair[0]} />
+                      <GameFacilityDetails game={game} player={player} facility={indyPair[1].facilities[key]} facilityKey={key} industryType={indyPair[0]} />
                   </Dialog>
                 </Grid>
               )

@@ -8,6 +8,7 @@ import FacilitiesIcon from '@material-ui/icons/Business';
 import PersonnelIcon from '@material-ui/icons/Group';
 import ReportsIcon from '@material-ui/icons/ListAlt';
 import OperationsIcon from '@material-ui/icons/VisibilityOff';
+import { ReactComponent as SwordsIcon } from './img/sword.svg';
 
 import Dialog from './dry/Dialog';
 import Expand from './dry/Expand';
@@ -63,7 +64,7 @@ class Game extends Component {
               <GameOverview game={game} player={player}/>
             </Grid>
             <Grid item xs={12}>
-              <Expand title="Rivals">
+              <Expand icon={<SwordsIcon className="custom"/>} title="Rivals">
                 <GameRivals game={game} player={player}/>
               </Expand>
             </Grid>

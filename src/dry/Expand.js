@@ -20,6 +20,7 @@ class Expand extends React.Component {
       <Grid container>
         <Grid item xs={12}>
           <Button onClick={this.handleClick}>
+            {this.props.icon}
             {this.props.title}
           </Button>
         </Grid>
