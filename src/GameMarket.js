@@ -1,6 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { addCommas, getIndustryIcon, industryTypes, getMarketStatusIcon } from './dry/functions';
+import ChartDemand from './dry/ChartDemand';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -8,7 +9,6 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import { Line } from 'react-chartjs-2';
 import TextField from '@material-ui/core/TextField';
 import MoneyIcon from '@material-ui/icons/MonetizationOn';
 
@@ -76,31 +76,14 @@ class GameMarket extends React.Component {
     const plus = transaction > 0 ? '+' : null;
     const playerShares = Object.entries(player.stocks).map((pair, i) => <span key={i}>{getIndustryIcon(pair[0])}{pair[1]} </span>);
 
-    const industryGraphColors = [
-      'rgb(255, 99, 132)',
-      'rgb(132, 255, 99)',
-      'rgb(99, 132, 255)',
-      'rgb(255, 255, 0)'
-    ];
-
-    const graphData = {
-      datasets: industryTypes.map((industry, i) => {
-        return {
-        label: industry.toUpperCase(),
-        borderColor: industryGraphColors[i],
-        data: game.market[industry].demand
-        }
-      })
-    };
-
     return (
-      <div>
+      <Grid container className="GameMarket">
         <Grid item xs={12}>
           <Typography className="uppercase">
             {getMarketStatusIcon(game.market.status)} {game.market.status}
           </Typography>
         </Grid>
-        <Line data={graphData}></Line>
+        <ChartDemand game={game} />
         <Divider />
         <Grid item xs={12}>
           <Typography>My Stocks</Typography>
@@ -157,7 +140,7 @@ class GameMarket extends React.Component {
               onClick={() => this.handleTransact(game, player)}>Transact</Button>
           </Grid>
         </Grid>
-      </div>
+      </Grid>
     )
   };
 }

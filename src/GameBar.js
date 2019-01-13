@@ -18,7 +18,7 @@ const styles = {
 
 class GameBar extends React.Component {
   state = {
-    topBank: true,
+    topBank: false,
     topRep: false,
   };
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
+import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import PolicyIcon from '@material-ui/icons/Flag';
@@ -23,6 +24,7 @@ import GameReports from './GameReports';
 import GameOperations from './GameOperations';
 import GameRivals from './GameRivals';
 
+import ChartDemand from './dry/ChartDemand';
 import { firebase, db } from './dry/firebase';
 
 class Game extends Component {
@@ -58,51 +60,68 @@ class Game extends Component {
       <div className="Game">
         {!game ? <CircularProgress /> :
           !player ? <CircularProgress /> :
-          <Grid container>
-            <GameBar player={player} />
-            <Grid item xs={12}>
+            <React.Fragment>
+              <GameBar player={player} />
               <GameOverview game={game} player={player}/>
-            </Grid>
-            <Grid item xs={12}>
-              <Expand icon={<SwordsIcon className="custom"/>} title="Rivals">
-                <GameRivals game={game} player={player}/>
-              </Expand>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Dialog icon={<ReportsIcon/>} preview="Reports" title="Reports" help={help.reports} marquee={true}>
-                <GameReports game={game} player={player}/>
-              </Dialog>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Dialog icon={<MarketIcon/>} preview="Market" title="Market" help={help.market}>
-                <GameMarket game={game} player={player}/>
-              </Dialog>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Dialog icon={<PersonnelIcon/>} preview="Personnel" title="Personnel" help={help.personnel}>
-                <GamePersonnel game={game} player={player}/>
-              </Dialog>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Dialog icon={<FacilitiesIcon/>} preview="Facilities" title="Facilities" help={help.facilities}>
-                <GameFacilities game={game} player={player}/>
-              </Dialog>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Dialog icon={<PolicyIcon/>} preview="Policy" title="Policy" help={help.policy}>
-                <GamePolicy game={game} player={player}/>
-              </Dialog>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Dialog icon={<OperationsIcon/>} preview="Operations" title="Operations" help={help.operations}>
-                <GameOperations game={game} player={player}/>
-              </Dialog>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <input onChange={this.handleChangeText} />
-              <Button onClick={this.cloudAddMessage}>cloud</Button>
-            </Grid>
-          </Grid>
+              <Grid container>
+                <Grid item xs={12} md={6}>
+                  <Grid container>
+                    <Grid item xs={12}>
+                      <Dialog icon={<ReportsIcon/>} preview="Reports" title="Reports" help={help.reports} marquee={true}>
+                        <GameReports game={game} player={player}/>
+                      </Dialog>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Dialog icon={<MarketIcon/>} preview="Market" title="Market" help={help.market}>
+                        <GameMarket game={game} player={player}/>
+                      </Dialog>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Dialog icon={<PersonnelIcon/>} preview="Personnel" title="Personnel" help={help.personnel}>
+                        <GamePersonnel game={game} player={player}/>
+                      </Dialog>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Dialog icon={<FacilitiesIcon/>} preview="Facilities" title="Facilities" help={help.facilities}>
+                        <GameFacilities game={game} player={player}/>
+                      </Dialog>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Dialog icon={<PolicyIcon/>} preview="Policy" title="Policy" help={help.policy}>
+                        <GamePolicy game={game} player={player}/>
+                      </Dialog>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Hidden smDown>
+                <Grid item xs={12} md={6}>
+                  <Grid container>
+                    <Grid item xs={12}>
+                      <ChartDemand game={game} />
+                    </Grid>
+                  </Grid>
+                </Grid>
+                </Hidden>
+                <Grid item xs={12}>
+                  <Grid container>
+                    <Grid item xs={12}>
+                      <Expand icon={<SwordsIcon className="custom"/>} title="Rivals">
+                        <GameRivals game={game} player={player}/>
+                      </Expand>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+  {            // <Grid item xs={12} sm={6}>
+              //   <Dialog icon={<OperationsIcon/>} preview="Operations" title="Operations" help={help.operations}>
+              //     <GameOperations game={game} player={player}/>
+              //   </Dialog>
+              // </Grid>
+              // <Grid item xs={12} sm={6}>
+              //   <input onChange={this.handleChangeText} />
+              //   <Button onClick={this.cloudAddMessage}>cloud</Button>
+              // </Grid>
+  }         </React.Fragment>
         }
       </div>
     );
