@@ -6,15 +6,12 @@ import MoneyIcon from '@material-ui/icons/MonetizationOn';
 import BankIcon from '@material-ui/icons/AccountBalance';
 import { addCommas } from './dry/functions';
 
-function GameBarFinances(props) {
+function GameBarBank(props) {
 
   const player = props.player;
-  const debt = player.debt !== 0
-    ? <span style={{color: 'red'}}>${addCommas(player.debt)}</span>
-    : 'N/A';
 
   return (
-    <Grid container className="GameBarFinances">
+    <Grid container className="GameBarBank">
       <Grid item xs={12}>
         <T variant="headline"><MoneyIcon /> Money</T>
       </Grid>
@@ -24,15 +21,25 @@ function GameBarFinances(props) {
       <Grid item xs={12}>
         <T variant="headline"><BankIcon /> Loans</T>
       </Grid>
-      <Grid item xs={12}>
-        <T variant="headline">
-          Debt: {debt}
-        </T>
-      </Grid>
-      <Grid item xs={12}>
-        <Button>Borrow 10M</Button>
-        <Button>Bankruptcy</Button>
-      </Grid>
+      {!!player.debt &&
+        <React.Fragment>
+          <Grid item xs={12}>
+            <T variant="headline">
+              Debt: <span style={{color: 'red'}}>${addCommas(player.debt)}</span>
+            </T>
+          </Grid>
+          <Grid item xs={12}>
+            <Button>Bankruptcy</Button>
+          </Grid>
+        </React.Fragment>
+      }
+      {!player.debt &&
+        <Grid item xs={12}>
+          Borrow:
+          <Button>10M</Button>
+          <Button>50M</Button>
+        </Grid>
+      }
       <Grid item xs={12}>
         <Button>Pay Down</Button>
       </Grid>
@@ -40,4 +47,4 @@ function GameBarFinances(props) {
   )
 }
 
-export default GameBarFinances;
+export default GameBarBank;

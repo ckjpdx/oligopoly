@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import GameBarReputation from './GameBarReputation';
-import GameBarFinances from './GameBarFinances';
+import GameBarBank from './GameBarBank';
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -12,15 +12,14 @@ import { roundMillions } from './dry/functions';
 
 const styles = {
   root: {
-    width: 900,
+    width: 'inherit'
   },
 };
 
 class GameBar extends React.Component {
   state = {
-    topBank: false,
+    topBank: true,
     topRep: false,
-    prCampaign: 0
   };
 
 
@@ -51,30 +50,14 @@ class GameBar extends React.Component {
           icon={<BankIcon />}
           onClick={this.toggleDrawer('topBank', true)} />
           <Drawer anchor="top" open={this.state.topBank} onClose={this.toggleDrawer('topBank', false)}>
-            <div
-              tabIndex={0}
-              role="button"
-              onClick={this.toggleDrawer('topBank', false)}
-              onKeyDown={this.toggleDrawer('topBank', false)}
-              align="center"
-              >
-              <GameBarFinances player={player}/>
-            </div>
+            <GameBarBank player={player}/>
           </Drawer>
         <BottomNavigationAction
           label={this.props.player.reputation + '%'}
           icon={<ReputationIcon />}
           onClick={this.toggleDrawer('topRep', true)} />
           <Drawer anchor="top" open={this.state.topRep} onClose={this.toggleDrawer('topRep', false)}>
-            <div
-              tabIndex={0}
-              role="button"
-              onClick={this.toggleDrawer('topRep', false)}
-              onKeyDown={this.toggleDrawer('topRep', false)}
-              align="center"
-            >
-              <GameBarReputation player={player}/>
-            </div>
+            <GameBarReputation player={player}/>
           </Drawer>
       </BottomNavigation>
     );
