@@ -1,6 +1,5 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import T from '@material-ui/core/Typography';
 import MoneyIcon from '@material-ui/icons/MonetizationOn';
 import FacilitiesIcon from '@material-ui/icons/Business';
 
@@ -14,7 +13,6 @@ class GameRivalDetails extends React.Component {
   }
 
   render() {
-    const game = this.props.game;
     const rival = this.props.rival;
 
     return (

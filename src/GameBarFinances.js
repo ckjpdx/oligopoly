@@ -1,11 +1,10 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import ReputationIcon from '@material-ui/icons/ThumbsUpDown';
 import T from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import MoneyIcon from '@material-ui/icons/MonetizationOn';
 import BankIcon from '@material-ui/icons/AccountBalance';
-import { addCommas, roundMillions } from './dry/functions';
+import { addCommas } from './dry/functions';
 
 function GameBarFinances(props) {
 

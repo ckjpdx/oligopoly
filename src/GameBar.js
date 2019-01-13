@@ -5,13 +5,10 @@ import GameBarFinances from './GameBarFinances';
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import MoneyIcon from '@material-ui/icons/MonetizationOn';
 import BankIcon from '@material-ui/icons/AccountBalance';
 import ReputationIcon from '@material-ui/icons/ThumbsUpDown';
 import Drawer from '@material-ui/core/Drawer';
-import T from '@material-ui/core/Typography';
-import { addCommas, roundMillions } from './dry/functions';
-import Button from '@material-ui/core/Button';
+import { roundMillions } from './dry/functions';
 
 const styles = {
   root: {
@@ -51,7 +48,7 @@ class GameBar extends React.Component {
       >
         <BottomNavigationAction
           label={`${roundMillions(player.money)}M`}
-          icon={<MoneyIcon />}
+          icon={<BankIcon />}
           onClick={this.toggleDrawer('topMoney', true)} />
           <Drawer anchor="top" open={this.state.topMoney} onClose={this.toggleDrawer('topMoney', false)}>
             <div
