@@ -57,7 +57,7 @@ class GameFacilities extends React.Component {
     const player = this.props.player;
 
     const facilityPreview = (facility) =>
-      <Paper>
+      <Paper style={{width: '100%', margin: '2px 0'}}>
         <Grid container>
           <Grid item xs={1}>
             <Typography>

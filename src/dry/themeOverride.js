@@ -88,12 +88,6 @@ const themeOverride = {
       label: {
         fontSize: '1.25em'
       }
-    },
-    MuiPaper: {
-      root: {
-        width: '100%',
-        margin: '2px 0'
-      }
     }
   }
 };
