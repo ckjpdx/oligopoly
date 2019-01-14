@@ -88,8 +88,8 @@ class GameFacilities extends React.Component {
             </Typography>
           </Grid>
         )}
+        <Divider />
         <Grid item xs={12}>
-          <Divider />
           <TextField
             id="personnel-count-change"
             className="max-width-100px"

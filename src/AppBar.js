@@ -7,7 +7,7 @@ import SignOutIcon from '@material-ui/icons/Launch';
 import HelpIcon from '@material-ui/icons/Help';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-
+import AppBarManual from './AppBarManual';
 import { firebase } from './dry/firebase';
 const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -49,9 +49,7 @@ class AppBar extends React.Component {
         variant="outlined"
         onClick={() => this.props.onExit()}
       >
-        <Typography>
-          Exit Game
-        </Typography>
+        <Typography>Exit Game</Typography>
       </Button>;
 
     return (
@@ -66,7 +64,7 @@ class AppBar extends React.Component {
               <HelpIcon onClick={this.toggleDrawer('topHelp', true)}/>
             </Grid>
             <Grid item xs={4}>
-                <em>oligopoly</em>
+              <em>oligopoly</em>
             </Grid>
             <Grid item xs={4} style={{textAlign:"right"}}>
               <MenuIcon onClick={this.toggleDrawer('topMenu', true)}/>
@@ -105,27 +103,15 @@ class AppBar extends React.Component {
           </div>
         </Drawer>
         <Drawer anchor="top" open={this.state.topHelp} onClose={this.toggleDrawer('topHelp', false)}>
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer('topHelp', false)}
-            onKeyDown={this.toggleDrawer('topHelp', false)}
-            align="center"
-          >
-            <Grid container>
-              <Grid item xs={12} align="center">
-                <Typography variant="headline">
-                  Manual
-                </Typography>
-                <Typography variant="subheading">
-                  <HelpIcon /> How to play
-                </Typography>
-                <Typography>
-                  Get rich or die trying
-                </Typography>
-              </Grid>
-            </Grid>
-          </div>
+        <div
+          tabIndex={0}
+          role="button"
+          onClick={this.toggleDrawer('topHelp', false)}
+          onKeyDown={this.toggleDrawer('topHelp', false)}
+          align="center"
+        >
+          <AppBarManual />
+        </div>
         </Drawer>
       </div>
     );

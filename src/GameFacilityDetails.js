@@ -1,5 +1,5 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
+import T from '@material-ui/core/Typography';
 import { getPersonnelIcon, getRankIcon, emptyStaffObj } from './dry/functions';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -134,20 +134,20 @@ class GameFacilityDetails extends React.Component {
     return (
       <Grid container>
         <Grid item xs={4}>
-          <Typography>{getRankIcon(facility.rank)}
+          <T>{getRankIcon(facility.rank)}
             {facility.rank === 1 ? "Labs"
             : facility.rank === 2 ? "Base"
             : "Citadel"}
-          </Typography>
+          </T>
         </Grid>
         <Grid item xs={4}>
           <Alert icon={<DemolishIcon />} preview="Demo">
             <Grid container>
               <Grid item xs={12}>
-                <Typography>Demolish this facility?</Typography>
+                <T>Demolish this facility?</T>
               </Grid>
               <Grid item xs={12}>
-                <Typography>Staff will be terminated.</Typography>
+                <T>Staff will be terminated.</T>
               </Grid>
               <Grid item xs={12}>
                 <Button onClick={this.handleDemolish} variant="outlined" color="primary">Demolish</Button>
@@ -156,12 +156,12 @@ class GameFacilityDetails extends React.Component {
           </Alert>
         </Grid>
         <Grid item xs={4}>
-          <Typography><StaffIcon /> {this.state.staffTotal} / {this.state.capacity}</Typography>
+          <T><StaffIcon /> {this.state.staffTotal} / {this.state.capacity}</T>
         </Grid>
         <Grid item xs={6}>
           {facility.rank < 3
           ? <Alert icon={<AddIcon />} preview="Expand">
-            <Typography>
+            <T>
               <Grid item xs={12}>
                 Expand this facility for $3M?
               </Grid>
@@ -169,31 +169,36 @@ class GameFacilityDetails extends React.Component {
                 This increases capacity, improves defenses, and is more cost effective housing per employee.
               </Grid>
               <Grid item xs={12}>
-                <Button onClick={this.handleExpand}>Expand</Button>
+                <Button onClick={this.handleExpand} variant="outlined" color="primary">Expand</Button>
               </Grid>
-            </Typography>
+            </T>
           </Alert>
-          : <Typography>MAXXED</Typography>}
+          : <T>MAXXED</T>}
         </Grid>
         <Grid item xs={6}>
-          <Button onClick={() => this.staffEvacuate()}>
-            <EjectIcon /> Evacuate
-          </Button>
+          <Alert icon={<EjectIcon />} preview="Evacuate">
+            <Grid item xs={12}>
+              <T>Return all staff to Personnel?</T>
+            </Grid>
+            <Grid item xs={12}>
+              <Button onClick={() => this.staffEvacuate()} variant="outlined" color="primary">Evacuate</Button>
+            </Grid>
+          </Alert>
         </Grid>
         {Object.entries(facility.staff).map((staffPair, i) =>
           <Grid item xs={12} key={i}>
-            <Typography onClick={() => this.handleType(staffPair[0])}>
+            <T onClick={() => this.handleType(staffPair[0])}>
               {getPersonnelIcon(staffPair[0])} {staffPair[1] || '0'}
-            </Typography>
+            </T>
           </Grid>
         )}
         <Grid item xs={12}>
-          <Typography style={{marginTop: 22}}>
+          <T style={{marginTop: 22}}>
             {player.personnel[this.state.personnelType]}
             <PersonnelIcon />
             <ArrowRightIcon style={turnArrow}/>
             <StaffIcon />
-          </Typography>
+          </T>
           <TextField
             id="personnel-count-change"
             className="max-width-100px"
@@ -213,7 +218,7 @@ class GameFacilityDetails extends React.Component {
           </Button>
         </Grid>
         <Grid item xs={12}>
-          <Typography>{this.state.personnelCount >= 0 ? "Assign" : "Standby"}</Typography>
+          <T>{this.state.personnelCount >= 0 ? "Assign" : "Standby"}</T>
         </Grid>
       </Grid>
     )

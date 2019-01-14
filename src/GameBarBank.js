@@ -13,10 +13,7 @@ function GameBarBank(props) {
   return (
     <Grid container className="GameBarBank">
       <Grid item xs={12}>
-        <T variant="headline"><MoneyIcon /> Money</T>
-      </Grid>
-      <Grid item xs={12}>
-        <T variant="display1">${addCommas(player.money)}</T>
+        <T variant="display1"><MoneyIcon />{addCommas(player.money)}</T>
       </Grid>
       <Grid item xs={12}>
         <T variant="headline"><BankIcon /> Loans</T>

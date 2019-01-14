@@ -17,7 +17,7 @@ function GameRivals(props) {
     <Grid container justify="center" className="GameRivals borderSides">
     {
       Object.values(rivals).map((rival, i) =>
-        <Grid item xs={12} md={6} key={i}>
+        <Grid item xs={12} md={4} key={i}>
           <Dialog
             preview={`${rival.name.toUpperCase()} • $${roundMillions(rival.money)}M • ${rival.reputation}%`}
             title={rival.name.toUpperCase()}

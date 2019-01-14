@@ -4,12 +4,14 @@ body {
   font-family: 'Rajdhani';
   font-size: 18px;
   color: white;
+  text-align: center;
 }
 img.bg-img {
   filter: blur(10px);
   height: 100%;
   width: 100%;
   position: absolute;
+  transform: translateX(-50%);
   z-index: -1000
 }
 div.App {
