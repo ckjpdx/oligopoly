@@ -100,7 +100,7 @@ class GamePolicy extends React.Component {
               {
                 industryData
                 && industryData.status !== 'boom'
-                  ? <Button onClick={this.handleDeregulate} variant="contained">Deregulate</Button>
+                  ? <Button onClick={this.handleDeregulate} variant="contained" color="primary">Deregulate</Button>
                   : industryData && <Typography>(Deregulated)</Typography>
               }
             </Grid>
