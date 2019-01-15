@@ -13,18 +13,42 @@ function ChartDemand(props){
     'rgb(255, 255, 0)'
   ];
 
-  const graphData = {
-    datasets: industryTypes.map((industry, i) => {
-      return {
+  const turns = () => {
+    const count = game.market.arms.demand.length;
+    return [...Array(count).keys()]
+  }
+
+  const data = {
+    labels: turns(),
+    datasets: industryTypes.map((industry, i) =>
+      ({
         label: industry.toUpperCase(),
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: 'black',
         borderColor: industryGraphColors[i],
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: 'rgba(255,255,255,1)',
+        pointBackgroundColor: '#fff',
+        pointBorderWidth: 1,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: 'rgba(255,255,255,1)',
+        pointHoverBorderColor: 'rgba(255,255,255,1)',
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        axisX: {
+          labelFontColor: 'white'
+        },
         data: game.market[industry].demand
-      }
-    })
+      }))
   };
 
   return (
-    <Line data={graphData}></Line>
+    <Line data={data}></Line>
   );
 }
 
