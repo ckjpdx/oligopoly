@@ -11,6 +11,7 @@ import ReportsIcon from '@material-ui/icons/ListAlt';
 import OperationsIcon from '@material-ui/icons/VisibilityOff';
 import { ReactComponent as SwordsIcon } from './img/sword.svg';
 
+import Spinner from './dry/Spinner';
 import Dialog from './dry/Dialog';
 import Expand from './dry/Expand';
 import { help } from './dry/text';
@@ -58,8 +59,8 @@ class Game extends Component {
 
     return (
       <div className="Game">
-        {!game ? <CircularProgress /> :
-          !player ? <CircularProgress /> :
+        {!game ? <Spinner full/> :
+          !player ? <Spinner full/> :
             <React.Fragment>
               <GameBar player={player} />
               <GameOverview game={game} player={player}/>

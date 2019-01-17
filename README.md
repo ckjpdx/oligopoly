@@ -1,10 +1,13 @@
 # oligopoly
 a game of risk, greed, and corruption
 
-## Tech
+## Status: Work in Progress
+Oligopoly is not yet deployed. I'm getting close to MVP - I think sometime in February an incomplete version will be hosted to show off what's built thus far.
+
+## Tech Employed
 Create React App, Material UI, ChartJS, Firebase: cloud functions, database, authentication
 
-## Concept
+## Game Concept
 Oligopoly's game-flow reflects the cycles of capitalism on a society depending on government policy. In this game you play a sociopathic business person who's perspective on the economy is that of a person playing a game: more money, higher score, at any cost. Unstable but lucrative libertarian policy versus stable but costly socialistic policy. When libertarian ideas dictate policy, "contributions" to deregulate certain industries are possible, making the game economy experiences a surge of prosperity followed by a sudden crash. It's this building up frantically and the inevitable crash that the game revolves around:
 
 * There are 3 stages the market can be in: booming, stable, recession. Once an industry type is deregulated it starts "booming" which is always followed eventually by a "recession".

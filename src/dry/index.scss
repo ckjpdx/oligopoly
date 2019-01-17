@@ -44,6 +44,29 @@ div.AppBar h1 {
   border-left: 1px solid white;
   border-right: 1px solid white;
 }
+.center-x-y {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.spinner {
+  animation: spin 7s linear infinite forwards;
+  @keyframes spin {
+  0% {transform: rotate(0deg); fill: white}
+  25% {transform: rotate(90deg); fill: black}
+  50% {transform: rotate(180deg); fill: white}
+  75% {transform: rotate(270deg); fill: black}
+  100% {transform: rotate(360deg); fill: white}
+  }
+  &.fullScreen {
+    opacity: 0.33;
+    font-size: 50vw;
+    position: absolute;
+    top: 20%;
+    left: 25%
+  }
+}
 div.marquee {
   background: #ec7dff1f;
   padding: 0 0 1px;
@@ -73,7 +96,7 @@ div.global-status-bar {
   font-size: 1.5em;
 }
 svg.custom {
-  width: 1.1em;
+  width: 1em;
   height: unset;
   vertical-align: middle;
   fill: white;
