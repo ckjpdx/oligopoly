@@ -46,7 +46,7 @@ class GameBar extends React.Component {
         className={classes.root}
       >
         <BottomNavigationAction
-          label={`${roundMillions(player.money)}M`}
+          label={`$${roundMillions(player.money)}M`}
           icon={<BankIcon />}
           onClick={this.toggleDrawer('topBank', true)} />
           <Drawer anchor="top" open={this.state.topBank} onClose={this.toggleDrawer('topBank', false)}>

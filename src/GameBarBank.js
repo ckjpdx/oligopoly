@@ -18,6 +18,13 @@ function GameBarBank(props) {
       <Grid item xs={12}>
         <T variant="headline"><BankIcon /> Loans</T>
       </Grid>
+      {!player.debt &&
+        <Grid item xs={12}>
+          Borrow:
+          <Button>10M</Button>
+          <Button>50M</Button>
+        </Grid>
+      }
       {!!player.debt &&
         <React.Fragment>
           <Grid item xs={12}>
@@ -29,13 +36,6 @@ function GameBarBank(props) {
             <Button>Bankruptcy</Button>
           </Grid>
         </React.Fragment>
-      }
-      {!player.debt &&
-        <Grid item xs={12}>
-          Borrow:
-          <Button>10M</Button>
-          <Button>50M</Button>
-        </Grid>
       }
       <Grid item xs={12}>
         <Button>Pay Down</Button>

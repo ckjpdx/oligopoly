@@ -44,7 +44,7 @@ div.AppBar h1 {
   border-left: 1px solid white;
   border-right: 1px solid white;
 }
-.center-x-y {
+.center-screen {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -61,7 +61,7 @@ div.AppBar h1 {
   }
 }
 .spinner-full {
-  @extend .center-x-y;
+  @extend .center-screen;
   opacity: 0.33;
   font-size: 65vw;
   transform-origin: 0 0;
@@ -84,7 +84,7 @@ div.marquee {
     font-family: 'VT323', monospace;
     color: white;
     display: inline-block;
-    animation: marquee 20s linear infinite;
+    animation: marquee 30s linear infinite;
     overflow: hidden;
     vertical-align: bottom;
     span {
