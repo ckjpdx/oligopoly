@@ -2,10 +2,10 @@ import React from 'react';
 import { ReactComponent as NetworkIcon } from '../img/network.svg';
 
 function Spinner(props){
-  const full = props.full && " fullScreen";
+  const full = props.full ? "spinner-full" : "spinner";
 
   return (
-    <NetworkIcon className={"custom spinner" + full} />
+    <NetworkIcon className={`custom ${full}`} />
   );
 }
 

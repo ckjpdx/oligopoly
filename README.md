@@ -8,11 +8,11 @@ Oligopoly is not yet deployed. I'm getting close to MVP - I think sometime in Fe
 Create React App, Material UI, ChartJS, Firebase: cloud functions, database, authentication
 
 ## Game Concept
-Oligopoly's game-flow reflects the cycles of capitalism on a society depending on government policy. In this game you play a sociopathic business person who's perspective on the economy is that of a person playing a game: more money, higher score, at any cost. Unstable but lucrative libertarian policy versus stable but costly socialistic policy. When libertarian ideas dictate policy, "contributions" to deregulate certain industries are possible, making the game economy experiences a surge of prosperity followed by a sudden crash. It's this building up frantically and the inevitable crash that the game revolves around:
+Oligopoly's game-flow reflects the cycles of capitalism on a society dictated by government policy. In this game you play a sociopathic business person who's perspective on the economy is that of a person playing a game: more money, higher score, at any cost. The game swings between unstable but lucrative libertarian policy and stable but restrictive socialistic policy. When libertarian ideas dictate policy, "contributions" to deregulate certain industries are possible, making the game economy experiences a surge of prosperity followed by a sudden crash. It's this building up frantically and the inevitable crash that the game revolves around:
 
 * There are 3 stages the market can be in: booming, stable, recession. Once an industry type is deregulated it starts "booming" which is always followed eventually by a "recession".
-* When a conservative policy is in place there is a higher chance of the "nation" being at war. The war status of the nation affects certain industries: arms and robotics receive a boost in demand, while medicine and energy receive a boost in peacetime.
-* Like a binging addict, a society experiencing a recession will attempt to correct itself by electing moderate or socialistic policy makers in order to stabilize. However, ambitious people will forget the last recession in time and soon favor more libertarian policy, frustrated with government regulations standing between them and their dream to own vastly more than their fellow citizens.
+* When a conservative policy is in place there is a higher chance of the "nation" being at war. The war status of the nation affects certain industries: arms and robotics are more in demand during wartime, while demand for medicine and energy are higher during peacetime.
+* Like an addict hitting rock-bottom, a society experiencing a recession will attempt to correct itself by electing moderate or socialistic policy makers in order to stabilize. However, ambitious people will forget the last recession in time and soon favor more libertarian policy, frustrated with government regulations standing between them and their dream to own vastly more than their fellow citizens.
 * Facilities can be upgraded but not downgraded - only destroyed.
 * Personnel will need to be hired on as the economy expands, and fired when an economy contracts.
 
@@ -38,8 +38,7 @@ Regime cycles
 
 ## Material UI
 ### Material Design Logos
-thanks to MUI for having awesome SVGs icons
-[List of logos](https://material.io/tools/icons/?icon=input&style=baseline)
+thanks to MUI for having awesome [SVG icons](https://material.io/tools/icons)
 
 SVGs to use or being used in this app:
 
@@ -118,6 +117,8 @@ SVGs to use or being used in this app:
 * thumb_down (reputation)
 * thumb_up_down (reputation)
 * hourglass_full (time/delay)
+
+## Credits
 
 <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Soldiers">Soldiers</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Peace">Peace</a> from <a href="https://www.flaticon.com/"     title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"     title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
