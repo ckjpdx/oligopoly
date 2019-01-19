@@ -62,7 +62,12 @@ function GameOverview(props) {
             </Tooltip>
           </Grid>
           <Grid item xs={3}>
-            <TurnIcon /> {game.turn}
+            <Tooltip disableFocusListener title="Turn Number" placement="bottom">
+              <TurnIcon onClick={props.endTurn}/>
+            </Tooltip>
+              <span style={{fontSize: '0.66em'}}>
+                {game.turn}
+              </span>
           </Grid>
         </Grid>
       </div>

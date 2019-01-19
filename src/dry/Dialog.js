@@ -35,7 +35,7 @@ class DryDialog extends React.Component {
       <React.Fragment>
         <Button onClick={this.handleClickOpen} style={styleNoPad}>
           {this.props.icon}
-          {this.props.preview}
+          {this.props.title}
         </Button>
         <Dialog
           open={this.state.open}
