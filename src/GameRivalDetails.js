@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import MoneyIcon from '@material-ui/icons/MonetizationOn';
 import FacilitiesIcon from '@material-ui/icons/Business';
+import ReputationIcon from '@material-ui/icons/ThumbsUpDown';
 
 import { getRankIcon, addCommas } from './dry/functions';
 
@@ -17,8 +18,11 @@ class GameRivalDetails extends React.Component {
 
     return (
       <Grid container justify="center" className="GameRivalDetails">
-        <Grid item xs={12}>
-          <MoneyIcon />{addCommas(rival.money)}
+        <Grid item xs={6}>
+          <MoneyIcon /> {addCommas(rival.money)}
+        </Grid>
+        <Grid item xs={6}>
+          <ReputationIcon /> {rival.reputation}%
         </Grid>
         <Grid item xs={12}>
           Facilities
