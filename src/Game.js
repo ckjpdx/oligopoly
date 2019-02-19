@@ -52,6 +52,15 @@ class Game extends Component {
     });
   }
 
+  endTurn = () => {
+    const endTurn = firebase.functions().httpsCallable('endTurn');
+    endTurn({gameUid: this.state.game.uid}).then((result) => {
+      // console.log(result);
+    }).catch(function(error) {
+      // console.log(error);
+    });
+  }
+
   render() {
     const game = this.state.game;
     const uid = 'jacko';
@@ -63,32 +72,32 @@ class Game extends Component {
           !player ? <Spinner full/> :
             <React.Fragment>
               <GameBar player={player} />
-              <GameOverview game={game} player={player}/>
+              <GameOverview game={game} endTurn={this.endTurn}/>
               <Grid container>
                 <Grid item xs={12} md={6}>
                   <Grid container>
                     <Grid item xs={12}>
-                      <Dialog icon={<ReportsIcon/>} preview="Reports" title="Reports" help={help.reports} marquee={true}>
+                      <Dialog icon={<ReportsIcon/>} title="Reports" help={help.reports} marquee={true}>
                         <GameReports game={game} player={player}/>
                       </Dialog>
                     </Grid>
                     <Grid item xs={12}>
-                      <Dialog icon={<MarketIcon/>} preview="Market" title="Market" help={help.market}>
+                      <Dialog icon={<MarketIcon/>} title="Market" help={help.market}>
                         <GameMarket game={game} player={player}/>
                       </Dialog>
                     </Grid>
                     <Grid item xs={12}>
-                      <Dialog icon={<PersonnelIcon/>} preview="Personnel" title="Personnel" help={help.personnel}>
+                      <Dialog icon={<PersonnelIcon/>} title="Personnel" help={help.personnel}>
                         <GamePersonnel game={game} player={player}/>
                       </Dialog>
                     </Grid>
                     <Grid item xs={12}>
-                      <Dialog icon={<FacilitiesIcon/>} preview="Facilities" title="Facilities" help={help.facilities}>
+                      <Dialog icon={<FacilitiesIcon/>} title="Facilities" help={help.facilities}>
                         <GameFacilities game={game} player={player}/>
                       </Dialog>
                     </Grid>
                     <Grid item xs={12}>
-                      <Dialog icon={<PolicyIcon/>} preview="Policy" title="Policy" help={help.policy}>
+                      <Dialog icon={<PolicyIcon/>} title="Policy" help={help.policy}>
                         <GamePolicy game={game} player={player}/>
                       </Dialog>
                     </Grid>
