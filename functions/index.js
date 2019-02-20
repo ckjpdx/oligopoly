@@ -25,6 +25,22 @@ exports.addMessage = functions.https.onCall((data, context) => {
   });
 });
 
+exports.endTurn = functions.https.onCall((data, context) => {
+  const turnRef = admin.database().ref('/games/abc/turn');
+  turnRef.transaction(turn => ((turn || 0) + 1));
+});
+// exports.endTurn = functions.https.onCall((data, context) => {
+//   const gUid = data.gameUid;
+//   let turn = null;
+//   admin.database().ref('/games/' + gUid + '/turn').once('value', snap => turn = snap.val()).then(turn => {
+//   return admin.database().ref('/games/' + gUid)
+//     .update({turn: turn + 1}).then((snapshot) => {
+//       console.log(snapshot);
+//       return true;
+//     });
+//   });
+// });
+
 // Listens for new messages added to /messages/:pushId/original and creates an
 // uppercase version of the message to /messages/:pushId/uppercase
 exports.makeUppercase = functions.database.ref('/messages/{pushId}/original')
