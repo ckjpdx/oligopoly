@@ -26,7 +26,7 @@ exports.addMessage = functions.https.onCall((data, context) => {
 });
 
 exports.endTurn = functions.https.onCall((data, context) => {
-  const turnRef = admin.database().ref('/games/abc/turn');
+  const turnRef = admin.database().ref(`/games/${data.gameUid}/turn`);
   turnRef.transaction(turn => ((turn || 0) + 1));
 });
 // exports.endTurn = functions.https.onCall((data, context) => {
