@@ -7,7 +7,7 @@ import StableIcon from '@material-ui/icons/TrendingFlat';
 import ArmsIcon from '@material-ui/icons/Star';
 import RoboIcon from '@material-ui/icons/Adb';
 import NanoIcon from '@material-ui/icons/BlurCircular';
-import FusiIcon from '@material-ui/icons/OfflineBolt';
+import FuseIcon from '@material-ui/icons/OfflineBolt';
 
 import EngineerIcon from '@material-ui/icons/Build';
 import ScientistIcon from '@material-ui/icons/DeveloperBoard';
@@ -36,14 +36,14 @@ export const getMarketStatusIcon = (status) =>
 //   : <BustIcon />;
 
 export const industryTypes = [
-  'arms', 'robo', 'nano', 'fusi'
+  'arms', 'robo', 'nano', 'fuse'
 ];
 
 export const getIndustryIcon = (industry) =>
   industry === 'arms' ? <ArmsIcon />
   : industry === 'robo' ? <RoboIcon />
   : industry === 'nano' ? <NanoIcon />
-  : <FusiIcon />;
+  : <FuseIcon />;
 
 export const personnelTypes = [
   'engineers', 'scientists', 'mercs', 'hackers', 'warbots'
